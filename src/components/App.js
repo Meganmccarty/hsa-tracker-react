@@ -1,5 +1,13 @@
+import Login from './Login';
+import Signup from './Signup';
+
 function App() {
-    return <h1>Hello, World!</h1>
-}
+    return (
+        <>
+            <Login />
+            <Signup />
+        </>
+    );
+};
 
 export default App;
