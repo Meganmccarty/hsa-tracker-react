@@ -1,12 +1,9 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createUser } from '../store/userSlice';
 
 function Signup() {
     const dispatch = useDispatch();
-    const errors = useSelector(state => state.user.errors);
-    const user = useSelector(state => state.user.user);
-
     const [formData, setFormData] = useState({
         first_name: "",
         last_name: "",
@@ -23,9 +20,6 @@ function Signup() {
         e.preventDefault();
         dispatch(createUser(formData))
     }
-
-    console.log("User: ", user);
-    console.log("Errors: ", errors);
 
     return (
         <form onSubmit={handleSubmit}>
