@@ -19,6 +19,9 @@ function Header() {
             {user ?
                 <>
                     <button>
+                        <Link to="/receipt-records">My Receipt Records</Link>
+                    </button>
+                    <button>
                         <Link to="/profile">Profile</Link>
                     </button>
                     <button onClick={handleLogout}>Log Out</button>
