@@ -1,13 +1,19 @@
-import { Link } from 'react-router-dom';
-import CSRFToken from './cookies';
+import { useSelector, useDispatch } from 'react-redux';
+import { onLogout } from '../store/userSlice';
 
-function Header({ user, onLogout }) {
+import { Link } from 'react-router-dom';
+
+function Header() {
+    const dispatch = useDispatch();
+    const errors = useSelector(state => state.user.errors);
+    const user = useSelector(state => state.user.user);
+
     function handleLogout() {
-        fetch("/logout", { method: "DELETE", headers: { "X-CSRF-Token": CSRFToken(document.cookie) } })
-            .then(() => {
-                onLogout()
-            });
+        dispatch(onLogout());
     };
+
+    console.log("user: ", user);
+    console.log("errors: ", errors);
     
     return (
         <nav>
