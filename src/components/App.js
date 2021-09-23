@@ -8,6 +8,7 @@ import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
 import Profile from './Profile';
+import ReceiptRecordsList from './ReceiptRecordsList';
 import Footer from './Footer';
 
 import loadingGIF from '../loading.gif';
@@ -42,13 +43,16 @@ function App() {
                 <Switch>
                     <Route exact path="/"><Home /></Route>
                     <Route exact path="/login">
-                        { !user ? <Login /> : <Redirect to="/" />}
+                        { !user ? <Login /> : <Redirect to="/receipt-records" />}
                     </Route>
                     <Route exact path="/signup">
-                        { !user ? <Signup /> : <Redirect to="/" />}
+                        { !user ? <Signup /> : <Redirect to="/receipt-records" />}
                     </Route>
                     <Route exact path="/profile">
                         { user ? <Profile /> : <Redirect to="/login" />}
+                    </Route>
+                    <Route exact path="/receipt-records">
+                        { user ? <ReceiptRecordsList /> : <Redirect to="/login" />}
                     </Route>
                 </Switch>
             }
