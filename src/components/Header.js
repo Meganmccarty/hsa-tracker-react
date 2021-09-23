@@ -12,19 +12,26 @@ function Header() {
         dispatch(onLogout());
         history.push("/login");
     };
-    
+
     return (
         <nav>
             <Link to="/">HSA Tracker</Link>
-            {user ? 
-                <button onClick={handleLogout}>Log Out</button>
-            : <>
-                <button>
-                    <Link to="/login">Login</Link>
-                </button>
-                <button>
-                    <Link to="/signup">Signup</Link>
-                </button></>
+            {user ?
+                <>
+                    <button>
+                        <Link to="/profile">Profile</Link>
+                    </button>
+                    <button onClick={handleLogout}>Log Out</button>
+                </>
+                :
+                <>
+                    <button>
+                        <Link to="/login">Login</Link>
+                    </button>
+                    <button>
+                        <Link to="/signup">Signup</Link>
+                    </button>
+                </>
             }
         </nav>
     );
