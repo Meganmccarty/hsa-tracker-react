@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { retrieveReceipts, receiptsActions } from '../store/receiptsSlice';
 
@@ -20,7 +21,7 @@ function ReceiptRecordsList() {
     const displayReceipts = receipts.map(receipt => {
         return (
             <tr key={receipt.id}>
-                <td>{receipt.trans_date}</td>
+                <td><Link to={`/receipt-records/${receipt.id}`}>{receipt.trans_date}</Link></td>
                 <td>{receipt.provider}</td>
                 <td>{receipt.decription}</td>
                 <td>{receipt.amount}</td>
