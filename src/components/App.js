@@ -9,6 +9,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Profile from './Profile';
 import ReceiptRecordsList from './ReceiptRecordsList';
+import ReceiptRecordDetail from './ReceiptRecordDetail';
 import Footer from './Footer';
 
 import loadingGIF from '../loading.gif';
@@ -53,6 +54,9 @@ function App() {
                     </Route>
                     <Route exact path="/receipt-records">
                         { user ? <ReceiptRecordsList /> : <Redirect to="/login" />}
+                    </Route>
+                    <Route exact path="/receipt-records/:id">
+                        { user ? <ReceiptRecordDetail /> : <Redirect to="/login" />}
                     </Route>
                 </Switch>
             }
