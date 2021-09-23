@@ -9,10 +9,13 @@ import Login from './Login';
 import Signup from './Signup';
 import Footer from './Footer';
 
+import loadingGIF from '../loading.gif';
+
 function App() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user.user);
-    
+    const loading = useSelector(state => state.user.loading);
+
     useEffect(() => {
         fetch("/profile")
             .then(response => {
@@ -32,11 +35,15 @@ function App() {
     return (
         <Router>
             <Header />
-            <Switch>
-                <Route exact path="/"><Home /></Route>
-                <Route exact path="/login"><Login /></Route>
-                <Route exact path="/signup"><Signup /></Route>
-            </Switch>
+            {loading ?
+                <img src={loadingGIF} alt="Loading..." width="25%" />
+                :
+                <Switch>
+                    <Route exact path="/"><Home /></Route>
+                    <Route exact path="/login"><Login /></Route>
+                    <Route exact path="/signup"><Signup /></Route>
+                </Switch>
+            }
             <Footer />
         </Router>
     );
