@@ -12,7 +12,6 @@ import Footer from './Footer';
 function App() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user.user);
-    const loading = useSelector(state => state.user.loading);
     
     useEffect(() => {
         fetch("/profile")
@@ -28,8 +27,7 @@ function App() {
             })
     }, [dispatch])
 
-    console.log("User: ", user);
-    console.log("Loading: ", loading);
+    console.log("User: ", user)
 
     return (
         <Router>
