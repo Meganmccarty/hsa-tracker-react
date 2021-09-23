@@ -7,16 +7,13 @@ import loadingGIF from '../loading.gif';
 
 function ReceiptRecordsList() {
     const dispatch = useDispatch();
-    const receipts = useSelector(state => state.receipts.receipts);
+    const receipts = useSelector(state => state.receipts.receiptList);
     const loading = useSelector(state => state.receipts.loading);
 
     useEffect(() => {
         dispatch(retrieveReceipts());
         dispatch(receiptsActions.toggleLoading(false))
     }, [dispatch]);
-
-    console.log(receipts);
-    console.log(loading);
 
     const displayReceipts = receipts.map(receipt => {
         return (
