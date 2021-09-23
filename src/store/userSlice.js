@@ -27,6 +27,17 @@ export const onLogin = createAsyncThunk("user/onLogin", async (formData) => {
     return data;
 });
 
+export const onLogout = createAsyncThunk("user/onLogout", async () => {
+    const response = await fetch("/logout", {
+        method: "DELETE",
+        headers: {
+            "X-CSRF-Token": CSRFToken(document.cookie)
+        }
+    });
+    const data = await response.json();
+    return data;
+})
+
 
 const initialState = {
     user: null,
@@ -51,7 +62,7 @@ const userSlice = createSlice({
             state.status = "loading";
         },
         [createUser.fulfilled](state, action) {
-            state.status = "idle";
+            state.status = "completed";
             if (action.payload.errors) {
                 state.errors = action.payload.errors;
             } else {
@@ -80,6 +91,26 @@ const userSlice = createSlice({
             }
         },
         [onLogin.rejected](state, action) {
+            state.status = "rejected";
+            if (action.payload) {
+                state.errors = action.payload.errorMessages;
+            } else {
+                state.errors = action.error.message;
+            }
+        },
+        [onLogout.pending](state) {
+            state.status = "loading";
+        },
+        [onLogout.fulfilled](state, action) {
+            state.status = "completed";
+            if (action.payload.errors) {
+                state.errors = action.payload.errors;
+            } else {
+                state.user = null;
+                state.errors = [];
+            }
+        },
+        [onLogout.rejected](state, action) {
             state.status = "rejected";
             if (action.payload) {
                 state.errors = action.payload.errorMessages;
