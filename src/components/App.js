@@ -7,6 +7,7 @@ import Header from './Header';
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
+import Profile from './Profile';
 import Footer from './Footer';
 
 import loadingGIF from '../loading.gif';
@@ -45,6 +46,9 @@ function App() {
                     </Route>
                     <Route exact path="/signup">
                         { !user ? <Signup /> : <Redirect to="/" />}
+                    </Route>
+                    <Route exact path="/profile">
+                        { user ? <Profile /> : <Redirect to="/login" />}
                     </Route>
                 </Switch>
             }
