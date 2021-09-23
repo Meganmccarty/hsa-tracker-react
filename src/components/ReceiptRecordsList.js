@@ -1,16 +1,21 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { retrieveReceipts } from '../store/receiptsSlice';
+import { retrieveReceipts, receiptsActions } from '../store/receiptsSlice';
+
+import loadingGIF from '../loading.gif';
 
 function ReceiptRecordsList() {
     const dispatch = useDispatch();
     const receipts = useSelector(state => state.receipts.receipts);
-    
+    const loading = useSelector(state => state.receipts.loading);
+
     useEffect(() => {
         dispatch(retrieveReceipts());
+        dispatch(receiptsActions.toggleLoading(false))
     }, [dispatch]);
 
     console.log(receipts);
+    console.log(loading);
 
     const displayReceipts = receipts.map(receipt => {
         return (
@@ -28,21 +33,25 @@ function ReceiptRecordsList() {
     return (
         <>
             <h1>Receipt Records List</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Provider</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                        <th>Payment Method</th>
-                        <th>Reimbursed?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {displayReceipts}
-                </tbody>
-            </table>
+            {loading ?
+                <img src={loadingGIF} alt="Loading..." width="25%" />
+                :
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Provider</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Payment Method</th>
+                            <th>Reimbursed?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {displayReceipts}
+                    </tbody>
+                </table>
+            }
         </>
     );
 };
