@@ -37,7 +37,7 @@ function App() {
             <Switch>
                 <Route exact path="/"><Home /></Route>
                 <Route exact path="/login"><Login onLogin={handleLogin}/></Route>
-                <Route exact path="/signup"><Signup onLogin={handleLogin}/></Route>
+                <Route exact path="/signup"><Signup /></Route>
             </Switch>
             <Footer />
         </Router>
