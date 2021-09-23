@@ -56,7 +56,7 @@ const userSlice = createSlice({
                 state.errors = action.payload.errors;
             } else {
                 state.user = action.payload;
-                state.erros = [];
+                state.errors = [];
             }
         },
         [createUser.rejected](state, action) {
