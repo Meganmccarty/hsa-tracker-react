@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './Header';
@@ -8,8 +8,6 @@ import Signup from './Signup';
 import Footer from './Footer';
 
 function App() {
-    const [user, setUser] = useState(null);
-
     useEffect(() => {
         fetch("/profile")
             .then(response => {
@@ -21,22 +19,12 @@ function App() {
             })
     }, [])
 
-    function handleLogin(user) {
-        setUser(user);
-    };
-    
-    function handleLogout() {
-        setUser(null);
-    };
-
-    console.log(user)
-
     return (
         <Router>
-            <Header user={user} onLogout={handleLogout}/>
+            <Header />
             <Switch>
                 <Route exact path="/"><Home /></Route>
-                <Route exact path="/login"><Login onLogin={handleLogin}/></Route>
+                <Route exact path="/login"><Login /></Route>
                 <Route exact path="/signup"><Signup /></Route>
             </Switch>
             <Footer />
