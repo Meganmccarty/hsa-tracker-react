@@ -7,9 +7,16 @@ export const retrieveReceipts = createAsyncThunk("receipts/retrieveReceipts", as
     return data;
 })
 
+export const retrieveOneReceipt = createAsyncThunk("receipts/retrieveOneReceipt", async (id) => {
+    const response = await fetch(`/receipt-records/${id}`);
+    const data = await response.json();
+    return data;
+})
+
 
 const initialState = {
-    receipts: [],
+    receiptList: [],
+    receipt: null,
     status: "",
     loading: true,
     errors: []
@@ -32,11 +39,31 @@ const receiptsSlice = createSlice({
             if (action.payload.errors) {
                 state.errors = action.payload.errors;
             } else {
-                state.receipts = action.payload;
+                state.receiptList = action.payload;
                 state.errors = [];
             }
         },
         [retrieveReceipts.rejected](state, action) {
+            state.status = "rejected";
+            if (action.payload) {
+                state.errors = action.payload.errorMessages;
+            } else {
+                state.errors = action.error.message;
+            }
+        },
+        [retrieveOneReceipt.pending](state) {
+            state.status = "loading";
+        },
+        [retrieveOneReceipt.fulfilled](state, action) {
+            state.status = "fulfilled";
+            if (action.payload.errors) {
+                state.errors = action.payload.errors;
+            } else {
+                state.receipt = action.payload;
+                state.errors = [];
+            }
+        },
+        [retrieveOneReceipt.rejected](state, action) {
             state.status = "rejected";
             if (action.payload) {
                 state.errors = action.payload.errorMessages;
