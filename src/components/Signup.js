@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import CSRFToken from './cookies';
 
-function Signup() {
+function Signup({ onLogin }) {
     const [formData, setFormData] = useState({
         first_name: "",
         last_name: "",
@@ -18,13 +19,14 @@ function Signup() {
         const configObj = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "X-CSRF-Token": CSRFToken(document.cookie)
             },
             body: JSON.stringify(formData)
         };
         fetch("/signup", configObj)
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => onLogin(data))
             .catch(errors => console.log(errors))
     }
 
