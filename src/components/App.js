@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../store/userSlice';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import Header from './Header';
 import Home from './Home';
@@ -40,8 +40,12 @@ function App() {
                 :
                 <Switch>
                     <Route exact path="/"><Home /></Route>
-                    <Route exact path="/login"><Login /></Route>
-                    <Route exact path="/signup"><Signup /></Route>
+                    <Route exact path="/login">
+                        { !user ? <Login /> : <Redirect to="/" />}
+                    </Route>
+                    <Route exact path="/signup">
+                        { !user ? <Signup /> : <Redirect to="/" />}
+                    </Route>
                 </Switch>
             }
             <Footer />
