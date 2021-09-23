@@ -1,7 +1,12 @@
 import { useState } from 'react';
-import CSRFToken from './cookies';
+import { useSelector, useDispatch } from 'react-redux';
+import { createUser } from '../store/userSlice';
 
-function Signup({ onLogin }) {
+function Signup() {
+    const dispatch = useDispatch();
+    const errors = useSelector(state => state.user.errors);
+    const user = useSelector(state => state.user.user);
+
     const [formData, setFormData] = useState({
         first_name: "",
         last_name: "",
@@ -16,19 +21,11 @@ function Signup({ onLogin }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const configObj = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-Token": CSRFToken(document.cookie)
-            },
-            body: JSON.stringify(formData)
-        };
-        fetch("/signup", configObj)
-            .then(response => response.json())
-            .then(data => onLogin(data))
-            .catch(errors => console.log(errors))
+        dispatch(createUser(formData))
     }
+
+    console.log("User: ", user);
+    console.log("Errors: ", errors);
 
     return (
         <form onSubmit={handleSubmit}>
