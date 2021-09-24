@@ -1,16 +1,18 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { retrieveOneReceipt } from '../store/receiptsSlice';
+import { receiptsActions } from '../store/receiptsSlice';
 
 function ReceiptRecordDetail() {
     const id = parseInt(useParams().id)
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user.user);
     const receipt = useSelector(state => state.receipts.receipt);
 
     useEffect(() => {
-        dispatch(retrieveOneReceipt(id));
-    }, [dispatch]);
+        dispatch(receiptsActions.addUserReceipts(user.receipt_records));
+        dispatch(receiptsActions.getReceipt(id));
+    }, [dispatch, user.receipt_records, id]);
 
     return (
         <>
