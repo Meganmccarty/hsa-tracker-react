@@ -37,11 +37,11 @@ function ReceiptRecordDetail() {
                     </tr>
                     <tr>
                         <td>Qualified Expense?</td>
-                        <td>{receipt.qualified_exp}</td>
+                        <td>{receipt.qualified_exp ? "Yes" : "No"}</td>
                     </tr>
                     <tr>
                         <td>Amount</td>
-                        <td>{receipt.amount}</td>
+                        <td>{parseFloat(receipt.amount).toFixed(2)}</td>
                     </tr>
                     <tr>
                         <td>Payment Method</td>
