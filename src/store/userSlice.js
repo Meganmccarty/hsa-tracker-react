@@ -1,6 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import CSRFToken from '../components/cookies';
 
+export const fetchProfile = createAsyncThunk("user/fetchProfile", async () => {
+    const response = await fetch("/profile");
+    const data = await response.json();
+    return data;
+})
+
 export const createUser = createAsyncThunk("user/createUser", async (formData) => {
     const response = await fetch("/signup", {
         method: "POST",
@@ -58,6 +64,27 @@ const userSlice = createSlice({
         }
     },
     extraReducers: {
+        [fetchProfile.pending](state) {
+            state.status = "loading";
+        },
+        [fetchProfile.fulfilled](state, action) {
+            state.status = "fulfilled";
+            console.log(action.payload);
+            if (action.payload.errors) {
+                state.errors = action.payload.errors;
+            } else {
+                state.user = action.payload;
+                state.errors = [];
+            }
+        },
+        [fetchProfile.rejected](state, action) {
+            state.status = "rejected";
+            if (action.payload) {
+                state.errors = action.payload.errorMessages;
+            } else {
+                state.errors = action.error.message;
+            }
+        },
         [createUser.pending](state) {
             state.status = "loading";
         },
