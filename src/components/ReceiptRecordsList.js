@@ -24,7 +24,7 @@ function ReceiptRecordsList() {
                         <td><Link to={`/receipt-records/${receipt.id}`}>{receipt.trans_date}</Link></td>
                         <td>{receipt.provider}</td>
                         <td>{receipt.decription}</td>
-                        <td>{receipt.amount}</td>
+                        <td>{parseFloat(receipt.amount).toFixed(2)}</td>
                         <td>{receipt.payment_method}</td>
                         <td>{receipt.reimbursed}</td>
                     </tr>
