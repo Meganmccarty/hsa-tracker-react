@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { userActions } from '../store/userSlice';
+import { userActions, fetchProfile } from '../store/userSlice';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import Header from './Header';
@@ -21,17 +21,8 @@ function App() {
     const loading = useSelector(state => state.user.loading);
 
     useEffect(() => {
-        fetch("/profile")
-            .then(response => {
-                if (response.ok) {
-                    response.json().then(user => {
-                        dispatch(userActions.userLogin(user));
-                        dispatch(userActions.toggleLoading(false));
-                    });
-                } else {
-                    dispatch(userActions.toggleLoading(false));
-                }
-            })
+        dispatch(fetchProfile());
+        dispatch(userActions.toggleLoading(false));
     }, [dispatch])
 
     console.log("User: ", user)
@@ -39,31 +30,35 @@ function App() {
     return (
         <Router>
             <Header />
-            {loading ?
-                <img src={loadingGIF} alt="Loading..." width="25%" />
-                :
-                <Switch>
-                    <Route exact path="/"><Home /></Route>
-                    <Route exact path="/login">
-                        { !user ? <Login /> : <Redirect to="/receipt-records" />}
-                    </Route>
-                    <Route exact path="/signup">
-                        { !user ? <Signup /> : <Redirect to="/receipt-records" />}
-                    </Route>
-                    <Route exact path="/profile">
-                        { user ? <Profile /> : <Redirect to="/login" />}
-                    </Route>
-                    <Route exact path="/receipt-records">
-                        { user ? <ReceiptRecordsList /> : <Redirect to="/login" />}
-                    </Route>
-                    <Route exact path="/receipt-records/new">
-                        { user ? <ReceiptRecordForm /> : <Redirect to="/login" />}
-                    </Route>
-                    <Route exact path="/receipt-records/:id">
-                        { user ? <ReceiptRecordDetail /> : <Redirect to="/login" />}
-                    </Route>
-                </Switch>
-            }
+            <Switch>
+                <Route exact path="/"><Home /></Route>
+                <Route exact path="/login">
+                    {/* {!user ? <Login /> : <Redirect to="/receipt-records" />} */}
+                    {/* {!user ? <Login /> : <Redirect to="/" />} */}
+                    {loading ? <img src={loadingGIF} alt="Loading..." width="25%" /> : !user ? <Login /> : <Redirect to="/receipt-records" />}
+                </Route>
+                <Route exact path="/signup">
+                    {/* {!user ? <Signup /> : <Redirect to="/receipt-records" />} */}
+                    {/* {!user ? <Login /> : <Redirect to="/" />} */}
+                    {loading ? <img src={loadingGIF} alt="Loading..." width="25%" /> : !user ? <Signup /> : <Redirect to="/receipt-records" />}
+                </Route>
+                <Route exact path="/profile">
+                    {/* {user ? <Profile /> : <Redirect to="/login" />} */}
+                    {loading ? <img src={loadingGIF} alt="Loading..." width="25%" /> : user ? <Profile /> : <Redirect to="/login" />}
+                </Route>
+                <Route path="/receipt-records/new">
+                    {/* {user ? <ReceiptRecordForm /> : <Redirect to="/login" />} */}
+                    {loading ? <img src={loadingGIF} alt="Loading..." width="25%" /> : user ? <ReceiptRecordForm /> : <Redirect to="/login" />}
+                </Route>
+                <Route path="/receipt-records/:id">
+                    {/* {user ? <ReceiptRecordDetail /> : <Redirect to="/login" />} */}
+                    {loading ? <img src={loadingGIF} alt="Loading..." width="25%" /> : user ? <ReceiptRecordDetail /> : <Redirect to="/login" />}
+                </Route>
+                <Route exact path="/receipt-records">
+                    {/* {!user ? <Redirect to="/login" /> : <ReceiptRecordsList />} */}
+                    {loading ? <img src={loadingGIF} alt="Loading..." width="25%" /> : !user ? <Redirect to="/login" /> : <ReceiptRecordsList />}
+                </Route>
+            </Switch>
             <Footer />
         </Router>
     );
