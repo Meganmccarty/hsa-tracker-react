@@ -1,32 +1,38 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { retrieveReceipts, receiptsActions } from '../store/receiptsSlice';
+import { receiptsActions } from '../store/receiptsSlice';
 
 import loadingGIF from '../loading.gif';
 
 function ReceiptRecordsList() {
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user.user);
     const receipts = useSelector(state => state.receipts.receiptList);
     const loading = useSelector(state => state.receipts.loading);
 
     useEffect(() => {
-        dispatch(retrieveReceipts());
+        dispatch(receiptsActions.addUserReceipts(user.receipt_records));
         dispatch(receiptsActions.toggleLoading(false))
     }, [dispatch]);
 
-    const displayReceipts = receipts.map(receipt => {
-        return (
-            <tr key={receipt.id}>
-                <td><Link to={`/receipt-records/${receipt.id}`}>{receipt.trans_date}</Link></td>
-                <td>{receipt.provider}</td>
-                <td>{receipt.decription}</td>
-                <td>{receipt.amount}</td>
-                <td>{receipt.payment_method}</td>
-                <td>{receipt.reimbursed}</td>
-            </tr>
-        )
-    })
+    function displayReceipts() {
+        if (receipts) {
+            return receipts.map(receipt => {
+                return (
+                    <tr key={receipt.id}>
+                        <td><Link to={`/receipt-records/${receipt.id}`}>{receipt.trans_date}</Link></td>
+                        <td>{receipt.provider}</td>
+                        <td>{receipt.decription}</td>
+                        <td>{receipt.amount}</td>
+                        <td>{receipt.payment_method}</td>
+                        <td>{receipt.reimbursed}</td>
+                    </tr>
+                )
+            })
+        }
+    }
+    
 
     return (
         <>
@@ -46,7 +52,7 @@ function ReceiptRecordsList() {
                         </tr>
                     </thead>
                     <tbody>
-                        {displayReceipts}
+                        {displayReceipts()}
                     </tbody>
                 </table>
             }
