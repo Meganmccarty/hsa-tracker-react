@@ -70,7 +70,6 @@ const userSlice = createSlice({
         [fetchProfile.fulfilled](state, action) {
             state.status = "fulfilled";
             state.loading = false;
-            console.log(action.payload);
             if (action.payload.errors) {
                 state.errors = action.payload.errors;
             } else {
