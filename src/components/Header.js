@@ -1,8 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { onLogout } from '../store/userSlice';
+import { userActions } from '../store/userSlice';
 import { receiptsActions } from '../store/receiptsSlice';
 
 import { Link, useHistory } from 'react-router-dom';
+
+import CSRFToken from './cookies';
 
 function Header() {
     const history = useHistory();
@@ -10,9 +12,19 @@ function Header() {
     const user = useSelector(state => state.user.user);
 
     function handleLogout() {
-        dispatch(onLogout());
-        dispatch(receiptsActions.clearUserReceipts());
-        history.push("/login");
+        fetch("/logout", {
+            method: "DELETE",
+            headers: {
+                "X-CSRF-Token": CSRFToken(document.cookie)
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            dispatch(receiptsActions.clearUserReceipts())
+            dispatch(userActions.userLogout())
+            history.push("/login")
+        })
     };
 
     return (
