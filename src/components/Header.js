@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { onLogout } from '../store/userSlice';
+import { receiptsActions } from '../store/receiptsSlice';
 
 import { Link, useHistory } from 'react-router-dom';
 
@@ -10,6 +11,7 @@ function Header() {
 
     function handleLogout() {
         dispatch(onLogout());
+        dispatch(receiptsActions.clearUserReceipts());
         history.push("/login");
     };
 
