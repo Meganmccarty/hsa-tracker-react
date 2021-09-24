@@ -34,12 +34,10 @@ function App() {
                 <Route exact path="/"><Home /></Route>
                 <Route exact path="/login">
                     {/* {!user ? <Login /> : <Redirect to="/receipt-records" />} */}
-                    {/* {!user ? <Login /> : <Redirect to="/" />} */}
                     {loading ? <img src={loadingGIF} alt="Loading..." width="25%" /> : !user ? <Login /> : <Redirect to="/receipt-records" />}
                 </Route>
                 <Route exact path="/signup">
                     {/* {!user ? <Signup /> : <Redirect to="/receipt-records" />} */}
-                    {/* {!user ? <Login /> : <Redirect to="/" />} */}
                     {loading ? <img src={loadingGIF} alt="Loading..." width="25%" /> : !user ? <Signup /> : <Redirect to="/receipt-records" />}
                 </Route>
                 <Route exact path="/profile">
