@@ -38,6 +38,11 @@ const receiptsSlice = createSlice({
             const id = action.payload;
             state.receipt = state.receiptList.find(receipt => receipt.id === id);
         },
+        deleteReceipt(state, action) {
+            const id = action.payload;
+            state.receiptList = state.receiptList.filter(receipt => receipt.id !== id);
+            state.receipt = null;
+        },
         toggleLoading(state, action) {
             state.loading = action.payload
         }
