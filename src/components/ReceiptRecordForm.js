@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { createReceipt } from '../store/receiptsSlice';
+import { receiptsActions } from '../store/receiptsSlice';
+
+import CSRFToken from './cookies';
 
 function ReceiptRecordForm() {
     const dispatch = useDispatch();
@@ -32,7 +34,18 @@ function ReceiptRecordForm() {
         } else if (formData.qualified_exp === "No") {
             setFormData({ ...formData, qualified_exp: false })
         }
-        dispatch(createReceipt(formData))
+        fetch("/receipt-records", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-Token": CSRFToken(document.cookie)
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            dispatch(receiptsActions.createReceipt(data))
+        })
         history.push("/receipt-records")
     }
 
