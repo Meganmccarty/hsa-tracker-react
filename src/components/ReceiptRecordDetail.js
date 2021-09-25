@@ -9,13 +9,11 @@ function ReceiptRecordDetail() {
     const id = parseInt(useParams().id)
     const history = useHistory();
     const dispatch = useDispatch();
-    const user = useSelector(state => state.user.user);
     const receipt = useSelector(state => state.receipts.receipt);
 
     useEffect(() => {
-        dispatch(receiptsActions.addUserReceipts(user.receipt_records));
         dispatch(receiptsActions.getReceipt(id));
-    }, [dispatch, user.receipt_records, id]);
+    }, [dispatch, id]);
 
     function handleDelete() {
         fetch(`/receipt-records/${id}`, {
