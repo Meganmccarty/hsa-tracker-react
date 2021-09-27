@@ -18,13 +18,16 @@ function ReceiptRecordForm() {
         payment_method: "",
         reimbursed: "",
         notes: "",
-        hsa_trans_id: ""
+        hsa_trans_id: "",
+        receipt_images: []
     });
-
-    console.log(formData.qualified_exp);
 
     function handleFormChange(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+
+    function handleImageChange(e) {
+        setFormData({ ...formData, receipt_images: Array.from(e.target.files) });
     }
 
     function handleSubmit(e) {
@@ -34,13 +37,25 @@ function ReceiptRecordForm() {
         } else if (formData.qualified_exp === "No") {
             setFormData({ ...formData, qualified_exp: false })
         }
+
+        const finalForm = new FormData();
+        for (const key in formData) {
+            if (key !== "receipt_images") {
+                finalForm.append(key, formData[key])
+            } else {
+                for (const image in formData.receipt_images) {
+                    finalForm.append("receipt_images[]", formData.receipt_images[image])
+                }
+            }
+        }
+
         fetch("/receipt-records", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                // "Content-Type": "application/json",
                 "X-CSRF-Token": CSRFToken(document.cookie)
             },
-            body: JSON.stringify(formData)
+            body: finalForm
         })
         .then(response => response.json())
         .then(data => {
@@ -72,6 +87,7 @@ function ReceiptRecordForm() {
             </select>
             <input type="text" name="notes" onChange={handleFormChange} placeholder="Notes" />
             <input type="text" name="hsa_trans_id" onChange={handleFormChange} placeholder="HSA transaction ID" />
+            <input type="file" name="receipt_images" accept="image/*" multiple={true} onChange={handleImageChange} />
             <input type="submit" />
         </form>
     );
