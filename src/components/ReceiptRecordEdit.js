@@ -10,21 +10,7 @@ function ReceiptRecordEdit() {
     const history = useHistory();
     const dispatch = useDispatch();
     const receipt = useSelector(state => state.receipts.receipt);
-
-    const [formData, setFormData] = useState({
-        trans_date: receipt ? receipt.trans_date : "",
-        category: receipt ? receipt.category : "",
-        provider: receipt ? receipt.provider : "",
-        description: receipt ? receipt.description : "",
-        qualified_exp: receipt ? receipt.qualified_exp : "",
-        amount: receipt ? receipt.amount : "",
-        payment_method: receipt ? receipt.payment_method : "",
-        reimbursed: receipt ? receipt.reimbursed : "",
-        notes: receipt ? receipt.notes : "",
-        hsa_trans_id: receipt ? receipt.hsa_trans_id : "",
-        receipt_images: [],
-        receipt_images_to_delete: []
-    })
+    const [formData, setFormData] = useState(null);
 
     useEffect(() => {
         fetch(`/receipt-records/${id}`)
@@ -33,6 +19,20 @@ function ReceiptRecordEdit() {
                     response.json().then(receipt => {
                         dispatch(receiptActions.getReceipt(receipt));
                         dispatch(receiptActions.toggleLoading(false));
+                        setFormData({
+                            trans_date: receipt.trans_date,
+                            category: receipt.category ? receipt.category : "", 
+                            provider: receipt.provider,
+                            description: receipt.description ? receipt.description : "",
+                            qualified_exp: receipt.qualified_exp,
+                            amount: receipt.amount,
+                            payment_method: receipt.payment_method,
+                            reimbursed: receipt.reimbursed,
+                            notes: receipt.notes ? receipt.notes : "",
+                            hsa_trans_id: receipt.hsa_trans_id ? receipt.hsa_trans_id : "",
+                            receipt_images: [],
+                            receipt_images_to_delete: []
+                        })
                     });
                 } else {
                     response.json().then(errors => {
@@ -116,7 +116,7 @@ function ReceiptRecordEdit() {
 
     return (
         <>
-            {receipt ?
+            {receipt && formData ?
                 <>
                     <h1>Edit Receipt Record {receipt.id}</h1>
                     <form onSubmit={handleSubmit}>
