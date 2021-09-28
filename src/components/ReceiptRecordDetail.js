@@ -29,19 +29,25 @@ function ReceiptRecordDetail() {
     }, [])
 
     function handleDelete() {
-        fetch(`/receipt-records/${id}`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-Token": CSRFToken(document.cookie)
-                }
+        const configObj = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-Token": CSRFToken(document.cookie)
             }
-        )
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            dispatch(receiptActions.deleteReceipt(id))
-        })
+        }
+        fetch(`/receipt-records/${id}`, configObj)
+        .then(response => {
+            if (response.ok) {
+                response.json().then(() => {
+                    dispatch(receiptActions.deleteReceipt(id));
+                });
+            } else {
+                response.json().then(errors => {
+                    dispatch(receiptActions.setErrors(errors));
+                });
+            };
+        });
         history.push("/receipt-records");
     }
 
