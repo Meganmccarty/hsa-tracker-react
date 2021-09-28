@@ -20,18 +20,18 @@ import CSRFToken from '../components/cookies';
 //     return data;
 // });
 
-export const onLogin = createAsyncThunk("user/onLogin", async (formData) => {
-    const response = await fetch("/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-Token": CSRFToken(document.cookie)
-        },
-        body: JSON.stringify(formData)
-    });
-    const data = await response.json();
-    return data;
-});
+// export const onLogin = createAsyncThunk("user/onLogin", async (formData) => {
+//     const response = await fetch("/login", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json",
+//             "X-CSRF-Token": CSRFToken(document.cookie)
+//         },
+//         body: JSON.stringify(formData)
+//     });
+//     const data = await response.json();
+//     return data;
+// });
 
 // export const onLogout = createAsyncThunk("user/onLogout", async () => {
 //     const response = await fetch("/logout", {
@@ -111,26 +111,26 @@ const userSlice = createSlice({
         //         state.errors = action.error.message;
         //     }
         // },
-        [onLogin.pending](state) {
-            state.status = "loading";
-        },
-        [onLogin.fulfilled](state, action) {
-            state.status = "completed";
-            if (action.payload.errors) {
-                state.errors = action.payload.errors;
-            } else {
-                state.user = action.payload;
-                state.errors = [];
-            }
-        },
-        [onLogin.rejected](state, action) {
-            state.status = "rejected";
-            if (action.payload) {
-                state.errors = action.payload.errorMessages;
-            } else {
-                state.errors = action.error.message;
-            }
-        },
+        // [onLogin.pending](state) {
+        //     state.status = "loading";
+        // },
+        // [onLogin.fulfilled](state, action) {
+        //     state.status = "completed";
+        //     if (action.payload.errors) {
+        //         state.errors = action.payload.errors;
+        //     } else {
+        //         state.user = action.payload;
+        //         state.errors = [];
+        //     }
+        // },
+        // [onLogin.rejected](state, action) {
+        //     state.status = "rejected";
+        //     if (action.payload) {
+        //         state.errors = action.payload.errorMessages;
+        //     } else {
+        //         state.errors = action.error.message;
+        //     }
+        // },
         // [onLogout.pending](state) {
         //     state.status = "loading";
         // },
