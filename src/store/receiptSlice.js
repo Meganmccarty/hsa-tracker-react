@@ -8,7 +8,7 @@ const initialState = {
     errors: []
 }
 
-const receiptsSlice = createSlice({
+const receiptSlice = createSlice({
     name: 'receipts',
     initialState,
     reducers: {
@@ -43,6 +43,6 @@ const receiptsSlice = createSlice({
     }
 })
 
-export const receiptsActions = receiptsSlice.actions;
+export const receiptActions = receiptSlice.actions;
 
-export default receiptsSlice
+export default receiptSlice
