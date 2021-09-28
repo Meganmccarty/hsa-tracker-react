@@ -101,9 +101,9 @@ function ReceiptRecordEdit() {
             .then(response => {
                 if (response.ok) {
                     response.json().then(receipt => {
+                        history.push(`/receipt-records/${receipt.id}`)
                         dispatch(receiptActions.patchReceipt(receipt));
                         dispatch(receiptActions.toggleLoading(false));
-                        history.push(`/receipt-records/${receipt.id}`)
                     });
                 } else {
                     response.json().then(errors => {
