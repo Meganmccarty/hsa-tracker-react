@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProfile } from '../store/userSlice';
+import { userActions } from '../store/userSlice';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import Header from './Header';
@@ -21,10 +21,21 @@ function App() {
     const loading = useSelector(state => state.user.loading);
 
     useEffect(() => {
-        dispatch(fetchProfile());
-    }, [dispatch])
-
-    console.log("User: ", user)
+        fetch("/profile")
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(user => {
+                        dispatch(userActions.userLogin(user));
+                        dispatch(userActions.toggleLoading(false));
+                    });
+                } else {
+                    response.json().then(errors => {
+                        dispatch(userActions.setErrors(errors))
+                        dispatch(userActions.toggleLoading(false));
+                    });
+                };   
+            });
+    }, [dispatch]);
 
     return (
         <Router>
