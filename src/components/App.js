@@ -10,6 +10,7 @@ import Signup from './Signup';
 import Profile from './Profile';
 import ReceiptRecordsList from './ReceiptRecordsList';
 import ReceiptRecordDetail from './ReceiptRecordDetail';
+import ReceiptRecordEdit from './ReceiptRecordEdit';
 import ReceiptRecordForm from './ReceiptRecordForm';
 import Footer from './Footer';
 
@@ -56,6 +57,9 @@ function App() {
                 </Route>
                 <Route path="/receipt-records/:id">
                     {loading ? <Loading /> : user ? <ReceiptRecordDetail /> : <Redirect to="/login" />}
+                </Route>
+                <Route path="/receipt-record/:id/edit">
+                    {loading ? <Loading /> : user ? <ReceiptRecordEdit /> : <Redirect to="/login" />}
                 </Route>
                 <Route exact path="/receipt-records">
                     {loading ? <Loading /> : !user ? <Redirect to="/login" /> : <ReceiptRecordsList />}
