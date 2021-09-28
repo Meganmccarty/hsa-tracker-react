@@ -20,8 +20,9 @@ const receiptSlice = createSlice({
             state.receipt = null;
         },
         getReceipt(state, action) {
-            const id = action.payload;
-            state.receipt = state.receiptList.find(receipt => receipt.id === id);
+            // const id = action.payload;
+            // state.receipt = state.receiptList.find(receipt => receipt.id === id);
+            state.receipt = action.payload;
         },
         createReceipt(state, action) {
             if (action.payload.errors) {
