@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
 
-import loadingGIF from '../loading.gif';
+import Loading from './Loading';
 
 function ReceiptRecordsList() {
     const dispatch = useDispatch();
@@ -49,7 +49,7 @@ function ReceiptRecordsList() {
         <>
             <h1>Receipt Records List</h1>
             {loading ?
-                <img src={loadingGIF} alt="Loading..." width="25%" />
+                <Loading />
                 :
                 <table>
                     <thead>
