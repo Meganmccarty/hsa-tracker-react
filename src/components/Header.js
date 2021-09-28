@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../store/userSlice';
-import { receiptsActions } from '../store/receiptsSlice';
+import { receiptActions } from '../store/receiptSlice';
 
 import { Link, useHistory } from 'react-router-dom';
 
@@ -21,7 +21,7 @@ function Header() {
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            dispatch(receiptsActions.clearUserReceipts())
+            dispatch(receiptActions.clearReceipts())
             dispatch(userActions.userLogout())
             history.push("/login")
         })
