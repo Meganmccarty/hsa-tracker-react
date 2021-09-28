@@ -1,20 +1,31 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { receiptsActions } from '../store/receiptsSlice';
+import { receiptActions } from '../store/receiptSlice';
 
 import loadingGIF from '../loading.gif';
 
 function ReceiptRecordsList() {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.user.user);
     const receipts = useSelector(state => state.receipts.receiptList);
     const loading = useSelector(state => state.receipts.loading);
 
     useEffect(() => {
-        dispatch(receiptsActions.addUserReceipts(user.receipt_records));
-        dispatch(receiptsActions.toggleLoading(false))
-    }, [dispatch]);
+        fetch("/receipt-records")
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(receipts => {
+                        dispatch(receiptActions.addReceipts(receipts));
+                        dispatch(receiptActions.toggleLoading(false));
+                    });
+                } else {
+                    response.json().then(errors => {
+                        dispatch(receiptActions.setErrors(errors));
+                        dispatch(receiptActions.toggleLoading(false));
+                    });
+                };
+            });
+    }, [])
 
     function displayReceipts() {
         if (receipts) {
