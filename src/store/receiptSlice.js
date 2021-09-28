@@ -39,6 +39,9 @@ const receiptSlice = createSlice({
         },
         toggleLoading(state, action) {
             state.loading = action.payload
+        },
+        setErrors(state, action) {
+            state.errors = action.payload;
         }
     }
 })
