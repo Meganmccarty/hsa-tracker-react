@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
 
@@ -113,7 +113,7 @@ function ReceiptRecordDetail() {
                                 </tr>
                             </tbody>
                         </table>
-                        <button>Edit</button>
+                        <button><Link to={`/receipt-record/${id}/edit`}>Edit</Link></button>
                         <button onClick={handleDelete}>Delete</button>
                         {displayReceiptImages()}
                     </>
