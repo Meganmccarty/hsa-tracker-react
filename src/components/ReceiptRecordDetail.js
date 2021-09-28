@@ -3,12 +3,15 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
 
+import Loading from './Loading';
+
 import CSRFToken from './cookies';
 
 function ReceiptRecordDetail() {
     const id = parseInt(useParams().id)
     const history = useHistory();
     const dispatch = useDispatch();
+    const loading = useSelector(state => state.receipts.loading);
     const receipt = useSelector(state => state.receipts.receipt);
 
     useEffect(() => {
@@ -37,17 +40,17 @@ function ReceiptRecordDetail() {
             }
         }
         fetch(`/receipt-records/${id}`, configObj)
-        .then(response => {
-            if (response.ok) {
-                response.json().then(() => {
-                    dispatch(receiptActions.deleteReceipt(id));
-                });
-            } else {
-                response.json().then(errors => {
-                    dispatch(receiptActions.setErrors(errors));
-                });
-            };
-        });
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(() => {
+                        dispatch(receiptActions.deleteReceipt(id));
+                    });
+                } else {
+                    response.json().then(errors => {
+                        dispatch(receiptActions.setErrors(errors));
+                    });
+                };
+            });
         history.push("/receipt-records");
     }
 
@@ -63,57 +66,59 @@ function ReceiptRecordDetail() {
 
     return (
         <>
-            {receipt ?
-                <>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>Date</td>
-                                <td>{receipt.trans_date}</td>
-                            </tr>
-                            <tr>
-                                <td>Category</td>
-                                <td>{receipt.category}</td>
-                            </tr>
-                            <tr>
-                                <td>Provider</td>
-                                <td>{receipt.provider}</td>
-                            </tr>
-                            <tr>
-                                <td>Description</td>
-                                <td>{receipt.description}</td>
-                            </tr>
-                            <tr>
-                                <td>Qualified Expense?</td>
-                                <td>{receipt.qualified_exp ? "Yes" : "No"}</td>
-                            </tr>
-                            <tr>
-                                <td>Amount</td>
-                                <td>{parseFloat(receipt.amount).toFixed(2)}</td>
-                            </tr>
-                            <tr>
-                                <td>Payment Method</td>
-                                <td>{receipt.payment_method}</td>
-                            </tr>
-                            <tr>
-                                <td>Reimbursed?</td>
-                                <td>{receipt.reimbursed}</td>
-                            </tr>
-                            <tr>
-                                <td>Notes</td>
-                                <td>{receipt.notes}</td>
-                            </tr>
-                            <tr>
-                                <td>HSA transaction ID</td>
-                                <td>{receipt.hsa_trans_id}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button>Edit</button>
-                    <button onClick={handleDelete}>Delete</button>
-                    {displayReceiptImages()}
-                </>
-                : null}
+            {loading ? <Loading /> :
+                receipt ?
+                    <>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Date</td>
+                                    <td>{receipt.trans_date}</td>
+                                </tr>
+                                <tr>
+                                    <td>Category</td>
+                                    <td>{receipt.category}</td>
+                                </tr>
+                                <tr>
+                                    <td>Provider</td>
+                                    <td>{receipt.provider}</td>
+                                </tr>
+                                <tr>
+                                    <td>Description</td>
+                                    <td>{receipt.description}</td>
+                                </tr>
+                                <tr>
+                                    <td>Qualified Expense?</td>
+                                    <td>{receipt.qualified_exp ? "Yes" : "No"}</td>
+                                </tr>
+                                <tr>
+                                    <td>Amount</td>
+                                    <td>{parseFloat(receipt.amount).toFixed(2)}</td>
+                                </tr>
+                                <tr>
+                                    <td>Payment Method</td>
+                                    <td>{receipt.payment_method}</td>
+                                </tr>
+                                <tr>
+                                    <td>Reimbursed?</td>
+                                    <td>{receipt.reimbursed}</td>
+                                </tr>
+                                <tr>
+                                    <td>Notes</td>
+                                    <td>{receipt.notes}</td>
+                                </tr>
+                                <tr>
+                                    <td>HSA transaction ID</td>
+                                    <td>{receipt.hsa_trans_id}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button>Edit</button>
+                        <button onClick={handleDelete}>Delete</button>
+                        {displayReceiptImages()}
+                    </>
+                : null
+            }
         </>
     );
 };
