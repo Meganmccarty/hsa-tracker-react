@@ -48,7 +48,7 @@ function ReceiptRecordEdit() {
                 return (
                     <div key={image.url}>
                         <img src={image.url} alt="receipt" width="25%" />
-                        <button onClick={() => handleDelete(image.name)}>Delete</button>
+                        <button>Delete</button>
                     </div>
                 )
             })
