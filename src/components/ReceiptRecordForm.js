@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { receiptsActions } from '../store/receiptsSlice';
+import { receiptActions } from '../store/receiptSlice';
 
 import CSRFToken from './cookies';
 
@@ -49,19 +49,29 @@ function ReceiptRecordForm() {
             }
         }
 
-        fetch("/receipt-records", {
+        const configObj = {
             method: "POST",
             headers: {
-                // "Content-Type": "application/json",
                 "X-CSRF-Token": CSRFToken(document.cookie)
             },
             body: finalForm
-        })
-        .then(response => response.json())
-        .then(data => {
-            dispatch(receiptsActions.createReceipt(data))
-        })
-        history.push("/receipt-records")
+        };
+
+        fetch("/receipt-records", configObj)
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(receipt => {
+                        dispatch(receiptActions.createReceipt(receipt));
+                        dispatch(receiptActions.toggleLoading(false));
+                        history.push(`/receipt-records/${receipt.id}`)
+                    });
+                } else {
+                    response.json().then(errors => {
+                        dispatch(receiptActions.setErrors(errors));
+                        dispatch(receiptActions.toggleLoading(false));
+                    });
+                };
+            });
     }
 
     return (
