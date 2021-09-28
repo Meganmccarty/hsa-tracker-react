@@ -25,13 +25,12 @@ const receiptSlice = createSlice({
             state.receipt = action.payload;
         },
         createReceipt(state, action) {
-            if (action.payload.errors) {
-                state.errors = action.payload.errors
-            } else {
-                state.receiptList.push(action.payload)
-                state.receipt = action.payload
-                state.errors = [];
-            }
+            state.receiptList.push(action.payload)
+            state.receipt = action.payload
+        },
+        patchReceipt(state, action) {
+            state.receiptList = state.receiptList.map(receipt => receipt.id === action.payload.id ? action.payload : receipt)
+            state.receipt = action.payload;
         },
         deleteReceipt(state, action) {
             const id = action.payload;
