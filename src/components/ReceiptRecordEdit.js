@@ -12,18 +12,19 @@ function ReceiptRecordEdit() {
     const receipt = useSelector(state => state.receipts.receipt);
 
     const [formData, setFormData] = useState({
-        trans_date: receipt.trans_date,
-        category: receipt.category,
-        provider: receipt.provider,
-        description: receipt.description,
-        qualified_exp: receipt.qualified_exp,
-        amount: receipt.amount,
-        payment_method: receipt.payment_method,
-        reimbursed: receipt.reimbursed,
-        notes: receipt.notes,
-        hsa_trans_id: receipt.hsa_trans_id,
-        receipt_images: []
-    });
+        trans_date: receipt ? receipt.trans_date : "",
+        category: receipt ? receipt.category : "",
+        provider: receipt ? receipt.provider : "",
+        description: receipt ? receipt.description : "",
+        qualified_exp: receipt ? receipt.qualified_exp : "",
+        amount: receipt ? receipt.amount : "",
+        payment_method: receipt ? receipt.payment_method : "",
+        reimbursed: receipt ? receipt.reimbursed : "",
+        notes: receipt ? receipt.notes : "",
+        hsa_trans_id: receipt ? receipt.hsa_trans_id : "",
+        receipt_images: [],
+        receipt_images_to_delete: []
+    })
 
     useEffect(() => {
         fetch(`/receipt-records/${id}`)
@@ -48,11 +49,17 @@ function ReceiptRecordEdit() {
                 return (
                     <div key={image.url}>
                         <img src={image.url} alt="receipt" width="25%" />
-                        <button>Delete</button>
+                        <button onClick={(e) => handleDelete(e, image.id)}>Delete</button>
                     </div>
                 )
             })
         }
+    }
+
+    function handleDelete(e, image) {
+        e.target.parentElement.innerHTML = "";
+        console.log(image)
+        setFormData({...formData, receipt_images_to_delete: [...formData.receipt_images_to_delete, image]})
     }
 
     function handleFormChange(e) {
