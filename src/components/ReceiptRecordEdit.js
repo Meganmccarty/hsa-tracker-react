@@ -42,6 +42,19 @@ function ReceiptRecordEdit() {
             });
     }, [])
 
+    function displayReceiptImages() {
+        if (receipt && receipt.receipt_images) {
+            return receipt.receipt_images.map(image => {
+                return (
+                    <div key={image.url}>
+                        <img src={image.url} alt="receipt" width="25%" />
+                        <button onClick={() => handleDelete(image.name)}>Delete</button>
+                    </div>
+                )
+            })
+        }
+    }
+
     function handleFormChange(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
@@ -94,8 +107,6 @@ function ReceiptRecordEdit() {
             });
     }
 
-    console.log(formData);
-
     return (
         <>
             {receipt ?
@@ -127,6 +138,7 @@ function ReceiptRecordEdit() {
                         <input type="submit" />
                         <button><Link to={`/receipt-records/${id}`}>Cancel</Link></button>
                     </form>
+                    {displayReceiptImages()}
                 </>
                 : null
             }
