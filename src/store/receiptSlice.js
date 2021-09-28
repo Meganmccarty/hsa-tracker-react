@@ -12,10 +12,10 @@ const receiptSlice = createSlice({
     name: 'receipts',
     initialState,
     reducers: {
-        addUserReceipts(state, action) {
+        addReceipts(state, action) {
             state.receiptList = action.payload
         },
-        clearUserReceipts(state) {
+        clearReceipts(state) {
             state.receiptList = [];
             state.receipt = null;
         },
