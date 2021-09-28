@@ -25,7 +25,7 @@ function ReceiptRecordsList() {
                     });
                 };
             });
-    }, [])
+    }, [dispatch])
 
     function displayReceipts() {
         if (receipts) {

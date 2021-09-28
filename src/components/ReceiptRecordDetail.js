@@ -29,7 +29,7 @@ function ReceiptRecordDetail() {
                     });
                 };
             });
-    }, [])
+    }, [dispatch, id])
 
     function handleDelete() {
         const configObj = {

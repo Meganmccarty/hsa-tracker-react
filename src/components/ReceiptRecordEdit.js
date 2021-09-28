@@ -41,7 +41,7 @@ function ReceiptRecordEdit() {
                     });
                 };
             });
-    }, [])
+    }, [dispatch, id])
 
     function displayReceiptImages() {
         if (receipt && receipt.receipt_images) {
