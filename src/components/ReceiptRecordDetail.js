@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { receiptsActions } from '../store/receiptsSlice';
+import { receiptActions } from '../store/receiptSlice';
 
 import CSRFToken from './cookies';
 
@@ -12,8 +12,21 @@ function ReceiptRecordDetail() {
     const receipt = useSelector(state => state.receipts.receipt);
 
     useEffect(() => {
-        dispatch(receiptsActions.getReceipt(id));
-    }, [dispatch, id]);
+        fetch(`/receipt-records/${id}`)
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(receipt => {
+                        dispatch(receiptActions.getReceipt(receipt));
+                        dispatch(receiptActions.toggleLoading(false));
+                    });
+                } else {
+                    response.json().then(errors => {
+                        dispatch(receiptActions.setErrors(errors));
+                        dispatch(receiptActions.toggleLoading(false));
+                    });
+                };
+            });
+    }, [])
 
     function handleDelete() {
         fetch(`/receipt-records/${id}`, {
@@ -27,9 +40,19 @@ function ReceiptRecordDetail() {
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            dispatch(receiptsActions.deleteReceipt(id))
+            dispatch(receiptActions.deleteReceipt(id))
         })
         history.push("/receipt-records");
+    }
+
+    function displayReceiptImages() {
+        if (receipt && receipt.receipt_images) {
+            return receipt.receipt_images.map(image => {
+                return (
+                    <img key={image.url} src={image.url} alt="receipt" width="25%" />
+                )
+            })
+        }
     }
 
     return (
@@ -82,6 +105,7 @@ function ReceiptRecordDetail() {
                     </table>
                     <button>Edit</button>
                     <button onClick={handleDelete}>Delete</button>
+                    {displayReceiptImages()}
                 </>
                 : null}
         </>
