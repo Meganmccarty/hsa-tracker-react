@@ -55,11 +55,11 @@ function App() {
                 <Route path="/receipt-records/new">
                     {loading ? <Loading /> : user ? <ReceiptRecordForm /> : <Redirect to="/login" />}
                 </Route>
+                <Route path="/receipt-records/:id/edit">
+                    {loading ? <Loading /> : user ? <ReceiptRecordEdit /> : <Redirect to="/login" />}
+                </Route>
                 <Route path="/receipt-records/:id">
                     {loading ? <Loading /> : user ? <ReceiptRecordDetail /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/receipt-record/:id/edit">
-                    {loading ? <Loading /> : user ? <ReceiptRecordEdit /> : <Redirect to="/login" />}
                 </Route>
                 <Route exact path="/receipt-records">
                     {loading ? <Loading /> : !user ? <Redirect to="/login" /> : <ReceiptRecordsList />}

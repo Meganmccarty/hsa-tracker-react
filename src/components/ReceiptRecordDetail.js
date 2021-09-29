@@ -113,7 +113,7 @@ function ReceiptRecordDetail() {
                                 </tr>
                             </tbody>
                         </table>
-                        <button><Link to={`/receipt-record/${id}/edit`}>Edit</Link></button>
+                        <button><Link to={`/receipt-records/${id}/edit`}>Edit</Link></button>
                         <button onClick={handleDelete}>Delete</button>
                         {displayReceiptImages()}
                     </>
