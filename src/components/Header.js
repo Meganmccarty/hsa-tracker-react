@@ -4,8 +4,6 @@ import { receiptActions } from '../store/receiptSlice';
 
 import { Link, useHistory } from 'react-router-dom';
 
-import CSRFToken from './cookies';
-
 function Header() {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -14,13 +12,10 @@ function Header() {
     function handleLogout() {
         fetch("/logout", {
             method: "DELETE",
-            headers: {
-                "X-CSRF-Token": CSRFToken(document.cookie)
-            }
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            localStorage.removeItem("token");
             dispatch(receiptActions.clearReceipts())
             dispatch(userActions.userLogout())
             history.push("/login")

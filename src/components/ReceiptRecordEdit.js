@@ -3,8 +3,6 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
 
-import CSRFToken from './cookies';
-
 function ReceiptRecordEdit() {
     const id = parseInt(useParams().id);
     const history = useHistory();
@@ -91,9 +89,6 @@ function ReceiptRecordEdit() {
 
         const configObj = {
             method: "PATCH",
-            headers: {
-                "X-CSRF-Token": CSRFToken(document.cookie)
-            },
             body: finalForm
         };
 

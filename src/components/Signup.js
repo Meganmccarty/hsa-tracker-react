@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../store/userSlice';
-import CSRFToken from './cookies';
 
 function Signup() {
     const dispatch = useDispatch();
@@ -19,17 +18,20 @@ function Signup() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        const user = {
+            user: {...formData}
+        }
         const configObj = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-Token": CSRFToken(document.cookie)
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(user)
         };
         fetch("/signup", configObj)
             .then(response => {
                 if (response.ok) {
+                    localStorage.setItem("token", response.headers.get("Authorization"));
                     response.json().then(user => {
                         dispatch(userActions.userLogin(user));
                         dispatch(userActions.toggleLoading(false));

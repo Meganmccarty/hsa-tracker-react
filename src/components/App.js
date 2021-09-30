@@ -22,7 +22,13 @@ function App() {
     const loading = useSelector(state => state.user.loading);
 
     useEffect(() => {
-        fetch("/profile")
+        fetch("/profile", {
+            method: "GET",
+            headers: {
+                "Content-Type": 'application/json',
+                Authorization: localStorage.getItem("token")
+            }
+        })
             .then(response => {
                 if (response.ok) {
                     response.json().then(user => {
@@ -30,10 +36,7 @@ function App() {
                         dispatch(userActions.toggleLoading(false));
                     });
                 } else {
-                    response.json().then(errors => {
-                        dispatch(userActions.setErrors(errors))
-                        dispatch(userActions.toggleLoading(false));
-                    });
+                    dispatch(userActions.toggleLoading(false));
                 };   
             });
     }, [dispatch]);

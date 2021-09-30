@@ -3,8 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
 
-import CSRFToken from './cookies';
-
 function ReceiptRecordForm() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -51,9 +49,6 @@ function ReceiptRecordForm() {
 
         const configObj = {
             method: "POST",
-            headers: {
-                "X-CSRF-Token": CSRFToken(document.cookie)
-            },
             body: finalForm
         };
 

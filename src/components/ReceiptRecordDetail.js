@@ -5,8 +5,6 @@ import { receiptActions } from '../store/receiptSlice';
 
 import Loading from './Loading';
 
-import CSRFToken from './cookies';
-
 function ReceiptRecordDetail() {
     const id = parseInt(useParams().id)
     const history = useHistory();
@@ -35,8 +33,7 @@ function ReceiptRecordDetail() {
         const configObj = {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-Token": CSRFToken(document.cookie)
+                "Content-Type": "application/json"
             }
         }
         fetch(`/receipt-records/${id}`, configObj)
