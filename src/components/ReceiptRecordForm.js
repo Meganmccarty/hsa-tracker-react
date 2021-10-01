@@ -49,6 +49,9 @@ function ReceiptRecordForm() {
 
         const configObj = {
             method: "POST",
+            headers: {
+                Authorization: localStorage.getItem("token")
+            },
             body: finalForm
         };
 
@@ -56,9 +59,11 @@ function ReceiptRecordForm() {
             .then(response => {
                 if (response.ok) {
                     response.json().then(receipt => {
-                        dispatch(receiptActions.createReceipt(receipt));
+                        console.log(receipt)
+                        dispatch(receiptActions.createReceipt(receipt.receipt_record));
+                        dispatch(receiptActions.setMessage(receipt.status.message))
                         dispatch(receiptActions.toggleLoading(false));
-                        history.push(`/receipt-records/${receipt.id}`)
+                        history.push(`/receipt-records/${receipt.receipt_record.id}`)
                     });
                 } else {
                     response.json().then(errors => {
@@ -71,28 +76,78 @@ function ReceiptRecordForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="date" name="trans_date" onChange={handleFormChange} placeholder="Transaction date" />
-            <input type="text" name="category" onChange={handleFormChange} placeholder="Category" />
-            <input type="text" name="provider" onChange={handleFormChange} placeholder="Provider" />
-            <input type="text" name="description" onChange={handleFormChange} placeholder="Description" />
+            <input
+                type="date"
+                name="trans_date"
+                onChange={handleFormChange}
+                placeholder="Transaction date"
+                required={true}
+                />
+            <input
+                type="text"
+                name="category"
+                onChange={handleFormChange}
+                placeholder="Category"
+            />
+            <input
+                type="text"
+                name="provider"
+                onChange={handleFormChange}
+                placeholder="Provider"
+                required={true}
+            />
+            <input
+                type="text"
+                name="description"
+                onChange={handleFormChange}
+                placeholder="Description"
+            />
             <label htmlFor="qualified_exp">Qualified Expense?</label>
-            <select name="qualified_exp" onChange={handleFormChange}>
-                <option>--</option>
+            <select name="qualified_exp" onChange={handleFormChange} required={true}>
+                <option></option>
                 <option>Yes</option>
                 <option>No</option>
             </select>
-            <input type="text" name="amount" onChange={handleFormChange} placeholder="Amount" />
-            <input type="text" name="payment_method" onChange={handleFormChange} placeholder="Payment Method" />
+            <input
+                type="text"
+                name="amount"
+                onChange={handleFormChange}
+                placeholder="Amount"
+                required={true}
+            />
+            <input
+                type="text"
+                name="payment_method"
+                onChange={handleFormChange}
+                placeholder="Payment method"
+                required={true}
+            />
             <label htmlFor="reimbursed">Reimbursed?</label>
-            <select name="reimbursed" onChange={handleFormChange}>
-                <option>--</option>
+            <select name="reimbursed" onChange={handleFormChange} required={true}>
+                <option></option>
                 <option>Yes</option>
                 <option>No</option>
                 <option>N/A</option>
             </select>
-            <input type="text" name="notes" onChange={handleFormChange} placeholder="Notes" />
-            <input type="text" name="hsa_trans_id" onChange={handleFormChange} placeholder="HSA transaction ID" />
-            <input type="file" name="receipt_images" accept="image/*" multiple={true} onChange={handleImageChange} />
+            <input
+                type="text"
+                name="notes"
+                onChange={handleFormChange}
+                placeholder="Notes"
+            />
+            <input
+                type="text"
+                name="hsa_trans_id"
+                onChange={handleFormChange}
+                placeholder="HSA transaction ID"
+            />
+            <input
+                type="file"
+                name="receipt_images"
+                accept="image/*"
+                multiple={true}
+                onChange={handleImageChange}
+            />
             <input type="submit" />
         </form>
     );
