@@ -17,6 +17,9 @@ const userSlice = createSlice({
         userLogout(state) {
             state.user = null;
         },
+        updateUser(state, action) {
+            state.user = action.payload
+        },
         toggleLoading(state, action) {
             state.loading = action.payload
         },
