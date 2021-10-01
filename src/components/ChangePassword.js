@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../store/userSlice';
 
 function ChangePassword() {
     const history = useHistory();
     const dispatch = useDispatch();
+    const errors = useSelector(state => state.user.errors)
     const [passwordForm, setPasswordForm] = useState({
         old_password: "",
         password: "",
@@ -30,13 +31,14 @@ function ChangePassword() {
             .then(response => {
                 if (response.ok) {
                     response.json().then(user => {
-                        console.log("Fetching user after patch to /change-password: ", user)
-                        dispatch(userActions.updateUser(user));
+                        dispatch(userActions.updateUser(user.user));
+                        dispatch(userActions.setMessage(user.status.message));
                         history.push("/profile")
                     });
                 } else {
                     response.json().then(errors => {
-                        dispatch(userActions.setErrors(errors));
+                        console.log(errors)
+                        dispatch(userActions.setErrors(errors.status.errors));
                     });
                 };
             })
@@ -45,6 +47,7 @@ function ChangePassword() {
     return (
         <>
             <h1>Change Password</h1>
+            {errors ? errors.map(error => <p key={error}>{error}</p>) : null}
             <form onSubmit={handleSubmit}>
                 <input
                     type="password"
@@ -52,6 +55,7 @@ function ChangePassword() {
                     onChange={handlePasswordChange}
                     value={passwordForm.old_password}
                     placeholder="Old password"
+                    required={true}
                 />
                 <input
                     type="password"
@@ -59,6 +63,7 @@ function ChangePassword() {
                     onChange={handlePasswordChange}
                     value={passwordForm.password}
                     placeholder="New password"
+                    required={true}
                 />
                 <input
                     type="password"
@@ -66,6 +71,7 @@ function ChangePassword() {
                     onChange={handlePasswordChange}
                     value={passwordForm.password_confirmation}
                     placeholder="Confirm new password"
+                    required={true}
                 />
                 <input type="submit" />
             </form>
