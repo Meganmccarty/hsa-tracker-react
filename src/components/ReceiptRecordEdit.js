@@ -21,19 +21,19 @@ function ReceiptRecordEdit() {
             .then(response => {
                 if (response.ok) {
                     response.json().then(receipt => {
-                        dispatch(receiptActions.getReceipt(receipt));
+                        dispatch(receiptActions.getReceipt(receipt.receipt_record));
                         dispatch(receiptActions.toggleLoading(false));
                         setFormData({
-                            trans_date: receipt.trans_date,
-                            category: receipt.category ? receipt.category : "", 
-                            provider: receipt.provider,
-                            description: receipt.description ? receipt.description : "",
-                            qualified_exp: receipt.qualified_exp,
-                            amount: receipt.amount,
-                            payment_method: receipt.payment_method,
-                            reimbursed: receipt.reimbursed,
-                            notes: receipt.notes ? receipt.notes : "",
-                            hsa_trans_id: receipt.hsa_trans_id ? receipt.hsa_trans_id : "",
+                            trans_date: receipt.receipt_record.trans_date,
+                            category: receipt.receipt_record.category ? receipt.receipt_record.category : "", 
+                            provider: receipt.receipt_record.provider,
+                            description: receipt.receipt_record.description ? receipt.receipt_record.description : "",
+                            qualified_exp: receipt.receipt_record.qualified_exp,
+                            amount: receipt.receipt_record.amount,
+                            payment_method: receipt.receipt_record.payment_method,
+                            reimbursed: receipt.receipt_record.reimbursed,
+                            notes: receipt.receipt_record.notes ? receipt.receipt_record.notes : "",
+                            hsa_trans_id: receipt.receipt_record.hsa_trans_id ? receipt.receipt_record.hsa_trans_id : "",
                             receipt_images: [],
                             receipt_images_to_delete: []
                         })
@@ -102,8 +102,9 @@ function ReceiptRecordEdit() {
             .then(response => {
                 if (response.ok) {
                     response.json().then(receipt => {
-                        history.push(`/receipt-records/${receipt.id}`)
-                        dispatch(receiptActions.patchReceipt(receipt));
+                        history.push(`/receipt-records/${receipt.receipt_record.id}`)
+                        dispatch(receiptActions.patchReceipt(receipt.receipt_record));
+                        dispatch(receiptActions.setMessage(receipt.status.message));
                         dispatch(receiptActions.toggleLoading(false));
                     });
                 } else {
@@ -121,28 +122,96 @@ function ReceiptRecordEdit() {
                 <>
                     <h1>Edit Receipt Record {receipt.id}</h1>
                     <form onSubmit={handleSubmit}>
-                        <input type="date" name="trans_date" onChange={handleFormChange} value={formData.trans_date} />
-                        <input type="text" name="category" onChange={handleFormChange} value={formData.category} />
-                        <input type="text" name="provider" onChange={handleFormChange} value={formData.provider} />
-                        <input type="text" name="description" onChange={handleFormChange} value={formData.description} />
+                        <input
+                            type="date"
+                            name="trans_date"
+                            onChange={handleFormChange}
+                            value={formData.trans_date}
+                            placeholder="Transaction date"
+                            required={true}
+                        />
+                        <input
+                            type="text"
+                            name="category"
+                            onChange={handleFormChange}
+                            value={formData.category}
+                            placeholder="Category"
+                        />
+                        <input
+                            type="text"
+                            name="provider"
+                            onChange={handleFormChange}
+                            value={formData.provider}
+                            placeholder="Provider"
+                            required={true}
+                        />
+                        <input
+                            type="text"
+                            name="description"
+                            onChange={handleFormChange}
+                            value={formData.description}
+                            placeholder="Description"
+                        />
                         <label htmlFor="qualified_exp">Qualified Expense?</label>
-                        <select name="qualified_exp" onChange={handleFormChange} value={formData.qualified_exp ? "Yes" : "No" }>
-                            <option>--</option>
+                        <select
+                            name="qualified_exp"
+                            onChange={handleFormChange}
+                            value={formData.qualified_exp ? "Yes" : "No" }
+                            required={true}
+                        >
+                            <option></option>
                             <option>Yes</option>
                             <option>No</option>
                         </select>
-                        <input type="text" name="amount" onChange={handleFormChange} value={formData.amount}/>
-                        <input type="text" name="payment_method" onChange={handleFormChange} value={formData.payment_method} />
+                        <input
+                            type="text"
+                            name="amount"
+                            onChange={handleFormChange}
+                            value={formData.amount}
+                            placeholder="Amount"
+                            required={true}
+                        />
+                        <input 
+                            type="text"
+                            name="payment_method"
+                            onChange={handleFormChange}
+                            value={formData.payment_method}
+                            placeholder="Payment method"
+                            required={true}
+                        />
                         <label htmlFor="reimbursed">Reimbursed?</label>
-                        <select name="reimbursed" onChange={handleFormChange} value={formData.reimbursed}>
-                            <option>--</option>
+                        <select
+                            name="reimbursed"
+                            onChange={handleFormChange}
+                            value={formData.reimbursed}
+                            required={true}
+                        >
+                            <option></option>
                             <option>Yes</option>
                             <option>No</option>
                             <option>N/A</option>
                         </select>
-                        <input type="text" name="notes" onChange={handleFormChange} value={formData.notes} />
-                        <input type="text" name="hsa_trans_id" onChange={handleFormChange} value={formData.hsa_trans_id} />
-                        <input type="file" name="receipt_images" accept="image/*" multiple={true} onChange={handleImageChange} />
+                        <input
+                            type="text"
+                            name="notes"
+                            onChange={handleFormChange}
+                            value={formData.notes}
+                            placeholder="Notes"
+                        />
+                        <input
+                            type="text"
+                            name="hsa_trans_id"
+                            onChange={handleFormChange}
+                            value={formData.hsa_trans_id}
+                            placeholder="HSA transaction ID"
+                        />
+                        <input
+                            type="file"
+                            name="receipt_images"
+                            accept="image/*"
+                            multiple={true}
+                            onChange={handleImageChange}
+                        />
                         <input type="submit" />
                         <button><Link to={`/receipt-records/${id}`}>Cancel</Link></button>
                     </form>
