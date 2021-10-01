@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../store/userSlice';
 
@@ -16,7 +17,7 @@ function Login() {
     function handleSubmit(e) {
         e.preventDefault();
         const user = {
-            user: {...formData}
+            user: { ...formData }
         }
         const configObj = {
             method: "POST",
@@ -43,11 +44,14 @@ function Login() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="email" name="email" onChange={handleFormChange} placeholder="Email address" />
-            <input type="password" name="password" onChange={handleFormChange} placeholder="Password" />
-            <input type="submit" />
-        </form>
+        <>
+            <form onSubmit={handleSubmit}>
+                <input type="email" name="email" onChange={handleFormChange} placeholder="Email address" />
+                <input type="password" name="password" onChange={handleFormChange} placeholder="Password" />
+                <input type="submit" />
+            </form>
+            <Link to="/forgot-password">Forgot Password</Link>
+        </>
     );
 };
 
