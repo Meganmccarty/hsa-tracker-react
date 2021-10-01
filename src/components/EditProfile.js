@@ -7,6 +7,7 @@ function EditProfile() {
     const history = useHistory();
     const dispatch = useDispatch();
     const userInfo = useSelector(state => state.user.user)
+    const errors = useSelector(state => state.user.errors)
     const [profileForm, setProfileForm] = useState({
         first_name: userInfo.first_name,
         last_name: userInfo.last_name,
@@ -32,13 +33,14 @@ function EditProfile() {
             .then(response => {
                 if (response.ok) {
                     response.json().then(user => {
-                        console.log("Fetching user after patch to /profile: ", user)
-                        dispatch(userActions.updateUser(user));
+                        dispatch(userActions.updateUser(user.user));
+                        dispatch(userActions.setMessage(user.status.message))
                         history.push("/profile")
                     });
                 } else {
                     response.json().then(errors => {
-                        dispatch(userActions.setErrors(errors));
+                        console.log(errors.status.errors)
+                        dispatch(userActions.setErrors(errors.status.errors));
                     });
                 };
             });
@@ -47,6 +49,7 @@ function EditProfile() {
     return (
         <>
             <h1>Edit Profile</h1>
+            {errors ? errors.map(error => <p key={error}>{error}</p>) : null}
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -54,6 +57,7 @@ function EditProfile() {
                     onChange={handleProfileChange}
                     value={profileForm.first_name}
                     placeholder="First name"
+                    required={true}
                 />
                 <input
                     type="text"
@@ -61,7 +65,7 @@ function EditProfile() {
                     onChange={handleProfileChange}
                     value={profileForm.last_name}
                     placeholder="Last name"
-                
+                    required={true}
                 />
                 <input
                     type="email"
@@ -69,6 +73,7 @@ function EditProfile() {
                     onChange={handleProfileChange}
                     value={profileForm.email}
                     placeholder="Email address"
+                    required={true}
                 />
                 <input type="submit" />
             </form>
