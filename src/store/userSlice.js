@@ -4,7 +4,8 @@ const initialState = {
     user: null,
     status: "",
     loading: true,
-    errors: []
+    errors: [],
+    message: ""
 }
 
 const userSlice = createSlice({
@@ -25,6 +26,9 @@ const userSlice = createSlice({
         },
         setErrors(state, action) {
             state.errors = action.payload
+        },
+        setMessage(state, action) {
+            state.message = action.payload
         }
     }
 });
