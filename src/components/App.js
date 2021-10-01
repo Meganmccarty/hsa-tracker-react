@@ -10,6 +10,8 @@ import ForgotPassword from './ForgotPassword';
 import PasswordReset from './PasswordReset';
 import Signup from './Signup';
 import Profile from './Profile';
+import EditProfile from './EditProfile';
+import ChangePassword from './ChangePassword';
 import ReceiptRecordsList from './ReceiptRecordsList';
 import ReceiptRecordDetail from './ReceiptRecordDetail';
 import ReceiptRecordEdit from './ReceiptRecordEdit';
@@ -34,7 +36,7 @@ function App() {
             .then(response => {
                 if (response.ok) {
                     response.json().then(user => {
-                        dispatch(userActions.userLogin(user));
+                        dispatch(userActions.userLogin(user.user));
                         dispatch(userActions.toggleLoading(false));
                     });
                 } else {
@@ -62,6 +64,12 @@ function App() {
                 </Route>
                 <Route exact path="/profile">
                     {loading ? <Loading /> : user ? <Profile /> : <Redirect to="/login" />}
+                </Route>
+                <Route exact path="/profile/:id/edit">
+                    {loading ? <Loading /> : user ? <EditProfile /> : <Redirect to="/login" />}
+                </Route>
+                <Route exact path="/profile/:id/change-password">
+                    {loading ? <Loading /> : user ? <ChangePassword /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/receipt-records/new">
                     {loading ? <Loading /> : user ? <ReceiptRecordForm /> : <Redirect to="/login" />}
