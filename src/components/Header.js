@@ -17,6 +17,7 @@ function Header() {
         .then(data => {
             localStorage.removeItem("token");
             dispatch(receiptActions.clearReceipts())
+            dispatch(userActions.setMessage(data.status.message))
             dispatch(userActions.userLogout())
             history.push("/login")
         })
