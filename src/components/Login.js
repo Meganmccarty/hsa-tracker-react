@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../store/userSlice';
 
 function Login() {
     const dispatch = useDispatch();
+    const message = useSelector(state => state.user.message)
+    const errors = useSelector(state => state.user.errors)
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -31,12 +33,16 @@ function Login() {
                 if (response.ok) {
                     localStorage.setItem("token", response.headers.get("Authorization"));
                     response.json().then(user => {
-                        dispatch(userActions.userLogin(user));
+                        console.log(user.user)
+                        console.log(user.status.message)
+                        dispatch(userActions.userLogin(user.user));
+                        dispatch(userActions.setMessage(user.status.message))
                         dispatch(userActions.toggleLoading(false));
                     });
                 } else {
                     response.json().then(errors => {
-                        dispatch(userActions.setErrors(errors));
+                        console.log(errors.error)
+                        dispatch(userActions.setErrors(errors.error));
                         dispatch(userActions.toggleLoading(false));
                     });
                 };
@@ -45,6 +51,8 @@ function Login() {
 
     return (
         <>
+            {message ? message : null}
+            {errors ? errors : null}
             <form onSubmit={handleSubmit}>
                 <input type="email" name="email" onChange={handleFormChange} placeholder="Email address" />
                 <input type="password" name="password" onChange={handleFormChange} placeholder="Password" />
