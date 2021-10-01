@@ -11,6 +11,7 @@ function ReceiptRecordDetail() {
     const dispatch = useDispatch();
     const loading = useSelector(state => state.receipts.loading);
     const receipt = useSelector(state => state.receipts.receipt);
+    const message = useSelector(state => state.receipts.message)
 
     useEffect(() => {
         fetch(`/receipt-records/${id}`, {
@@ -23,7 +24,7 @@ function ReceiptRecordDetail() {
             .then(response => {
                 if (response.ok) {
                     response.json().then(receipt => {
-                        dispatch(receiptActions.getReceipt(receipt));
+                        dispatch(receiptActions.getReceipt(receipt.receipt_record));
                         dispatch(receiptActions.toggleLoading(false));
                     });
                 } else {
@@ -45,8 +46,11 @@ function ReceiptRecordDetail() {
         fetch(`/receipt-records/${id}`, configObj)
             .then(response => {
                 if (response.ok) {
-                    response.json().then(() => {
+                    response.json().then((data) => {
+                        console.log(data);
                         dispatch(receiptActions.deleteReceipt(id));
+                        dispatch(receiptActions.setMessage(data.status.message))
+                        history.push("/receipt-records");
                     });
                 } else {
                     response.json().then(errors => {
@@ -54,7 +58,6 @@ function ReceiptRecordDetail() {
                     });
                 };
             });
-        history.push("/receipt-records");
     }
 
     function displayReceiptImages() {
@@ -69,6 +72,7 @@ function ReceiptRecordDetail() {
 
     return (
         <>
+            {message ? message : null}
             {loading ? <Loading /> :
                 receipt ?
                     <>
