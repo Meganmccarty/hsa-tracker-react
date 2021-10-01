@@ -9,7 +9,8 @@ function ReceiptRecordsList() {
     const dispatch = useDispatch();
     const receipts = useSelector(state => state.receipts.receiptList);
     const loading = useSelector(state => state.receipts.loading);
-    const message = useSelector(state => state.user.message);
+    const userMessage = useSelector(state => state.user.message);
+    const receiptMessage = useSelector(state => state.receipts.message);
 
     useEffect(() => {
         fetch("/receipt-records", {
@@ -54,7 +55,8 @@ function ReceiptRecordsList() {
 
     return (
         <>
-            { message ? message : null}
+            { userMessage ? userMessage : null }
+            { receiptMessage ? receiptMessage : null }
             <h1>Receipt Records List</h1>
             {loading ?
                 <Loading />
