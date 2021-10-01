@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../store/userSlice';
 
 function Signup() {
+    const history = useHistory();
     const dispatch = useDispatch();
+    const errors = useSelector(state => state.user.errors)
     const [formData, setFormData] = useState({
         first_name: "",
         last_name: "",
@@ -19,7 +22,7 @@ function Signup() {
     function handleSubmit(e) {
         e.preventDefault();
         const user = {
-            user: {...formData}
+            user: { ...formData }
         }
         const configObj = {
             method: "POST",
@@ -33,12 +36,16 @@ function Signup() {
                 if (response.ok) {
                     localStorage.setItem("token", response.headers.get("Authorization"));
                     response.json().then(user => {
-                        dispatch(userActions.userLogin(user));
+                        console.log(user)
+                        dispatch(userActions.userLogin(user.user));
+                        dispatch(userActions.setMessage(user.status.message));
                         dispatch(userActions.toggleLoading(false));
+                        history.push("/receipt-records")
                     })
                 } else {
                     response.json().then(errors => {
-                        dispatch(userActions.setErrors(errors));
+                        console.log(errors);
+                        dispatch(userActions.setErrors(errors.status.errors));
                         dispatch(userActions.toggleLoading(false));
                     })
                 }
@@ -46,14 +53,17 @@ function Signup() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="first_name" onChange={handleFormChange} placeholder="First name" />
-            <input type="text" name="last_name" onChange={handleFormChange} placeholder="Last name" />
-            <input type="email" name="email" onChange={handleFormChange} placeholder="Email address" />
-            <input type="password" name="password" onChange={handleFormChange} placeholder="Password" />
-            <input type="password" name="password_confirmation" onChange={handleFormChange} placeholder="Confirm password" />
-            <input type="submit" />
-        </form>
+        <>
+            {errors ? errors.map(error => <p key={error}>{error}</p>) : null}
+            <form onSubmit={handleSubmit}>
+                <input type="text" name="first_name" onChange={handleFormChange} placeholder="First name" required={true}/>
+                <input type="text" name="last_name" onChange={handleFormChange} placeholder="Last name" required={true}/>
+                <input type="email" name="email" onChange={handleFormChange} placeholder="Email address" required={true}/>
+                <input type="password" name="password" onChange={handleFormChange} placeholder="Password" required={true}/>
+                <input type="password" name="password_confirmation" onChange={handleFormChange} placeholder="Confirm password" required={true}/>
+                <input type="submit" />
+            </form>
+        </>
     );
 };
 
