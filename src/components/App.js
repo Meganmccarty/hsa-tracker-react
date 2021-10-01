@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Header from './Header';
 import Home from './Home';
 import Login from './Login';
+import ForgotPassword from './ForgotPassword';
+import PasswordReset from './PasswordReset';
 import Signup from './Signup';
 import Profile from './Profile';
 import ReceiptRecordsList from './ReceiptRecordsList';
@@ -48,6 +50,12 @@ function App() {
                 <Route exact path="/"><Home /></Route>
                 <Route exact path="/login">
                     {loading ? <Loading /> : !user ? <Login /> : <Redirect to="/receipt-records" />}
+                </Route>
+                <Route exact path="/forgot-password">
+                    {loading ? <Loading /> : !user ? <ForgotPassword /> : <Redirect to="/profile" />}
+                </Route>
+                <Route exact path="/reset-password/email=:email">
+                    {loading ? <Loading /> : !user ? <PasswordReset /> : <Redirect to="/profile" />}
                 </Route>
                 <Route exact path="/signup">
                     {loading ? <Loading /> : !user ? <Signup /> : <Redirect to="/receipt-records" />}
