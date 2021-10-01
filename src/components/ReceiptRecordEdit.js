@@ -11,7 +11,13 @@ function ReceiptRecordEdit() {
     const [formData, setFormData] = useState(null);
 
     useEffect(() => {
-        fetch(`/receipt-records/${id}`)
+        fetch(`/receipt-records/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": 'application/json',
+                Authorization: localStorage.getItem("token")
+            }
+        })
             .then(response => {
                 if (response.ok) {
                     response.json().then(receipt => {
