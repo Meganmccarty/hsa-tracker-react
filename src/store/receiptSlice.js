@@ -5,7 +5,8 @@ const initialState = {
     receipt: null,
     status: "",
     loading: true,
-    errors: []
+    errors: [],
+    message: ""
 }
 
 const receiptSlice = createSlice({
@@ -42,6 +43,9 @@ const receiptSlice = createSlice({
         },
         setErrors(state, action) {
             state.errors = action.payload;
+        },
+        setMessage(state, action) {
+            state.message = action.payload;
         }
     }
 })
