@@ -9,9 +9,16 @@ function ReceiptRecordsList() {
     const dispatch = useDispatch();
     const receipts = useSelector(state => state.receipts.receiptList);
     const loading = useSelector(state => state.receipts.loading);
+    const message = useSelector(state => state.user.message);
 
     useEffect(() => {
-        fetch("/receipt-records")
+        fetch("/receipt-records", {
+            method: "GET",
+            headers: {
+                "Content-Type": 'application/json',
+                Authorization: localStorage.getItem("token")
+            }
+        })
             .then(response => {
                 if (response.ok) {
                     response.json().then(receipts => {
@@ -47,6 +54,7 @@ function ReceiptRecordsList() {
 
     return (
         <>
+            { message ? message : null}
             <h1>Receipt Records List</h1>
             {loading ?
                 <Loading />
