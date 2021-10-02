@@ -165,7 +165,7 @@ function ReceiptRecordEdit() {
                             type="text"
                             name="amount"
                             onChange={handleFormChange}
-                            value={formData.amount}
+                            value={parseFloat(formData.amount).toFixed(2)}
                             placeholder="Amount"
                             required={true}
                         />
