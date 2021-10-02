@@ -103,7 +103,8 @@ function ReceiptRecordForm() {
                 placeholder="Description"
             />
             <label htmlFor="qualified_exp">Qualified Expense?</label>
-            <select name="qualified_exp" onChange={handleFormChange}>
+            <select name="qualified_exp" onChange={handleFormChange} required={true}>
+                <option></option>
                 <option>Yes</option>
                 <option>No</option>
             </select>
@@ -122,9 +123,10 @@ function ReceiptRecordForm() {
                 required={true}
             />
             <label htmlFor="reimbursed">Reimbursed?</label>
-            <select name="reimbursed" onChange={handleFormChange}>
-                <option>No</option>
+            <select name="reimbursed" onChange={handleFormChange} required={true}>
+                <option></option>
                 <option>Yes</option>
+                <option>No</option>
                 <option>N/A</option>
             </select>
             <input

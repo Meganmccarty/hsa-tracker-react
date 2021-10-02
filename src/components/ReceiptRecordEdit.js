@@ -183,8 +183,8 @@ function ReceiptRecordEdit() {
                             onChange={handleFormChange}
                             value={formData.reimbursed}
                         >
-                            <option>No</option>
                             <option>Yes</option>
+                            <option>No</option>
                             <option>N/A</option>
                         </select>
                         <input
