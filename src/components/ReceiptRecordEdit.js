@@ -76,11 +76,11 @@ function ReceiptRecordEdit() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (formData.qualified_exp === "Yes") {
-            setFormData({ ...formData, qualified_exp: true })
-        } else if (formData.qualified_exp === "No") {
-            setFormData({ ...formData, qualified_exp: false })
-        }
+        // if (formData.qualified_exp === "Yes") {
+        //     setFormData({ ...formData, qualified_exp: true })
+        // } else if (formData.qualified_exp === "No") {
+        //     setFormData({ ...formData, qualified_exp: false })
+        // }
 
         const finalForm = new FormData();
         for (const key in formData) {
@@ -156,10 +156,8 @@ function ReceiptRecordEdit() {
                         <select
                             name="qualified_exp"
                             onChange={handleFormChange}
-                            value={formData.qualified_exp ? "Yes" : "No" }
-                            required={true}
+                            value={formData.qualified_exp}
                         >
-                            <option></option>
                             <option>Yes</option>
                             <option>No</option>
                         </select>
@@ -184,11 +182,9 @@ function ReceiptRecordEdit() {
                             name="reimbursed"
                             onChange={handleFormChange}
                             value={formData.reimbursed}
-                            required={true}
                         >
-                            <option></option>
-                            <option>Yes</option>
                             <option>No</option>
+                            <option>Yes</option>
                             <option>N/A</option>
                         </select>
                         <input
