@@ -96,7 +96,7 @@ function ReceiptRecordDetail() {
                                 </tr>
                                 <tr>
                                     <td>Qualified Expense?</td>
-                                    <td>{receipt.qualified_exp ? "Yes" : "No"}</td>
+                                    <td>{receipt.qualified_exp}</td>
                                 </tr>
                                 <tr>
                                     <td>Amount</td>
