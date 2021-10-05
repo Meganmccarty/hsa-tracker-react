@@ -191,16 +191,21 @@ function ReceiptRecordEdit() {
                             placeholder="Payment method"
                             required={true}
                         />
-                        <label htmlFor="reimbursed">Reimbursed?</label>
-                        <select
-                            name="reimbursed"
-                            onChange={handleFormChange}
-                            value={formData.reimbursed}
-                        >
-                            <option>Yes</option>
-                            <option>No</option>
-                            <option>N/A</option>
-                        </select>
+                        {formData.qualified_exp === "Yes" ?
+                            <>
+                                <label htmlFor="reimbursed">Reimbursed?</label>
+                                <select
+                                    name="reimbursed"
+                                    onChange={handleFormChange}
+                                    value={formData.reimbursed}
+                                >
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                    <option>N/A</option>
+                                </select>
+                            </>
+                            : null
+                        }
                         {formData.reimbursed === "N/A" ?
                             <input
                                 type="date"

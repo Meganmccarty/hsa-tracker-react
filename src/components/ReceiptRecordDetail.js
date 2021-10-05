@@ -106,10 +106,13 @@ function ReceiptRecordDetail() {
                                     <td>Payment Method</td>
                                     <td>{receipt.payment_method}</td>
                                 </tr>
-                                <tr>
-                                    <td>Reimbursed?</td>
-                                    <td>{receipt.reimbursed}</td>
-                                </tr>
+                                {receipt.qualified_exp === "Yes" ?
+                                    <tr>
+                                        <td>Reimbursed?</td>
+                                        <td>{receipt.reimbursed}</td>
+                                    </tr>
+                                    : null
+                                }
                                 {receipt.reimbursed_date ?
                                     <tr>
                                         <td>Reimbursed Date</td>
@@ -131,7 +134,7 @@ function ReceiptRecordDetail() {
                         <button onClick={handleDelete}>Delete</button>
                         {displayReceiptImages()}
                     </>
-                : null
+                    : null
             }
         </>
     );
