@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { userActions } from '../store/userSlice';
+import { userActions } from '../../store/userSlice';
 
 function EditProfile() {
     const history = useHistory();

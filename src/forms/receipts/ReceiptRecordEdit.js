@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { receiptActions } from '../store/receiptSlice';
+import { receiptActions } from '../../store/receiptSlice';
 
 function ReceiptRecordEdit() {
     const id = parseInt(useParams().id);

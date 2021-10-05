@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
 
-import Loading from './Loading';
+import Loading from '../components/Loading';
 
 function ReceiptRecordsList() {
     const dispatch = useDispatch();

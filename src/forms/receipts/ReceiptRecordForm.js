@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { receiptActions } from '../store/receiptSlice';
+import { receiptActions } from '../../store/receiptSlice';
 
 function ReceiptRecordForm() {
     const dispatch = useDispatch();
