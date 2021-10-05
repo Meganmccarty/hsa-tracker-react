@@ -52,9 +52,18 @@ function Signup() {
             })
     }
 
+    function handleErrors() {
+        if (errors) {
+            setTimeout(() => {
+                dispatch(userActions.setErrors(""));
+            }, 5000)
+            return <span>{errors}</span>
+        }
+    }
+
     return (
         <>
-            {errors ? errors.map(error => <p key={error}>{error}</p>) : null}
+            {handleErrors()}
             <form onSubmit={handleSubmit}>
                 <input type="text" name="first_name" onChange={handleFormChange} placeholder="First name" required={true}/>
                 <input type="text" name="last_name" onChange={handleFormChange} placeholder="Last name" required={true}/>

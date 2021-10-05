@@ -48,9 +48,18 @@ function Login() {
             });
     };
 
+    function handleErrors() {
+        if (errors) {
+            setTimeout(() => {
+                dispatch(userActions.setErrors(""));
+            }, 5000)
+            return <span>{errors}</span>
+        }
+    }
+
     return (
         <>
-            {errors ? errors : null}
+            {handleErrors()}
             <form onSubmit={handleSubmit}>
                 <input type="email" name="email" onChange={handleFormChange} placeholder="Email address" />
                 <input type="password" name="password" onChange={handleFormChange} placeholder="Password" />

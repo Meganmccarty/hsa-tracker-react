@@ -44,10 +44,19 @@ function ChangePassword() {
             })
     }
 
+    function handleErrors() {
+        if (errors) {
+            setTimeout(() => {
+                dispatch(userActions.setErrors(""));
+            }, 5000)
+            return <span>{errors}</span>
+        }
+    }
+
     return (
         <>
+            {handleErrors()}
             <h1>Change Password</h1>
-            {errors ? errors.map(error => <p key={error}>{error}</p>) : null}
             <form onSubmit={handleSubmit}>
                 <input
                     type="password"
