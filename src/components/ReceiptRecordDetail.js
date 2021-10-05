@@ -11,7 +11,6 @@ function ReceiptRecordDetail() {
     const dispatch = useDispatch();
     const loading = useSelector(state => state.receipts.loading);
     const receipt = useSelector(state => state.receipts.receipt);
-    const message = useSelector(state => state.receipts.message)
 
     useEffect(() => {
         fetch(`/receipt-records/${id}`, {
@@ -72,7 +71,6 @@ function ReceiptRecordDetail() {
 
     return (
         <>
-            {message ? message : null}
             {loading ? <Loading /> :
                 receipt ?
                     <>

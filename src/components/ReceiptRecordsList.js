@@ -10,8 +10,6 @@ function ReceiptRecordsList() {
 
     const receipts = useSelector(state => state.receipts.receiptList);
     const loading = useSelector(state => state.receipts.loading);
-    const userMessage = useSelector(state => state.user.message);
-    const receiptMessage = useSelector(state => state.receipts.message);
 
     const [searchTerm, setSearchTerm] = useState("");
     const [year, setYear] = useState("All");
@@ -168,8 +166,6 @@ function ReceiptRecordsList() {
 
     return (
         <>
-            {userMessage ? userMessage : null}
-            {receiptMessage ? receiptMessage : null}
             <h1>Receipt Records List</h1>
             {loading ?
                 <Loading />

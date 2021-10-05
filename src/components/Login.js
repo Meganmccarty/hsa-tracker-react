@@ -5,7 +5,6 @@ import { userActions } from '../store/userSlice';
 
 function Login() {
     const dispatch = useDispatch();
-    const message = useSelector(state => state.user.message)
     const errors = useSelector(state => state.user.errors)
     const [formData, setFormData] = useState({
         email: "",
@@ -51,7 +50,6 @@ function Login() {
 
     return (
         <>
-            {message ? message : null}
             {errors ? errors : null}
             <form onSubmit={handleSubmit}>
                 <input type="email" name="email" onChange={handleFormChange} placeholder="Email address" />
