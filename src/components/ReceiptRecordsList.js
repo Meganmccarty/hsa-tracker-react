@@ -15,7 +15,7 @@ function ReceiptRecordsList() {
 
     const [year, setYear] = useState("All");
     const [sort, setSort] = useState({
-        name: "",
+        name: "trans_date",
         orderAsc: false
     })
 
@@ -138,6 +138,8 @@ function ReceiptRecordsList() {
     }
 
     function handleSort(e) {
+        document.querySelectorAll("th").forEach(header => header.classList.remove("active", "false", "true"));
+        e.target.classList.add("active", !sort.orderAsc)
         const headerName = e.target.innerText.toLowerCase().split(" ").join("_");
         let name;
         switch (headerName) {
@@ -181,7 +183,7 @@ function ReceiptRecordsList() {
                     <table>
                         <thead>
                             <tr>
-                                <th onClick={handleSort}>Transaction Date</th>
+                                <th className="active false" onClick={handleSort}>Transaction Date</th>
                                 <th onClick={handleSort}>Provider</th>
                                 <th onClick={handleSort}>Description</th>
                                 <th onClick={handleSort}>Qualified Expense</th>
