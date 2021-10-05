@@ -15,14 +15,22 @@ function ReceiptRecordForm() {
         amount: "",
         payment_method: "",
         reimbursed: "",
-        reimbursed_date: null,
+        reimbursed_date: "",
         notes: "",
         hsa_trans_id: "",
         receipt_images: []
     });
 
     function handleFormChange(e) {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const name = e.target.name;
+        const value = e.target.value;
+        if (name === "qualified_exp" && value === "No") {
+            setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed: "", reimbursed_date: null })
+        } else if ((name === "reimbursed" && value === "No") || value === "N/A") {
+            setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed_date: null })
+        } else {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+        }
     }
 
     function handleImageChange(e) {
@@ -31,11 +39,6 @@ function ReceiptRecordForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        // if (formData.qualified_exp === "Yes") {
-        //     setFormData({ ...formData, qualified_exp: true })
-        // } else if (formData.qualified_exp === "No") {
-        //     setFormData({ ...formData, qualified_exp: false })
-        // }
 
         const finalForm = new FormData();
         for (const key in formData) {
@@ -135,16 +138,17 @@ function ReceiptRecordForm() {
                         <option>No</option>
                         <option>N/A</option>
                     </select>
+                    {formData.reimbursed === "Yes" ?
+                        <input
+                            type="date"
+                            name="reimbursed_date"
+                            onChange={handleFormChange}
+                            value={formData.reimbursed_date}
+                            required={true}
+                        />
+                        : null
+                    }
                 </>
-                : null
-            }
-            {formData.reimbursed === "N/A" ?
-                <input
-                    type="date"
-                    name="reimbursed_date"
-                    onChange={handleFormChange}
-                    value={formData.reimbursed_date}
-                />
                 : null
             }
             <input
