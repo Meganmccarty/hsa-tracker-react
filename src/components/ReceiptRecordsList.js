@@ -13,6 +13,7 @@ function ReceiptRecordsList() {
     const userMessage = useSelector(state => state.user.message);
     const receiptMessage = useSelector(state => state.receipts.message);
 
+    const [searchTerm, setSearchTerm] = useState("");
     const [year, setYear] = useState("All");
     const [sort, setSort] = useState({
         name: "trans_date",
@@ -48,9 +49,14 @@ function ReceiptRecordsList() {
 
     function displayReceipts() {
         if (receipts) {
-            return receipts.filter(receipt => {
-                return year === "All" ? receipt : receipt.trans_date.startsWith(year)
-            })
+            return receipts
+                .filter(receipt => {
+                    return receipt.provider.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        receipt.description.toLowerCase().includes(searchTerm.toLowerCase())
+                })
+                .filter(receipt => {
+                    return year === "All" ? receipt : receipt.trans_date.startsWith(year)
+                })
                 .sort((a, b) => {
                     if (sort) {
                         if (sort.orderAsc && sort.name !== "amount") {
@@ -69,7 +75,7 @@ function ReceiptRecordsList() {
                         <tr key={receipt.id}>
                             <td><Link to={`/receipt-records/${receipt.id}`}>{receipt.trans_date}</Link></td>
                             <td>{receipt.provider}</td>
-                            <td>{receipt.decription}</td>
+                            <td>{receipt.description}</td>
                             <td>{receipt.qualified_exp}</td>
                             <td>{parseFloat(receipt.amount).toFixed(2)}</td>
                             <td>{receipt.payment_method}</td>
@@ -78,6 +84,10 @@ function ReceiptRecordsList() {
                     )
                 })
         }
+    }
+
+    function handleSearch(e) {
+        setSearchTerm(e.target.value)
     }
 
     function getYearButtons() {
@@ -165,6 +175,7 @@ function ReceiptRecordsList() {
                 <Loading />
                 :
                 <>
+                    <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." />
                     <h3>Total Qualified Expenses -- {year}</h3>
                     {parseFloat(qualifiedExpenses).toFixed(2)}
 
