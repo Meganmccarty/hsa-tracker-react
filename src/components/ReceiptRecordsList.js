@@ -14,6 +14,10 @@ function ReceiptRecordsList() {
     const receiptMessage = useSelector(state => state.receipts.message);
 
     const [year, setYear] = useState("All");
+    const [sort, setSort] = useState({
+        name: "",
+        orderAsc: false
+    })
 
     const qualifiedExpenses = totalQualifiedExpenses();
     const reimbursedExpenses = totalReimbursedExpenses();
@@ -47,6 +51,19 @@ function ReceiptRecordsList() {
             return receipts.filter(receipt => {
                 return year === "All" ? receipt : receipt.trans_date.startsWith(year)
             })
+                .sort((a, b) => {
+                    if (sort) {
+                        if (sort.orderAsc && sort.name !== "amount") {
+                            return a[sort.name].localeCompare(b[sort.name])
+                        } else if (!sort.orderAsc && sort.name !== "amount") {
+                            return b[sort.name].localeCompare(a[sort.name])
+                        } else if (sort.orderAsc && sort.name === "amount") {
+                            return a[sort.name] - b[sort.name]
+                        } else {
+                            return b[sort.name] - a[sort.name]
+                        }
+                    }
+                })
                 .map(receipt => {
                     return (
                         <tr key={receipt.id}>
@@ -120,6 +137,23 @@ function ReceiptRecordsList() {
         }
     }
 
+    function handleSort(e) {
+        const headerName = e.target.innerText.toLowerCase().split(" ").join("_");
+        let name;
+        switch (headerName) {
+            case "transaction_date":
+                name = "trans_date";
+                break;
+            case "qualified_expense":
+                name = "qualified_exp";
+                break;
+            default:
+                name = headerName;
+                break;
+        }
+        setSort({name: name, orderAsc: !sort.orderAsc})
+    }
+
     return (
         <>
             {userMessage ? userMessage : null}
@@ -147,13 +181,13 @@ function ReceiptRecordsList() {
                     <table>
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Provider</th>
-                                <th>Description</th>
-                                <th>Qualified Expense?</th>
-                                <th>Amount</th>
-                                <th>Payment Method</th>
-                                <th>Reimbursed?</th>
+                                <th onClick={handleSort}>Transaction Date</th>
+                                <th onClick={handleSort}>Provider</th>
+                                <th onClick={handleSort}>Description</th>
+                                <th onClick={handleSort}>Qualified Expense</th>
+                                <th onClick={handleSort}>Amount</th>
+                                <th onClick={handleSort}>Payment Method</th>
+                                <th onClick={handleSort}>Reimbursed</th>
                             </tr>
                         </thead>
                         <tbody>
