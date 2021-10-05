@@ -32,6 +32,7 @@ function ReceiptRecordEdit() {
                             amount: receipt.receipt_record.amount,
                             payment_method: receipt.receipt_record.payment_method,
                             reimbursed: receipt.receipt_record.reimbursed,
+                            reimbursed_date: receipt.receipt_record.reimbursed_date,
                             notes: receipt.receipt_record.notes ? receipt.receipt_record.notes : "",
                             hsa_trans_id: receipt.receipt_record.hsa_trans_id ? receipt.receipt_record.hsa_trans_id : "",
                             receipt_images: [],
@@ -200,6 +201,15 @@ function ReceiptRecordEdit() {
                             <option>No</option>
                             <option>N/A</option>
                         </select>
+                        {formData.reimbursed === "N/A" ?
+                            <input
+                                type="date"
+                                name="reimbursed_date"
+                                onChange={handleFormChange}
+                                value={formData.reimbursed_date}
+                            />
+                            : null
+                        }
                         <input
                             type="text"
                             name="notes"

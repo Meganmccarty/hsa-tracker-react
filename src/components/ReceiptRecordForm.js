@@ -15,6 +15,7 @@ function ReceiptRecordForm() {
         amount: "",
         payment_method: "",
         reimbursed: "",
+        reimbursed_date: null,
         notes: "",
         hsa_trans_id: "",
         receipt_images: []
@@ -82,7 +83,7 @@ function ReceiptRecordForm() {
                 onChange={handleFormChange}
                 placeholder="Transaction date"
                 required={true}
-                />
+            />
             <input
                 type="text"
                 name="category"
@@ -132,6 +133,15 @@ function ReceiptRecordForm() {
                 <option>No</option>
                 <option>N/A</option>
             </select>
+            {formData.reimbursed === "N/A" ?
+                <input
+                    type="date"
+                    name="reimbursed_date"
+                    onChange={handleFormChange}
+                    value={formData.reimbursed_date}
+                />
+                : null
+            }
             <input
                 type="text"
                 name="notes"
