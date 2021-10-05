@@ -8,6 +8,8 @@ function Header() {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user.user);
+    const userMessage = useSelector(state => state.user.message);
+    const receiptMessage = useSelector(state => state.receipts.message);
 
     function handleLogout() {
         fetch("/logout", {
@@ -23,8 +25,24 @@ function Header() {
         })
     };
 
+    function handleMessages() {
+        if (userMessage || receiptMessage) {
+            setTimeout(() => {
+                dispatch(userActions.setMessage(""));
+                dispatch(receiptActions.setMessage(""));
+            }, 3000)
+            return (
+                <div>
+                    {userMessage ? <span>{userMessage}</span> : null}
+                    {receiptMessage ? <span>{receiptMessage}</span> : null}
+                </div>
+            )
+        }
+    }
+
     return (
         <nav>
+            {handleMessages()}
             <Link to="/">HSA Tracker</Link>
             {user ?
                 <>
