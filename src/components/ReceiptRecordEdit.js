@@ -25,7 +25,7 @@ function ReceiptRecordEdit() {
                         dispatch(receiptActions.toggleLoading(false));
                         setFormData({
                             trans_date: receipt.receipt_record.trans_date,
-                            category: receipt.receipt_record.category ? receipt.receipt_record.category : "", 
+                            category: receipt.receipt_record.category ? receipt.receipt_record.category : "",
                             provider: receipt.receipt_record.provider,
                             description: receipt.receipt_record.description ? receipt.receipt_record.description : "",
                             qualified_exp: receipt.receipt_record.qualified_exp,
@@ -63,7 +63,7 @@ function ReceiptRecordEdit() {
     function handleDelete(e, image) {
         e.target.parentElement.innerHTML = "";
         console.log(image)
-        setFormData({...formData, receipt_images_to_delete: [...formData.receipt_images_to_delete, image]})
+        setFormData({ ...formData, receipt_images_to_delete: [...formData.receipt_images_to_delete, image] })
     }
 
     function handleFormChange(e) {
@@ -169,7 +169,20 @@ function ReceiptRecordEdit() {
                             placeholder="Amount"
                             required={true}
                         />
-                        <input 
+                        <label htmlFor="payment_method">Payment Method</label>
+                        <select
+                            name="payment_method"
+                            onChange={handleFormChange}
+                            value={formData.payment_method}
+                        >
+                            <option>Cash</option>
+                            <option>Check</option>
+                            <option>Debit Card</option>
+                            <option>Credit Card</option>
+                            <option>Electronic Bank Transfer</option>
+                            <option>HSA Debit Card</option>
+                        </select>
+                        <input
                             type="text"
                             name="payment_method"
                             onChange={handleFormChange}

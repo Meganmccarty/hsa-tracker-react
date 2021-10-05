@@ -115,13 +115,16 @@ function ReceiptRecordForm() {
                 placeholder="Amount"
                 required={true}
             />
-            <input
-                type="text"
-                name="payment_method"
-                onChange={handleFormChange}
-                placeholder="Payment method"
-                required={true}
-            />
+            <label htmlFor="payment_method">Payment Method</label>
+            <select name="payment_method" onChange={handleFormChange} required={true}>
+                <option></option>
+                <option>Cash</option>
+                <option>Check</option>
+                <option>Debit Card</option>
+                <option>Credit Card</option>
+                <option>Electronic Bank Transfer</option>
+                <option>HSA Debit Card</option>
+            </select>
             <label htmlFor="reimbursed">Reimbursed?</label>
             <select name="reimbursed" onChange={handleFormChange} required={true}>
                 <option></option>
