@@ -110,6 +110,13 @@ function ReceiptRecordDetail() {
                                     <td>Reimbursed?</td>
                                     <td>{receipt.reimbursed}</td>
                                 </tr>
+                                {receipt.reimbursed_date ?
+                                    <tr>
+                                        <td>Reimbursed Date</td>
+                                        <td>{receipt.reimbursed_date}</td>
+                                    </tr>
+                                    : null
+                                }
                                 <tr>
                                     <td>Notes</td>
                                     <td>{receipt.notes}</td>
