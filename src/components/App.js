@@ -5,17 +5,17 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 
 import Header from './Header';
 import Home from './Home';
-import Login from './Login';
-import ForgotPassword from './ForgotPassword';
-import PasswordReset from './PasswordReset';
-import Signup from './Signup';
+import Login from '../forms/Login';
+import ForgotPassword from '../forms/ForgotPassword';
+import PasswordReset from '../forms/PasswordReset';
+import Signup from '../forms/Signup';
 import Profile from './Profile';
-import EditProfile from './EditProfile';
-import ChangePassword from './ChangePassword';
+import EditProfile from '../forms/EditProfile';
+import ChangePassword from '../forms/ChangePassword';
 import ReceiptRecordsList from './ReceiptRecordsList';
 import ReceiptRecordDetail from './ReceiptRecordDetail';
-import ReceiptRecordEdit from './ReceiptRecordEdit';
-import ReceiptRecordForm from './ReceiptRecordForm';
+import ReceiptRecordEdit from '../forms/ReceiptRecordEdit';
+import ReceiptRecordForm from '../forms/ReceiptRecordForm';
 import Footer from './Footer';
 
 import Loading from './Loading';
