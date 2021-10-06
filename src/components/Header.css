@@ -1,0 +1,66 @@
+.navbar {
+    overflow: hidden;
+    background-color: purple;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.navbar a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navbar a:not(:first-child):hover {
+    background-color: rgb(255, 138, 255);
+    color: black;
+}
+
+.navbar a.icon {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {    
+    .navbar {
+        justify-content: space-between;
+    }
+    
+    .navbar a:not(:first-child) {
+        display: none;
+    }
+
+    .navbar a.icon {
+        display: block;
+    }
+
+    .navbar.responsive {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .navbar.responsive a {
+        display: block;
+        float: none;
+    }
+
+    .navbar.responsive a:first-child {
+        width: 84%;
+    }
+
+    .navbar.responsive a:last-child {
+        width: 3%;
+    }
+
+    .responsive a:not(:first-child), .responsive a:not(:last-child) {
+        width: 100%;
+    }
+}
