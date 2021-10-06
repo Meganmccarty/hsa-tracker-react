@@ -1,6 +1,6 @@
 .navbar {
     overflow: hidden;
-    background-color: purple;
+    background-color: rgb(104, 2, 124);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -15,7 +15,7 @@
 }
 
 .navbar a:not(:first-child):hover {
-    background-color: rgb(255, 138, 255);
+    background-color: rgb(213, 176, 212);
     color: black;
 }
 
