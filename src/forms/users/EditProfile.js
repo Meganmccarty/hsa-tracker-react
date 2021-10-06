@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
+import handleErrors from '../../functions/handleErrors';
+
 function EditProfile() {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -46,18 +48,9 @@ function EditProfile() {
             });
     };
 
-    function handleErrors() {
-        if (errors) {
-            setTimeout(() => {
-                dispatch(userActions.setErrors(""));
-            }, 5000)
-            return <span>{errors}</span>
-        }
-    }
-
     return (
         <>
-            {handleErrors()}
+            {handleErrors(errors, dispatch, userActions)}
             <h1>Edit Profile</h1>
             <form onSubmit={handleSubmit}>
                 <input

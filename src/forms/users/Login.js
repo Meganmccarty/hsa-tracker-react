@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
+import handleErrors from '../../functions/handleErrors';
+
 function Login() {
     const dispatch = useDispatch();
     const errors = useSelector(state => state.user.errors)
@@ -48,18 +50,9 @@ function Login() {
             });
     };
 
-    function handleErrors() {
-        if (errors) {
-            setTimeout(() => {
-                dispatch(userActions.setErrors(""));
-            }, 5000)
-            return <span>{errors}</span>
-        }
-    }
-
     return (
         <>
-            {handleErrors()}
+            {handleErrors(errors, dispatch, userActions)}
             <form onSubmit={handleSubmit}>
                 <input type="email" name="email" onChange={handleFormChange} placeholder="Email address" />
                 <input type="password" name="password" onChange={handleFormChange} placeholder="Password" />

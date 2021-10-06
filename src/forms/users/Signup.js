@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
+import handleErrors from '../../functions/handleErrors';
+
 function Signup() {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -52,18 +54,9 @@ function Signup() {
             })
     }
 
-    function handleErrors() {
-        if (errors) {
-            setTimeout(() => {
-                dispatch(userActions.setErrors(""));
-            }, 5000)
-            return <span>{errors}</span>
-        }
-    }
-
     return (
         <>
-            {handleErrors()}
+            {handleErrors(errors, dispatch, userActions)}
             <form onSubmit={handleSubmit}>
                 <input type="text" name="first_name" onChange={handleFormChange} placeholder="First name" required={true}/>
                 <input type="text" name="last_name" onChange={handleFormChange} placeholder="Last name" required={true}/>

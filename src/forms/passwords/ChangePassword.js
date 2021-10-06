@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
+import handleErrors from '../../functions/handleErrors';
+
 function ChangePassword() {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -44,18 +46,9 @@ function ChangePassword() {
             })
     }
 
-    function handleErrors() {
-        if (errors) {
-            setTimeout(() => {
-                dispatch(userActions.setErrors(""));
-            }, 5000)
-            return <span>{errors}</span>
-        }
-    }
-
     return (
         <>
-            {handleErrors()}
+            {handleErrors(errors, dispatch, userActions)}
             <h1>Change Password</h1>
             <form onSubmit={handleSubmit}>
                 <input
