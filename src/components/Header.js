@@ -59,15 +59,16 @@ function Header() {
                         <Link to="/receipt-records/new">Add Receipt</Link>
                         <Link to="/profile">Profile</Link>
                         <Link to="#" onClick={handleLogout}>Log Out</Link>
-                        <Link to="#" className="icon" onClick={toggleNavBar}><i className="fa fa-bars"></i></Link>
                     </>
                     :
                     <>
                         <Link to="/login">Login</Link>
                         <Link to="/signup">Signup</Link>
-                        <Link to="#" className="icon" onClick={toggleNavBar}><i className="fa fa-bars"></i></Link>
                     </>
                 }
+                <Link to="#" className="icon" aria-label="Open the menu" onClick={toggleNavBar}>
+                    <i className="fa fa-bars" aria-hidden={true}></i>
+                </Link>
             </nav>
             {handleMessages()}
         </>
