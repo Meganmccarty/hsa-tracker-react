@@ -20,6 +20,8 @@ import Footer from './Footer';
 
 import Loading from './Loading';
 
+import './App.css'
+
 function App() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user.user);
@@ -41,49 +43,51 @@ function App() {
                     });
                 } else {
                     dispatch(userActions.toggleLoading(false));
-                };   
+                };
             });
     }, [dispatch]);
 
     return (
         <Router>
             <Header />
-            <Switch>
-                <Route exact path="/"><Home /></Route>
-                <Route exact path="/login">
-                    {loading ? <Loading /> : !user ? <Login /> : <Redirect to="/receipt-records" />}
-                </Route>
-                <Route exact path="/forgot-password">
-                    {loading ? <Loading /> : !user ? <ForgotPassword /> : <Redirect to="/profile" />}
-                </Route>
-                <Route exact path="/reset-password/email=:email">
-                    {loading ? <Loading /> : !user ? <PasswordReset /> : <Redirect to="/profile" />}
-                </Route>
-                <Route exact path="/signup">
-                    {loading ? <Loading /> : !user ? <Signup /> : <Redirect to="/receipt-records" />}
-                </Route>
-                <Route exact path="/profile">
-                    {loading ? <Loading /> : user ? <Profile /> : <Redirect to="/login" />}
-                </Route>
-                <Route exact path="/profile/:id/edit">
-                    {loading ? <Loading /> : user ? <EditProfile /> : <Redirect to="/login" />}
-                </Route>
-                <Route exact path="/profile/:id/change-password">
-                    {loading ? <Loading /> : user ? <ChangePassword /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/receipt-records/new">
-                    {loading ? <Loading /> : user ? <ReceiptRecordForm /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/receipt-records/:id/edit">
-                    {loading ? <Loading /> : user ? <ReceiptRecordEdit /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/receipt-records/:id">
-                    {loading ? <Loading /> : user ? <ReceiptRecordDetail /> : <Redirect to="/login" />}
-                </Route>
-                <Route exact path="/receipt-records">
-                    {loading ? <Loading /> : !user ? <Redirect to="/login" /> : <ReceiptRecordsList />}
-                </Route>
-            </Switch>
+            <main>
+                <Switch>
+                    <Route exact path="/"><Home /></Route>
+                    <Route exact path="/login">
+                        {loading ? <Loading /> : !user ? <Login /> : <Redirect to="/receipt-records" />}
+                    </Route>
+                    <Route exact path="/forgot-password">
+                        {loading ? <Loading /> : !user ? <ForgotPassword /> : <Redirect to="/profile" />}
+                    </Route>
+                    <Route exact path="/reset-password/email=:email">
+                        {loading ? <Loading /> : !user ? <PasswordReset /> : <Redirect to="/profile" />}
+                    </Route>
+                    <Route exact path="/signup">
+                        {loading ? <Loading /> : !user ? <Signup /> : <Redirect to="/receipt-records" />}
+                    </Route>
+                    <Route exact path="/profile">
+                        {loading ? <Loading /> : user ? <Profile /> : <Redirect to="/login" />}
+                    </Route>
+                    <Route exact path="/profile/:id/edit">
+                        {loading ? <Loading /> : user ? <EditProfile /> : <Redirect to="/login" />}
+                    </Route>
+                    <Route exact path="/profile/:id/change-password">
+                        {loading ? <Loading /> : user ? <ChangePassword /> : <Redirect to="/login" />}
+                    </Route>
+                    <Route path="/receipt-records/new">
+                        {loading ? <Loading /> : user ? <ReceiptRecordForm /> : <Redirect to="/login" />}
+                    </Route>
+                    <Route path="/receipt-records/:id/edit">
+                        {loading ? <Loading /> : user ? <ReceiptRecordEdit /> : <Redirect to="/login" />}
+                    </Route>
+                    <Route path="/receipt-records/:id">
+                        {loading ? <Loading /> : user ? <ReceiptRecordDetail /> : <Redirect to="/login" />}
+                    </Route>
+                    <Route exact path="/receipt-records">
+                        {loading ? <Loading /> : !user ? <Redirect to="/login" /> : <ReceiptRecordsList />}
+                    </Route>
+                </Switch>
+            </main>
             <Footer />
         </Router>
     );
