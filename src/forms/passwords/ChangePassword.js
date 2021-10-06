@@ -9,6 +9,7 @@ function ChangePassword() {
     const history = useHistory();
     const dispatch = useDispatch();
     const errors = useSelector(state => state.user.errors)
+    const message = useSelector(state => state.user.message)
     const [passwordForm, setPasswordForm] = useState({
         old_password: "",
         password: "",
@@ -49,6 +50,7 @@ function ChangePassword() {
     return (
         <>
             {handleErrors(errors, dispatch, userActions)}
+            {message ? message : null}
             <h1>Change Password</h1>
             <form onSubmit={handleSubmit}>
                 <input

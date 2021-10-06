@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from '../../store/userSlice';
 
 function ForgotPassword() {
+    const dispatch = useDispatch();
+    const message = useSelector(state => state.user.message)
     const [email, setEmail] = useState("");
 
     function handleEmailChange(e) {
@@ -22,7 +26,7 @@ function ForgotPassword() {
                 if (response.ok) {
                     localStorage.setItem("token", response.headers.get("Authorization"));
                     response.json().then(data => {
-                        console.log(data)
+                        dispatch(userActions.setMessage(data.status.message))
                     });
                 }
             });
@@ -30,10 +34,13 @@ function ForgotPassword() {
     };
 
     return (
+        <>
+        {message ? message : null}
         <form onSubmit={handleSubmit}>
             <input type="email" name="email" onChange={handleEmailChange} placeholder="Email address" />
             <input type="submit" />
         </form>
+        </>
     )
 };
 
