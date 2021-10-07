@@ -1,0 +1,128 @@
+main#new-receipt {
+    border: 1px solid black;
+    width: 80%;
+}
+
+.receipt-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 5px 5px 20px 2px rgb(64, 1, 77);
+}
+
+.receipt-form h1 {
+    color: black;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* .user-form #message {
+    padding: 10px;
+    background-color: rgb(8, 175, 128);
+    color: black;
+    text-align: center;
+}
+
+.user-form #errors {
+    padding: 10px;
+    background-color: rgb(199, 41, 41);
+    color: white;
+    text-align: center;
+} */
+
+.receipt-form form {
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.receipt-form .label-and-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.receipt-form form input {
+    flex-basis: 33.33333%;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    background-color: rgb(235, 235, 235);
+}
+
+.receipt-form form input[type="date"] {
+    min-width: 150px;
+}
+
+.receipt-form form select {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    background-color: rgb(235, 235, 235);
+}
+
+.receipt-form form input[type="submit"] {
+    background: rgb(51, 134, 193);
+    color: white;
+    font-size: 16px;
+}
+
+/* Color actual buttons for different browsers */
+/* Courtesy of Stokely: https://stackoverflow.com/a/65865799/11860889 */
+
+/* Chrome and Edge */
+::-webkit-file-upload-button {
+    border: none;
+    padding: 10px;
+    background: rgb(51, 134, 193);
+    color: white;
+    font-size: 16px;
+}
+
+/* Firefox */
+::file-selector-button {
+    border: none;
+    padding: 10px;
+    background: rgb(51, 134, 193);
+    color: white;
+    font-size: 16px;
+}
+
+/* IE */
+::-ms-browse {
+    border: none;
+    padding: 10px;
+    background: rgb(51, 134, 193);
+    color: white;
+    font-size: 16px;
+}
+
+@media all and (max-width: 720px) {
+    .receipt-form form {
+        flex-direction: column;
+    }
+
+    .receipt-form form input {
+        flex-basis: none;
+        width: 75%;
+    }
+}
+
+@media all and (max-width: 470px) {
+    .receipt-form .label-and-input {
+        flex-direction: column;
+        justify-content: center;
+    }
+}

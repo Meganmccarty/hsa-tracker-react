@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { receiptActions } from '../../store/receiptSlice';
 
+import './receipt-forms.css';
+
 function ReceiptRecordForm() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -79,108 +81,125 @@ function ReceiptRecordForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="date"
-                name="trans_date"
-                aria-label="Transaction date"
-                onChange={handleFormChange}
-                placeholder="Transaction date"
-                required={true}
-            />
-            <input
-                type="text"
-                name="category"
-                aria-label="Category"
-                onChange={handleFormChange}
-                placeholder="Category"
-            />
-            <input
-                type="text"
-                name="provider"
-                aria-label="Provider"
-                onChange={handleFormChange}
-                placeholder="Provider"
-                required={true}
-            />
-            <input
-                type="text"
-                name="description"
-                aria-label="Description"
-                onChange={handleFormChange}
-                placeholder="Description"
-            />
-            <label htmlFor="qualified_exp">Qualified Expense?</label>
-            <select name="qualified_exp" id="qualified_exp" onChange={handleFormChange} required={true}>
-                <option></option>
-                <option>Yes</option>
-                <option>No</option>
-            </select>
-            <input
-                type="text"
-                name="amount"
-                aria-label="Amount"
-                onChange={handleFormChange}
-                placeholder="Amount"
-                required={true}
-            />
-            <label htmlFor="payment_method">Payment Method</label>
-            <select name="payment_method" id="payment_method" onChange={handleFormChange} required={true}>
-                <option></option>
-                <option>Cash</option>
-                <option>Check</option>
-                <option>Debit Card</option>
-                <option>Credit Card</option>
-                <option>Electronic Bank Transfer</option>
-                <option>HSA Debit Card</option>
-            </select>
-            {formData.qualified_exp === "Yes" ?
-                <>
-                    <label htmlFor="reimbursed">Reimbursed?</label>
-                    <select name="reimbursed" id="reimbursed" onChange={handleFormChange} required={true}>
-                        <option></option>
-                        <option>Yes</option>
-                        <option>No</option>
-                        <option>N/A</option>
-                    </select>
-                    {formData.reimbursed === "Yes" ?
+        <main id="new-receipt">
+            <section className="receipt-form">
+                <h1>New Receipt</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="label-and-input">
+                        <label htmlFor="trans_date">Transaction date</label>
                         <input
                             type="date"
-                            name="reimbursed_date"
-                            aria-label="Reimbursed Date"
+                            name="trans_date"
+                            id="trans_date"
                             onChange={handleFormChange}
-                            value={formData.reimbursed_date}
+                            placeholder="Transaction date"
                             required={true}
                         />
+                    </div>
+                    <input
+                        type="text"
+                        name="category"
+                        aria-label="Category"
+                        onChange={handleFormChange}
+                        placeholder="Category"
+                    />
+                    <input
+                        type="text"
+                        name="provider"
+                        aria-label="Provider"
+                        onChange={handleFormChange}
+                        placeholder="Provider"
+                        required={true}
+                    />
+                    <input
+                        type="text"
+                        name="description"
+                        aria-label="Description"
+                        onChange={handleFormChange}
+                        placeholder="Description"
+                    />
+                    <div className="label-and-input">
+                        <label htmlFor="qualified_exp">Qualified Expense?</label>
+                        <select name="qualified_exp" id="qualified_exp" onChange={handleFormChange} required={true}>
+                            <option></option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <input
+                        type="text"
+                        name="amount"
+                        aria-label="Amount"
+                        onChange={handleFormChange}
+                        placeholder="Amount"
+                        required={true}
+                    />
+                    <div className="label-and-input">
+                        <label htmlFor="payment_method">Payment Method</label>
+                        <select name="payment_method" id="payment_method" onChange={handleFormChange} required={true}>
+                            <option></option>
+                            <option>Cash</option>
+                            <option>Check</option>
+                            <option>Debit Card</option>
+                            <option>Credit Card</option>
+                            <option>Electronic Bank Transfer</option>
+                            <option>HSA Debit Card</option>
+                        </select>
+                    </div>
+                    {formData.qualified_exp === "Yes" ?
+                        <>
+                            <div className="label-and-input">
+                                <label htmlFor="reimbursed">Reimbursed?</label>
+                                <select name="reimbursed" id="reimbursed" onChange={handleFormChange} required={true}>
+                                    <option></option>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                    <option>N/A</option>
+                                </select>
+                            </div>
+                            {formData.reimbursed === "Yes" ?
+                                <div className="label-and-input">
+                                    <label htmlFor="reimbursed_date">Reimbursed date</label>
+                                    <input
+                                        type="date"
+                                        name="reimbursed_date"
+                                        id="reimbursed_date"
+                                        onChange={handleFormChange}
+                                        value={formData.reimbursed_date}
+                                        required={true}
+                                    />
+                                </div>
+                                : null
+                            }
+                        </>
                         : null
                     }
-                </>
-                : null
-            }
-            <input
-                type="text"
-                name="notes"
-                aria-label="Notes"
-                onChange={handleFormChange}
-                placeholder="Notes"
-            />
-            <input
-                type="text"
-                name="hsa_trans_id"
-                aria-label="HSA transaction ID"
-                onChange={handleFormChange}
-                placeholder="HSA transaction ID"
-            />
-            <input
-                type="file"
-                name="receipt_images"
-                aria-label="Upload images"
-                accept="image/*"
-                multiple={true}
-                onChange={handleImageChange}
-            />
-            <input type="submit" aria-label="Submit button" />
-        </form>
+                    <input
+                        type="text"
+                        name="notes"
+                        aria-label="Notes"
+                        onChange={handleFormChange}
+                        placeholder="Notes"
+                    />
+                    <input
+                        type="text"
+                        name="hsa_trans_id"
+                        aria-label="HSA transaction ID"
+                        onChange={handleFormChange}
+                        placeholder="HSA transaction ID"
+                    />
+                    <input
+                        type="file"
+                        name="receipt_images"
+                        aria-label="Upload images"
+                        accept="image/*"
+                        multiple={true}
+                        onChange={handleImageChange}
+                    />
+                    <input type="submit" aria-label="Submit button" />
+                </form>
+            </section>
+        </main>
     );
 };
 
