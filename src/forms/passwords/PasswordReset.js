@@ -14,8 +14,6 @@ function PasswordReset() {
         setPasswordForm({ ...passwordForm, [e.target.name]: e.target.value })
     }
 
-    console.log(passwordForm);
-
     function handleSubmit(e) {
         e.preventDefault();
         const configObj = {
