@@ -3,11 +3,14 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
+import '../user-forms.css';
+
 function ChangePassword() {
     const history = useHistory();
+
     const dispatch = useDispatch();
-    const errors = useSelector(state => state.user.errors)
-    const message = useSelector(state => state.user.message)
+    const errors = useSelector(state => state.user.errors);
+
     const [passwordForm, setPasswordForm] = useState({
         old_password: "",
         password: "",
@@ -52,38 +55,39 @@ function ChangePassword() {
     }, [dispatch])
 
     return (
-        <>
-            {errors.length > 0 ? <div id="errors">{errors}</div> : null}
-            {message ? message : null}
-            <h1>Change Password</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="password"
-                    name="old_password"
-                    onChange={handlePasswordChange}
-                    value={passwordForm.old_password}
-                    placeholder="Old password"
-                    required={true}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    onChange={handlePasswordChange}
-                    value={passwordForm.password}
-                    placeholder="New password"
-                    required={true}
-                />
-                <input
-                    type="password"
-                    name="password_confirmation"
-                    onChange={handlePasswordChange}
-                    value={passwordForm.password_confirmation}
-                    placeholder="Confirm new password"
-                    required={true}
-                />
-                <input type="submit" />
-            </form>
-        </>
+        <main>
+            <section className="user-form" id="change-password">
+                <h1>Change Password</h1>
+                {errors.length > 0 ? <div id="errors">{errors}</div> : null}
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="password"
+                        name="old_password"
+                        onChange={handlePasswordChange}
+                        value={passwordForm.old_password}
+                        placeholder="Old password"
+                        required={true}
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        onChange={handlePasswordChange}
+                        value={passwordForm.password}
+                        placeholder="New password"
+                        required={true}
+                    />
+                    <input
+                        type="password"
+                        name="password_confirmation"
+                        onChange={handlePasswordChange}
+                        value={passwordForm.password_confirmation}
+                        placeholder="Confirm new password"
+                        required={true}
+                    />
+                    <input type="submit" />
+                </form>
+            </section>
+        </main>
     );
 };
 
