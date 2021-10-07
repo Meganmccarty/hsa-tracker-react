@@ -17,6 +17,12 @@ main section#login h1 {
     text-align: center;
 }
 
+section#login #message {
+    padding: 10px;
+    background-color: rgb(8, 175, 128);
+    color: black;
+}
+
 section#login #errors {
     padding: 10px;
     background-color: rgb(199, 41, 41);

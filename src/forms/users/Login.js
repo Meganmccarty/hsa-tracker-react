@@ -7,7 +7,9 @@ import './Login.css';
 
 function Login() {
     const dispatch = useDispatch();
-    const errors = useSelector(state => state.user.errors)
+    const errors = useSelector(state => state.user.errors);
+    const message = useSelector(state => state.user.message);
+
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -52,14 +54,16 @@ function Login() {
 
     useEffect(() => {
         return function cleanup() {
-            dispatch(userActions.setErrors([]))
+            dispatch(userActions.setErrors([]));
+            dispatch(userActions.setMessage(""));
         }
-    }, [dispatch])
+    }, [dispatch]);
 
     return (
         <main>
             <section id="login">
                 <h1>Login</h1>
+                {message ? <div id="message">{message}</div> : null}
                 {errors.length > 0 ? <div id="errors">{errors}</div> : null}
                 <form onSubmit={handleSubmit}>
                     <input
