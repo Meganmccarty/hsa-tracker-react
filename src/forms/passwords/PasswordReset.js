@@ -37,10 +37,28 @@ function PasswordReset() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" name="token" onChange={handlePasswordChange} placeholder="Reset code" />
-            <input type="password" name="password" onChange={handlePasswordChange} placeholder="New password" />
-            <input type="password" name="password_confirmation" onChange={handlePasswordChange} placeholder="Confirm new password" />
-            <input type="submit" />
+            <input
+                type="text"
+                name="token"
+                aria-label="Reset code"
+                onChange={handlePasswordChange}
+                placeholder="Reset code"
+            />
+            <input
+                type="password"
+                name="password"
+                aria-label="New password"
+                onChange={handlePasswordChange}
+                placeholder="New password"
+            />
+            <input
+                type="password"
+                name="password_confirmation"
+                aria-label="Confirm new password"
+                onChange={handlePasswordChange}
+                placeholder="Confirm new password"
+            />
+            <input type="submit" aria-label="Submit button" />
         </form>
     );
 }
