@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
-import './Login.css';
+import '../user-forms.css';
 
 function Login() {
     const dispatch = useDispatch();
@@ -61,7 +61,7 @@ function Login() {
 
     return (
         <main>
-            <section id="login">
+            <section className="user-form" id="login">
                 <h1>Login</h1>
                 {message ? <div id="message">{message}</div> : null}
                 {errors.length > 0 ? <div id="errors">{errors}</div> : null}

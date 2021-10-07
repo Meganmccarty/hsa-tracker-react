@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
-import './PasswordReset.css';
+import '../user-forms.css';
 
 function PasswordReset() {
     const history = useHistory();
@@ -57,7 +57,7 @@ function PasswordReset() {
 
     return (
         <main>
-            <section id="password-reset">
+            <section className="user-form" id="password-reset">
                 <h1>Reset Password</h1>
                 {errors.length > 0 ? <div id="errors">{errors}</div> : null}
                 <form onSubmit={handleSubmit}>

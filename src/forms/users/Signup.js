@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
+import '../user-forms.css';
 import './Signup.css';
 
 function Signup() {
@@ -62,7 +63,7 @@ function Signup() {
 
     return (
         <main>
-            <section id="signup">
+            <section className="user-form" id="signup">
                 <h1>Sign Up</h1>
                 {errors.length > 0 ? <div id="errors">{errors}</div> : null}
                 <form onSubmit={handleSubmit}>

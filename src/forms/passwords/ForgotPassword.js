@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
-import './ForgotPassword.css';
+import '../user-forms.css';
 
 function ForgotPassword() {
     const dispatch = useDispatch();
@@ -43,7 +43,7 @@ function ForgotPassword() {
 
     return (
         <main>
-            <section id="forgot-password">
+            <section className="user-form" id="forgot-password">
                 <h1>Forgot Password</h1>
                 {message ? <div id="message">{message}</div> : null}
                 <form onSubmit={handleSubmit}>
