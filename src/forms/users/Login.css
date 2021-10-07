@@ -1,4 +1,4 @@
-main section {
+main section#login {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,20 +10,20 @@ main section {
     box-shadow: 5px 5px 20px 2px rgb(64, 1, 77);
 }
 
-main section h1 {
+main section#login h1 {
     color: black;
     margin: 5px;
     padding: 10px;
     text-align: center;
 }
 
-#errors {
+section#login #errors {
     padding: 10px;
     background-color: rgb(199, 41, 41);
     color: white;
 }
 
-form {
+section#login form {
     margin: 5px;
     display: flex;
     flex-direction: column;
@@ -32,7 +32,7 @@ form {
     width: 100%;
 }
 
-form input {
+section#login form input {
     margin: 10px;
     padding: 10px;
     width: 75%;
@@ -41,14 +41,14 @@ form input {
     background-color: rgb(235, 235, 235);
 }
 
-form input[type="submit"] {
+section#login form input[type="submit"] {
     background-color: rgb(51, 134, 193);
     color: white;
     font-size: 16px;
 }
 
 @media all and (max-width: 400px) {
-    main section {
+    main section#login {
         width: 200px;
     }
 }

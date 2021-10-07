@@ -58,7 +58,7 @@ function Login() {
 
     return (
         <main>
-            <section>
+            <section id="login">
                 <h1>Login</h1>
                 {errors.length > 0 ? <div id="errors">{errors}</div> : null}
                 <form onSubmit={handleSubmit}>
