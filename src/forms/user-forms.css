@@ -21,12 +21,14 @@
     padding: 10px;
     background-color: rgb(8, 175, 128);
     color: black;
+    text-align: center;
 }
 
 .user-form #errors {
     padding: 10px;
     background-color: rgb(199, 41, 41);
     color: white;
+    text-align: center;
 }
 
 .user-form form {
