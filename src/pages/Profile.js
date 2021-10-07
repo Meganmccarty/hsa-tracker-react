@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../store/userSlice';
 
+import './Profile.css';
+
 function Profile() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user.user);
