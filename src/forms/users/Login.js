@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
+import './Login.css';
+
 function Login() {
     const dispatch = useDispatch();
     const errors = useSelector(state => state.user.errors)
@@ -55,17 +57,20 @@ function Login() {
     }, [dispatch])
 
     return (
-        <>
-            {errors.length > 0 ? <div id="errors">{errors}</div> : null}
-            <main>
-                <form onSubmit={handleSubmit}>
-                    <input type="email" name="email" aria-label="Email address" onChange={handleFormChange} placeholder="Email address" />
-                    <input type="password" name="password" aria-label="Password" onChange={handleFormChange} placeholder="Password" />
-                    <input type="submit" aria-label="Submit button" />
-                </form>
-                <Link to="/forgot-password">Forgot Password</Link>
-            </main>
-        </>
+        <main>
+            <section>
+                <h1>Login</h1>
+                {errors.length > 0 ? <div id="errors">{errors}</div> : null}
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        <input type="email" name="email" aria-label="Email address" onChange={handleFormChange} placeholder="Email address" />
+                        <input type="password" name="password" aria-label="Password" onChange={handleFormChange} placeholder="Password" />
+                        <input type="submit" aria-label="Submit button" />
+                    </form>
+                    <Link to="/forgot-password">Forgot Password</Link>
+                </div>
+            </section>
+        </main>
     );
 };
 
