@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from '../../store/userSlice';
 
 function PasswordReset() {
     const email = useParams().email;
+    const dispatch = useDispatch();
+    const errors = useSelector(state => state.user.errors);
+    const message = useSelector(state => state.user.message);
     const [passwordForm, setPasswordForm] = useState({
         token: "",
         email: email,
