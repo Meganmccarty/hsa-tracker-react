@@ -1,9 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../../store/userSlice';
-
-import handleErrors from '../../functions/handleErrors';
 
 function EditProfile() {
     const history = useHistory();
@@ -19,8 +17,6 @@ function EditProfile() {
     function handleProfileChange(e) {
         setProfileForm({ ...profileForm, [e.target.name]: e.target.value})
     }
-
-    console.log(profileForm);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -48,9 +44,15 @@ function EditProfile() {
             });
     };
 
+    useEffect(() => {
+        return function cleanup() {
+            dispatch(userActions.setErrors(""))
+        }
+    }, [])
+
     return (
         <>
-            {handleErrors(errors, dispatch, userActions)}
+            {errors ? <div id="errors">{errors}</div> : null}
             <h1>Edit Profile</h1>
             <form onSubmit={handleSubmit}>
                 <input
