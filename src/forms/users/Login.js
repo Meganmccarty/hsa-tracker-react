@@ -63,8 +63,20 @@ function Login() {
                 {errors.length > 0 ? <div id="errors">{errors}</div> : null}
                 <div>
                     <form onSubmit={handleSubmit}>
-                        <input type="email" name="email" aria-label="Email address" onChange={handleFormChange} placeholder="Email address" />
-                        <input type="password" name="password" aria-label="Password" onChange={handleFormChange} placeholder="Password" />
+                        <input
+                            type="email"
+                            name="email"
+                            aria-label="Email address"
+                            onChange={handleFormChange}
+                            placeholder="Email address"
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            aria-label="Password"
+                            onChange={handleFormChange}
+                            placeholder="Password"
+                        />
                         <input type="submit" aria-label="Submit button" />
                     </form>
                     <Link to="/forgot-password">Forgot Password</Link>
