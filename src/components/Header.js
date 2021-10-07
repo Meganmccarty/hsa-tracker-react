@@ -34,20 +34,22 @@ function Header() {
 
     return (
         <nav className="navbar">
-            <Link to="/">HSA Tracker</Link>
-            {user ?
-                <>
-                    <Link to="/receipt-records">My Receipt Records</Link>
-                    <Link to="/receipt-records/new">Add Receipt</Link>
-                    <Link to="/profile">Profile</Link>
-                    <button onClick={handleLogout}>Log Out</button>
-                </>
-                :
-                <>
-                    <Link to="/login">Login</Link>
-                    <Link to="/signup">Sign Up</Link>
-                </>
-            }
+            <Link className="home" to="/">HSA Tracker</Link>
+            <div className="main-links">
+                {user ?
+                    <>
+                        <Link to="/receipt-records">My Receipt Records</Link>
+                        <Link to="/receipt-records/new">Add Receipt</Link>
+                        <Link to="/profile">Profile</Link>
+                        <button onClick={handleLogout}>Log Out</button>
+                    </>
+                    :
+                    <>
+                        <Link to="/login">Login</Link>
+                        <Link to="/signup">Sign Up</Link>
+                    </>
+                }
+            </div>
             <Link to="#" className="icon" aria-label="Open the menu" onClick={toggleNavBar}>
                 <i className="fa fa-bars" aria-hidden={true}></i>
             </Link>

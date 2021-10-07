@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
 .navbar a, .navbar button {
@@ -19,7 +19,7 @@
     background-color: rgb(104, 2, 124);
 }
 
-.navbar a:not(:first-child):hover,
+.navbar a:not(.home):hover,
 .navbar button:hover {
     background-color: rgb(213, 176, 212);
     color: black;
@@ -29,12 +29,9 @@
     display: none;
 }
 
-@media screen and (max-width: 600px) {    
-    .navbar {
-        justify-content: space-between;
-    }
-    
-    .navbar a:not(:first-child), .navbar button {
+@media screen and (max-width: 650px) {
+    .main-links,
+    .navbar button {
         display: none;
     }
 
@@ -45,6 +42,7 @@
     .navbar.responsive {
         flex-direction: column;
         align-items: flex-start;
+        background-color:rgb(68, 2, 82);
     }
 
     .navbar.responsive a.icon {
@@ -53,27 +51,35 @@
         top: 0;
     }
 
-    .navbar.responsive a,
+    .navbar.responsive .main-links,
     .navbar.responsive button {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         float: none;
-    }
-
-    .navbar.responsive a:first-child {
-        width: 84%;
-    }
-
-    .navbar.responsive a:last-child {
-        width: 3%;
-    }
-
-    .responsive a:not(:first-child),
-    .responsive a:not(:last-child),
-    .navbar button {
         width: 100%;
     }
 
-    .navbar button {
+    .navbar.responsive > a:first-child {
+        width: 84%;
+    }
+
+    .navbar.responsive > a:last-child {
+        width: 3%;
+    }
+
+    .navbar.responsive .main-links a,
+    .navbar.responsive button {
+        width: 100%;
+    }
+
+    .navbar.responsive button {
+        background-color:rgb(68, 2, 82);
         text-align: left;
+    }
+
+    .navbar.responsive button:hover {
+        background-color: rgb(213, 176, 212);
+        color: black;
     }
 }
