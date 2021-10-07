@@ -47,13 +47,13 @@ function ChangePassword() {
 
     useEffect(() => {
         return function cleanup() {
-            dispatch(userActions.setErrors(""))
+            dispatch(userActions.setErrors([]))
         }
     }, [])
 
     return (
         <>
-            {errors ? <div id="errors">{errors}</div> : null}
+            {errors.length > 0 ? <div id="errors">{errors}</div> : null}
             {message ? message : null}
             <h1>Change Password</h1>
             <form onSubmit={handleSubmit}>

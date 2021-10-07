@@ -50,19 +50,21 @@ function Login() {
 
     useEffect(() => {
         return function cleanup() {
-            dispatch(userActions.setErrors(""))
+            dispatch(userActions.setErrors([]))
         }
     }, [])
 
     return (
         <>
-            {errors ? <div id="errors">{errors}</div> : null}
-            <form onSubmit={handleSubmit}>
-                <input type="email" name="email" onChange={handleFormChange} placeholder="Email address" />
-                <input type="password" name="password" onChange={handleFormChange} placeholder="Password" />
-                <input type="submit" />
-            </form>
-            <Link to="/forgot-password">Forgot Password</Link>
+            {errors.length > 0 ? <div id="errors">{errors}</div> : null}
+            <main>
+                <form onSubmit={handleSubmit}>
+                    <input type="email" name="email" onChange={handleFormChange} placeholder="Email address" />
+                    <input type="password" name="password" onChange={handleFormChange} placeholder="Password" />
+                    <input type="submit" />
+                </form>
+                <Link to="/forgot-password">Forgot Password</Link>
+            </main>
         </>
     );
 };

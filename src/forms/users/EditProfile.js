@@ -46,13 +46,13 @@ function EditProfile() {
 
     useEffect(() => {
         return function cleanup() {
-            dispatch(userActions.setErrors(""))
+            dispatch(userActions.setErrors([]))
         }
     }, [])
 
     return (
         <>
-            {errors ? <div id="errors">{errors}</div> : null}
+            {errors.length > 0 ? <div id="errors">{errors}</div> : null}
             <h1>Edit Profile</h1>
             <form onSubmit={handleSubmit}>
                 <input

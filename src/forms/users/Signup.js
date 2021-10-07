@@ -54,13 +54,13 @@ function Signup() {
 
     useEffect(() => {
         return function cleanup() {
-            dispatch(userActions.setErrors(""))
+            dispatch(userActions.setErrors([]))
         }
     }, [])
 
     return (
         <>
-            {errors ? <div id="errors">{errors}</div> : null}
+            {errors.length > 0 ? <div id="errors">{errors}</div> : null}
             <form onSubmit={handleSubmit}>
                 <input type="text" name="first_name" onChange={handleFormChange} placeholder="First name" required={true}/>
                 <input type="text" name="last_name" onChange={handleFormChange} placeholder="Last name" required={true}/>
