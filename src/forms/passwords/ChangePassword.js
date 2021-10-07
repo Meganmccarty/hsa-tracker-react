@@ -63,6 +63,7 @@ function ChangePassword() {
                     <input
                         type="password"
                         name="old_password"
+                        aria-label="Old password"
                         onChange={handlePasswordChange}
                         value={passwordForm.old_password}
                         placeholder="Old password"
@@ -71,6 +72,7 @@ function ChangePassword() {
                     <input
                         type="password"
                         name="password"
+                        aria-label="New password"
                         onChange={handlePasswordChange}
                         value={passwordForm.password}
                         placeholder="New password"
@@ -79,12 +81,13 @@ function ChangePassword() {
                     <input
                         type="password"
                         name="password_confirmation"
+                        aria-label="Confirm new password"
                         onChange={handlePasswordChange}
                         value={passwordForm.password_confirmation}
                         placeholder="Confirm new password"
                         required={true}
                     />
-                    <input type="submit" />
+                    <input type="submit" aria-label="Submit button" />
                 </form>
             </section>
         </main>

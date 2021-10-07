@@ -63,6 +63,7 @@ function EditProfile() {
                     <input
                         type="text"
                         name="first_name"
+                        aria-label="First name"
                         onChange={handleProfileChange}
                         value={profileForm.first_name}
                         placeholder="First name"
@@ -71,6 +72,7 @@ function EditProfile() {
                     <input
                         type="text"
                         name="last_name"
+                        aria-label="Last name"
                         onChange={handleProfileChange}
                         value={profileForm.last_name}
                         placeholder="Last name"
@@ -79,12 +81,13 @@ function EditProfile() {
                     <input
                         type="email"
                         name="email"
+                        aria-label="Email address"
                         onChange={handleProfileChange}
                         value={profileForm.email}
                         placeholder="Email address"
                         required={true}
                     />
-                    <input type="submit" />
+                    <input type="submit" aria-label="Submit button" />
                 </form>
             </section>
         </main>
