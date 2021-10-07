@@ -62,12 +62,47 @@ function Signup() {
         <>
             {errors.length > 0 ? <div id="errors">{errors}</div> : null}
             <form onSubmit={handleSubmit}>
-                <input type="text" name="first_name" onChange={handleFormChange} placeholder="First name" required={true}/>
-                <input type="text" name="last_name" onChange={handleFormChange} placeholder="Last name" required={true}/>
-                <input type="email" name="email" onChange={handleFormChange} placeholder="Email address" required={true}/>
-                <input type="password" name="password" onChange={handleFormChange} placeholder="Password" required={true}/>
-                <input type="password" name="password_confirmation" onChange={handleFormChange} placeholder="Confirm password" required={true}/>
-                <input type="submit" />
+                <input
+                    type="text"
+                    name="first_name"
+                    aria-label="First name"
+                    onChange={handleFormChange}
+                    placeholder="First name"
+                    required={true}
+                />
+                <input
+                    type="text"
+                    name="last_name"
+                    aria-label="Last name"
+                    onChange={handleFormChange}
+                    placeholder="Last name"
+                    required={true}
+                />
+                <input
+                    type="email"
+                    name="email"
+                    aria-label="Email address"
+                    onChange={handleFormChange}
+                    placeholder="Email address"
+                    required={true}
+                />
+                <input
+                    type="password"
+                    name="password"
+                    aria-label="Password"
+                    onChange={handleFormChange}
+                    placeholder="Password"
+                    required={true}
+                />
+                <input
+                    type="password"
+                    name="password_confirmation"
+                    aria-label="Confirm password"
+                    onChange={handleFormChange}
+                    placeholder="Confirm password"
+                    required={true}
+                />
+                <input type="submit" aria-label="Submit button"/>
             </form>
         </>
     );
