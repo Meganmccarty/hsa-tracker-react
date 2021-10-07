@@ -7,14 +7,20 @@
     justify-content: flex-start;
 }
 
-.navbar a {
+.navbar a, .navbar button {
     color: white;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 16px;
 }
 
-.navbar a:not(:first-child):hover {
+.navbar button {
+    border: none;
+    background-color: rgb(104, 2, 124);
+}
+
+.navbar a:not(:first-child):hover,
+.navbar button:hover {
     background-color: rgb(213, 176, 212);
     color: black;
 }
@@ -28,7 +34,7 @@
         justify-content: space-between;
     }
     
-    .navbar a:not(:first-child) {
+    .navbar a:not(:first-child), .navbar button {
         display: none;
     }
 
@@ -47,7 +53,8 @@
         top: 0;
     }
 
-    .navbar.responsive a {
+    .navbar.responsive a,
+    .navbar.responsive button {
         display: block;
         float: none;
     }
@@ -60,7 +67,13 @@
         width: 3%;
     }
 
-    .responsive a:not(:first-child), .responsive a:not(:last-child) {
+    .responsive a:not(:first-child),
+    .responsive a:not(:last-child),
+    .navbar button {
         width: 100%;
+    }
+
+    .navbar button {
+        text-align: left;
     }
 }
