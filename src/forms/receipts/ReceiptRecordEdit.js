@@ -129,6 +129,7 @@ function ReceiptRecordEdit() {
                         <input
                             type="date"
                             name="trans_date"
+                            aria-label="Transaction date"
                             onChange={handleFormChange}
                             value={formData.trans_date}
                             placeholder="Transaction date"
@@ -137,6 +138,7 @@ function ReceiptRecordEdit() {
                         <input
                             type="text"
                             name="category"
+                            aria-label="category"
                             onChange={handleFormChange}
                             value={formData.category}
                             placeholder="Category"
@@ -144,6 +146,7 @@ function ReceiptRecordEdit() {
                         <input
                             type="text"
                             name="provider"
+                            aria-label="Provider"
                             onChange={handleFormChange}
                             value={formData.provider}
                             placeholder="Provider"
@@ -152,6 +155,7 @@ function ReceiptRecordEdit() {
                         <input
                             type="text"
                             name="description"
+                            aria-label="Description"
                             onChange={handleFormChange}
                             value={formData.description}
                             placeholder="Description"
@@ -159,6 +163,7 @@ function ReceiptRecordEdit() {
                         <label htmlFor="qualified_exp">Qualified Expense?</label>
                         <select
                             name="qualified_exp"
+                            id="qualified_exp"
                             onChange={handleFormChange}
                             value={formData.qualified_exp}
                         >
@@ -168,6 +173,7 @@ function ReceiptRecordEdit() {
                         <input
                             type="text"
                             name="amount"
+                            aria-label="Amount"
                             onChange={handleFormChange}
                             value={parseFloat(formData.amount).toFixed(2)}
                             placeholder="Amount"
@@ -176,6 +182,7 @@ function ReceiptRecordEdit() {
                         <label htmlFor="payment_method">Payment Method</label>
                         <select
                             name="payment_method"
+                            id="payment_method"
                             onChange={handleFormChange}
                             value={formData.payment_method}
                         >
@@ -186,19 +193,12 @@ function ReceiptRecordEdit() {
                             <option>Electronic Bank Transfer</option>
                             <option>HSA Debit Card</option>
                         </select>
-                        <input
-                            type="text"
-                            name="payment_method"
-                            onChange={handleFormChange}
-                            value={formData.payment_method}
-                            placeholder="Payment method"
-                            required={true}
-                        />
                         {formData.qualified_exp === "Yes" ?
                             <>
                                 <label htmlFor="reimbursed">Reimbursed?</label>
                                 <select
                                     name="reimbursed"
+                                    id="reimbursed"
                                     onChange={handleFormChange}
                                     value={formData.reimbursed}
                                     required={true}
@@ -212,6 +212,7 @@ function ReceiptRecordEdit() {
                                     <input
                                         type="date"
                                         name="reimbursed_date"
+                                        aria-label="Reimbursed Date"
                                         onChange={handleFormChange}
                                         value={formData.reimbursed_date}
                                         required={true}
@@ -224,6 +225,7 @@ function ReceiptRecordEdit() {
                         <input
                             type="text"
                             name="notes"
+                            aria-label="Notes"
                             onChange={handleFormChange}
                             value={formData.notes}
                             placeholder="Notes"
@@ -231,6 +233,7 @@ function ReceiptRecordEdit() {
                         <input
                             type="text"
                             name="hsa_trans_id"
+                            aria-label="HSA transaction ID"
                             onChange={handleFormChange}
                             value={formData.hsa_trans_id}
                             placeholder="HSA transaction ID"
@@ -238,11 +241,12 @@ function ReceiptRecordEdit() {
                         <input
                             type="file"
                             name="receipt_images"
+                            aria-label="Upload images"
                             accept="image/*"
                             multiple={true}
                             onChange={handleImageChange}
                         />
-                        <input type="submit" />
+                        <input type="submit" aria-label="Submit button" />
                         <button><Link to={`/receipt-records/${id}`}>Cancel</Link></button>
                     </form>
                     {displayReceiptImages()}
