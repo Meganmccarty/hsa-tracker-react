@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
+import './Signup.css';
+
 function Signup() {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -59,52 +61,55 @@ function Signup() {
     }, [dispatch])
 
     return (
-        <>
-            {errors.length > 0 ? <div id="errors">{errors}</div> : null}
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="first_name"
-                    aria-label="First name"
-                    onChange={handleFormChange}
-                    placeholder="First name"
-                    required={true}
-                />
-                <input
-                    type="text"
-                    name="last_name"
-                    aria-label="Last name"
-                    onChange={handleFormChange}
-                    placeholder="Last name"
-                    required={true}
-                />
-                <input
-                    type="email"
-                    name="email"
-                    aria-label="Email address"
-                    onChange={handleFormChange}
-                    placeholder="Email address"
-                    required={true}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    aria-label="Password"
-                    onChange={handleFormChange}
-                    placeholder="Password"
-                    required={true}
-                />
-                <input
-                    type="password"
-                    name="password_confirmation"
-                    aria-label="Confirm password"
-                    onChange={handleFormChange}
-                    placeholder="Confirm password"
-                    required={true}
-                />
-                <input type="submit" aria-label="Submit button"/>
-            </form>
-        </>
+        <main>
+            <section id="signup">
+                <h1>Sign Up</h1>
+                {errors.length > 0 ? <div id="errors">{errors}</div> : null}
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="first_name"
+                        aria-label="First name"
+                        onChange={handleFormChange}
+                        placeholder="First name"
+                        required={true}
+                    />
+                    <input
+                        type="text"
+                        name="last_name"
+                        aria-label="Last name"
+                        onChange={handleFormChange}
+                        placeholder="Last name"
+                        required={true}
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        aria-label="Email address"
+                        onChange={handleFormChange}
+                        placeholder="Email address"
+                        required={true}
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        aria-label="Password"
+                        onChange={handleFormChange}
+                        placeholder="Password"
+                        required={true}
+                    />
+                    <input
+                        type="password"
+                        name="password_confirmation"
+                        aria-label="Confirm password"
+                        onChange={handleFormChange}
+                        placeholder="Confirm password"
+                        required={true}
+                    />
+                    <input type="submit" aria-label="Submit button" />
+                </form>
+            </section>
+        </main>
     );
 };
 
