@@ -43,30 +43,35 @@ function PasswordReset() {
     }, [dispatch])
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                name="token"
-                aria-label="Reset code"
-                onChange={handlePasswordChange}
-                placeholder="Reset code"
-            />
-            <input
-                type="password"
-                name="password"
-                aria-label="New password"
-                onChange={handlePasswordChange}
-                placeholder="New password"
-            />
-            <input
-                type="password"
-                name="password_confirmation"
-                aria-label="Confirm new password"
-                onChange={handlePasswordChange}
-                placeholder="Confirm new password"
-            />
-            <input type="submit" aria-label="Submit button" />
-        </form>
+        <main>
+            <section id="password-reset">
+                <h1>Reset Password</h1>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="token"
+                        aria-label="Reset code"
+                        onChange={handlePasswordChange}
+                        placeholder="Reset code"
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        aria-label="New password"
+                        onChange={handlePasswordChange}
+                        placeholder="New password"
+                    />
+                    <input
+                        type="password"
+                        name="password_confirmation"
+                        aria-label="Confirm new password"
+                        onChange={handlePasswordChange}
+                        placeholder="Confirm new password"
+                    />
+                    <input type="submit" aria-label="Submit button" />
+                </form>
+            </section>
+        </main>
     );
 }
 export default PasswordReset;
