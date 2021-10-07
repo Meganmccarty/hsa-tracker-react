@@ -147,7 +147,7 @@ function ReceiptRecordForm() {
                         <input
                             type="date"
                             name="reimbursed_date"
-                            aria-label="Date"
+                            aria-label="Reimbursed Date"
                             onChange={handleFormChange}
                             value={formData.reimbursed_date}
                             required={true}
