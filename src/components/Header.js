@@ -8,8 +8,6 @@ function Header() {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user.user);
-    const userMessage = useSelector(state => state.user.message);
-    const receiptMessage = useSelector(state => state.receipts.message);
 
     function handleLogout() {
         fetch("/logout", {
@@ -25,21 +23,6 @@ function Header() {
             })
     };
 
-    function handleMessages() {
-        if (userMessage || receiptMessage) {
-            setTimeout(() => {
-                dispatch(userActions.setMessage(""));
-                dispatch(receiptActions.setMessage(""));
-            }, 3000)
-            return (
-                <div>
-                    {userMessage ? <span>{userMessage}</span> : null}
-                    {receiptMessage ? <span>{receiptMessage}</span> : null}
-                </div>
-            )
-        }
-    }
-
     function toggleNavBar(e) {
         const nav = e.target.parentElement.parentElement;
         if (nav.className === "navbar") {
@@ -50,28 +33,25 @@ function Header() {
     }
 
     return (
-        <>
-            <nav className="navbar">
-                <Link to="/">HSA Tracker</Link>
-                {user ?
-                    <>
-                        <Link to="/receipt-records">My Receipt Records</Link>
-                        <Link to="/receipt-records/new">Add Receipt</Link>
-                        <Link to="/profile">Profile</Link>
-                        <Link to="#" onClick={handleLogout}>Log Out</Link>
-                    </>
-                    :
-                    <>
-                        <Link to="/login">Login</Link>
-                        <Link to="/signup">Signup</Link>
-                    </>
-                }
-                <Link to="#" className="icon" aria-label="Open the menu" onClick={toggleNavBar}>
-                    <i className="fa fa-bars" aria-hidden={true}></i>
-                </Link>
-            </nav>
-            {handleMessages()}
-        </>
+        <nav className="navbar">
+            <Link to="/">HSA Tracker</Link>
+            {user ?
+                <>
+                    <Link to="/receipt-records">My Receipt Records</Link>
+                    <Link to="/receipt-records/new">Add Receipt</Link>
+                    <Link to="/profile">Profile</Link>
+                    <Link to="#" onClick={handleLogout}>Log Out</Link>
+                </>
+                :
+                <>
+                    <Link to="/login">Login</Link>
+                    <Link to="/signup">Sign Up</Link>
+                </>
+            }
+            <Link to="#" className="icon" aria-label="Open the menu" onClick={toggleNavBar}>
+                <i className="fa fa-bars" aria-hidden={true}></i>
+            </Link>
+        </nav>
     );
 };
 
