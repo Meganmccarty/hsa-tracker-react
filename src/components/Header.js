@@ -24,7 +24,7 @@ function Header() {
     };
 
     function toggleNavBar(e) {
-        const nav = e.target.parentElement.parentElement;
+        const nav = document.querySelector(".navbar");
         if (nav.className === "navbar") {
             nav.classList.add("responsive")
         } else {
