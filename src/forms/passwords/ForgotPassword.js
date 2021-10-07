@@ -37,8 +37,14 @@ function ForgotPassword() {
         <>
         {message ? message : null}
         <form onSubmit={handleSubmit}>
-            <input type="email" name="email" onChange={handleEmailChange} placeholder="Email address" />
-            <input type="submit" />
+            <input
+                type="email"
+                name="email"
+                aria-label="Email address"
+                onChange={handleEmailChange}
+                placeholder="Email address"
+            />
+            <input type="submit" aria-label="Submit button" />
         </form>
         </>
     )
