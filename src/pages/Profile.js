@@ -1,12 +1,23 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from '../store/userSlice';
 
 function Profile() {
+    const dispatch = useDispatch();
     const user = useSelector(state => state.user.user);
+    const message = useSelector(state => state.user.message);
+
+    useEffect(() => {
+        return function cleanup() {
+            dispatch(userActions.setMessage(""));
+        };
+    }, [dispatch]);
 
     return (
         <>
             <h1>Profile Page for {user.first_name} {user.last_name}</h1>
+            {message ? <div id="message">{message}</div> : null}
             <table>
                 <tbody>
                     <tr>
