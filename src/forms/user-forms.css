@@ -53,6 +53,18 @@
     background-color: rgb(51, 134, 193);
     color: white;
     font-size: 16px;
+    padding: 10px;
+}
+
+.user-form form .cancel {
+    background-color: rgb(199, 41, 41);
+    text-align: center;
+    font-size: 16px;
+    border: none;
+    padding: 10px;
+    width: 75%;
+    color: white;
+    text-decoration: none;
 }
 
 @media all and (max-width: 400px) {

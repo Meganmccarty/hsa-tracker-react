@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
@@ -88,6 +88,7 @@ function ChangePassword() {
                         required={true}
                     />
                     <input type="submit" aria-label="Submit button" />
+                    <Link to="/profile" className="cancel">Cancel</Link>
                 </form>
             </section>
         </main>
