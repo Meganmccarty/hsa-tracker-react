@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
+
+import './ForgotPassword.css';
 
 function ForgotPassword() {
     const dispatch = useDispatch();
@@ -33,20 +35,29 @@ function ForgotPassword() {
 
     };
 
+    useEffect(() => {
+        return function cleanup() {
+            dispatch(userActions.setMessage(""))
+        }
+    }, [dispatch])
+
     return (
-        <>
-        {message ? message : null}
-        <form onSubmit={handleSubmit}>
-            <input
-                type="email"
-                name="email"
-                aria-label="Email address"
-                onChange={handleEmailChange}
-                placeholder="Email address"
-            />
-            <input type="submit" aria-label="Submit button" />
-        </form>
-        </>
+        <main>
+            <section id="forgot-password">
+                <h1>Forgot Password</h1>
+                {message ? <div id="message">{message}</div> : null}
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="email"
+                        name="email"
+                        aria-label="Email address"
+                        onChange={handleEmailChange}
+                        placeholder="Email address"
+                    />
+                    <input type="submit" aria-label="Submit button" />
+                </form>
+            </section>
+        </main>
     )
 };
 
