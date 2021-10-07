@@ -1,3 +1,49 @@
+main#profile {
+    width: 80%;
+}
+
+main#profile section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 5px 5px 20px 2px rgb(64, 1, 77);
+}
+
+main#profile section h1 {
+    text-align: center;
+}
+
+main#profile section .details,
+main#profile section .buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.details span,
+.buttons button {
+    margin: 5px;
+}
+
+.buttons button {
+    border: none;
+    padding: 10px;
+    background: rgb(51, 134, 193);
+    font-size: 16px;
+}
+
+.buttons button a {
+    color: white;
+    text-decoration: none;
+}
+
 #message {
     padding: 10px;
     background-color: rgb(8, 175, 128);
