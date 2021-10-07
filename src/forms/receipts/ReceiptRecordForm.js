@@ -83,6 +83,7 @@ function ReceiptRecordForm() {
             <input
                 type="date"
                 name="trans_date"
+                aria-label="Transaction date"
                 onChange={handleFormChange}
                 placeholder="Transaction date"
                 required={true}
@@ -90,12 +91,14 @@ function ReceiptRecordForm() {
             <input
                 type="text"
                 name="category"
+                aria-label="Category"
                 onChange={handleFormChange}
                 placeholder="Category"
             />
             <input
                 type="text"
                 name="provider"
+                aria-label="Provider"
                 onChange={handleFormChange}
                 placeholder="Provider"
                 required={true}
@@ -103,11 +106,12 @@ function ReceiptRecordForm() {
             <input
                 type="text"
                 name="description"
+                aria-label="Description"
                 onChange={handleFormChange}
                 placeholder="Description"
             />
             <label htmlFor="qualified_exp">Qualified Expense?</label>
-            <select name="qualified_exp" onChange={handleFormChange} required={true}>
+            <select name="qualified_exp" id="qualified_exp" onChange={handleFormChange} required={true}>
                 <option></option>
                 <option>Yes</option>
                 <option>No</option>
@@ -115,12 +119,13 @@ function ReceiptRecordForm() {
             <input
                 type="text"
                 name="amount"
+                aria-label="Amount"
                 onChange={handleFormChange}
                 placeholder="Amount"
                 required={true}
             />
             <label htmlFor="payment_method">Payment Method</label>
-            <select name="payment_method" onChange={handleFormChange} required={true}>
+            <select name="payment_method" id="payment_method" onChange={handleFormChange} required={true}>
                 <option></option>
                 <option>Cash</option>
                 <option>Check</option>
@@ -132,7 +137,7 @@ function ReceiptRecordForm() {
             {formData.qualified_exp === "Yes" ?
                 <>
                     <label htmlFor="reimbursed">Reimbursed?</label>
-                    <select name="reimbursed" onChange={handleFormChange} required={true}>
+                    <select name="reimbursed" id="reimbursed" onChange={handleFormChange} required={true}>
                         <option></option>
                         <option>Yes</option>
                         <option>No</option>
@@ -142,6 +147,7 @@ function ReceiptRecordForm() {
                         <input
                             type="date"
                             name="reimbursed_date"
+                            aria-label="Date"
                             onChange={handleFormChange}
                             value={formData.reimbursed_date}
                             required={true}
@@ -154,23 +160,26 @@ function ReceiptRecordForm() {
             <input
                 type="text"
                 name="notes"
+                aria-label="Notes"
                 onChange={handleFormChange}
                 placeholder="Notes"
             />
             <input
                 type="text"
                 name="hsa_trans_id"
+                aria-label="HSA transaction ID"
                 onChange={handleFormChange}
                 placeholder="HSA transaction ID"
             />
             <input
                 type="file"
                 name="receipt_images"
+                aria-label="Upload images"
                 accept="image/*"
                 multiple={true}
                 onChange={handleImageChange}
             />
-            <input type="submit" />
+            <input type="submit" aria-label="Submit button" />
         </form>
     );
 };
