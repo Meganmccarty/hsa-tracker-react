@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
+import './PasswordReset.css';
+
 function PasswordReset() {
     const email = useParams().email;
     const dispatch = useDispatch();
@@ -34,8 +36,12 @@ function PasswordReset() {
                 if (response.ok) {
                     localStorage.setItem("token", response.headers.get("Authorization"));
                     response.json().then(data => {
-                        console.log(data)
+                        dispatch(userActions.setMessage(data.status.message))
                     });
+                } else {
+                    response.json().then(errors => {
+                        dispatch(userActions.setErrors(errors.status.errors))
+                    })
                 }
             });
     }
@@ -51,6 +57,8 @@ function PasswordReset() {
         <main>
             <section id="password-reset">
                 <h1>Reset Password</h1>
+                {message ? <div id="message">{message}</div> : null}
+                {errors.length > 0 ? <div id="errors">{errors}</div> : null}
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"
