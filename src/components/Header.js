@@ -40,7 +40,7 @@ function Header() {
                     <Link to="/receipt-records">My Receipt Records</Link>
                     <Link to="/receipt-records/new">Add Receipt</Link>
                     <Link to="/profile">Profile</Link>
-                    <Link to="#" onClick={handleLogout}>Log Out</Link>
+                    <button onClick={handleLogout}>Log Out</button>
                 </>
                 :
                 <>
