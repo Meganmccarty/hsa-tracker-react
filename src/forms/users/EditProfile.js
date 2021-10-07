@@ -48,7 +48,7 @@ function EditProfile() {
         return function cleanup() {
             dispatch(userActions.setErrors([]))
         }
-    }, [])
+    }, [dispatch])
 
     return (
         <>

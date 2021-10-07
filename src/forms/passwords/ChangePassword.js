@@ -49,7 +49,7 @@ function ChangePassword() {
         return function cleanup() {
             dispatch(userActions.setErrors([]))
         }
-    }, [])
+    }, [dispatch])
 
     return (
         <>

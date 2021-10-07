@@ -56,7 +56,7 @@ function Signup() {
         return function cleanup() {
             dispatch(userActions.setErrors([]))
         }
-    }, [])
+    }, [dispatch])
 
     return (
         <>
