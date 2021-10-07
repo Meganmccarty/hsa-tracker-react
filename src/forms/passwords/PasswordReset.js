@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 function PasswordReset() {
@@ -34,6 +34,13 @@ function PasswordReset() {
                 }
             });
     }
+
+    useEffect(() => {
+        return function cleanup() {
+            dispatch(userActions.setErrors([]))
+            dispatch(userActions.setMessage(""))
+        }
+    }, [dispatch])
 
     return (
         <form onSubmit={handleSubmit}>
