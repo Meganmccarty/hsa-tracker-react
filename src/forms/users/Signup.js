@@ -1,9 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
-
-import handleErrors from '../../functions/handleErrors';
 
 function Signup() {
     const history = useHistory();
@@ -54,9 +52,15 @@ function Signup() {
             })
     }
 
+    useEffect(() => {
+        return function cleanup() {
+            dispatch(userActions.setErrors(""))
+        }
+    }, [])
+
     return (
         <>
-            {handleErrors(errors, dispatch, userActions)}
+            {errors ? <div id="errors">{errors}</div> : null}
             <form onSubmit={handleSubmit}>
                 <input type="text" name="first_name" onChange={handleFormChange} placeholder="First name" required={true}/>
                 <input type="text" name="last_name" onChange={handleFormChange} placeholder="Last name" required={true}/>

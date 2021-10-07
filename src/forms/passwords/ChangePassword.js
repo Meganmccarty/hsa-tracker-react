@@ -1,9 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
-
-import handleErrors from '../../functions/handleErrors';
 
 function ChangePassword() {
     const history = useHistory();
@@ -47,9 +45,15 @@ function ChangePassword() {
             })
     }
 
+    useEffect(() => {
+        return function cleanup() {
+            dispatch(userActions.setErrors(""))
+        }
+    }, [])
+
     return (
         <>
-            {handleErrors(errors, dispatch, userActions)}
+            {errors ? <div id="errors">{errors}</div> : null}
             {message ? message : null}
             <h1>Change Password</h1>
             <form onSubmit={handleSubmit}>
