@@ -50,7 +50,6 @@ function App() {
     return (
         <Router>
             <Header />
-            <main>
                 <Switch>
                     <Route exact path="/"><Home /></Route>
                     <Route exact path="/login">
@@ -87,7 +86,6 @@ function App() {
                         {loading ? <Loading /> : !user ? <Redirect to="/login" /> : <ReceiptRecordsList />}
                     </Route>
                 </Switch>
-            </main>
             <Footer />
         </Router>
     );
