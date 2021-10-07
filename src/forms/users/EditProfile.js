@@ -3,11 +3,15 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
+import '../user-forms.css';
+
 function EditProfile() {
     const history = useHistory();
+
     const dispatch = useDispatch();
-    const userInfo = useSelector(state => state.user.user)
-    const errors = useSelector(state => state.user.errors)
+    const userInfo = useSelector(state => state.user.user);
+    const errors = useSelector(state => state.user.errors);
+
     const [profileForm, setProfileForm] = useState({
         first_name: userInfo.first_name,
         last_name: userInfo.last_name,
@@ -15,7 +19,7 @@ function EditProfile() {
     })
 
     function handleProfileChange(e) {
-        setProfileForm({ ...profileForm, [e.target.name]: e.target.value})
+        setProfileForm({ ...profileForm, [e.target.name]: e.target.value })
     }
 
     function handleSubmit(e) {
@@ -51,37 +55,39 @@ function EditProfile() {
     }, [dispatch])
 
     return (
-        <>
-            {errors.length > 0 ? <div id="errors">{errors}</div> : null}
-            <h1>Edit Profile</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="first_name"
-                    onChange={handleProfileChange}
-                    value={profileForm.first_name}
-                    placeholder="First name"
-                    required={true}
-                />
-                <input
-                    type="text"
-                    name="last_name"
-                    onChange={handleProfileChange}
-                    value={profileForm.last_name}
-                    placeholder="Last name"
-                    required={true}
-                />
-                <input
-                    type="email"
-                    name="email"
-                    onChange={handleProfileChange}
-                    value={profileForm.email}
-                    placeholder="Email address"
-                    required={true}
-                />
-                <input type="submit" />
-            </form>
-        </>
+        <main>
+            <section className="user-form" id="edit-profile">
+                <h1>Edit Profile</h1>
+                {errors.length > 0 ? <div id="errors">{errors}</div> : null}
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="first_name"
+                        onChange={handleProfileChange}
+                        value={profileForm.first_name}
+                        placeholder="First name"
+                        required={true}
+                    />
+                    <input
+                        type="text"
+                        name="last_name"
+                        onChange={handleProfileChange}
+                        value={profileForm.last_name}
+                        placeholder="Last name"
+                        required={true}
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        onChange={handleProfileChange}
+                        value={profileForm.email}
+                        placeholder="Email address"
+                        required={true}
+                    />
+                    <input type="submit" />
+                </form>
+            </section>
+        </main>
     );
 };
 
