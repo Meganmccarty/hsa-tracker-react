@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
 import './PasswordReset.css';
 
 function PasswordReset() {
+    const history = useHistory();
     const email = useParams().email;
+
     const dispatch = useDispatch();
     const errors = useSelector(state => state.user.errors);
-    const message = useSelector(state => state.user.message);
+
     const [passwordForm, setPasswordForm] = useState({
         token: "",
         email: email,
@@ -36,28 +38,27 @@ function PasswordReset() {
                 if (response.ok) {
                     localStorage.setItem("token", response.headers.get("Authorization"));
                     response.json().then(data => {
-                        dispatch(userActions.setMessage(data.status.message))
+                        dispatch(userActions.setMessage(data.status.message));
+                        history.push('/login');
                     });
                 } else {
                     response.json().then(errors => {
-                        dispatch(userActions.setErrors(errors.status.errors))
-                    })
-                }
+                        dispatch(userActions.setErrors(errors.status.errors));
+                    });
+                };
             });
-    }
+    };
 
     useEffect(() => {
         return function cleanup() {
-            dispatch(userActions.setErrors([]))
-            dispatch(userActions.setMessage(""))
+            dispatch(userActions.setErrors([]));
         }
-    }, [dispatch])
+    }, [dispatch]);
 
     return (
         <main>
             <section id="password-reset">
                 <h1>Reset Password</h1>
-                {message ? <div id="message">{message}</div> : null}
                 {errors.length > 0 ? <div id="errors">{errors}</div> : null}
                 <form onSubmit={handleSubmit}>
                     <input
