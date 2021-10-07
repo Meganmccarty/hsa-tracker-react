@@ -3,6 +3,8 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { receiptActions } from '../../store/receiptSlice';
 
+import './receipt-forms.css';
+
 function ReceiptRecordEdit() {
     const id = parseInt(useParams().id);
     const history = useHistory();
@@ -71,9 +73,9 @@ function ReceiptRecordEdit() {
         const name = e.target.name;
         const value = e.target.value;
         if (name === "qualified_exp" && value === "No") {
-            setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed: "", reimbursed_date: null})
+            setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed: "", reimbursed_date: null })
         } else if ((name === "reimbursed" && value === "No") || value === "N/A") {
-            setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed_date: null})
+            setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed_date: null })
         } else {
             setFormData({ ...formData, [e.target.name]: e.target.value });
         }
@@ -121,20 +123,23 @@ function ReceiptRecordEdit() {
     }
 
     return (
-        <>
+        <main id="edit-receipt">
             {receipt && formData ?
-                <>
-                    <h1>Edit Receipt Record {receipt.id}</h1>
+                <section className="receipt-form">
+                    <h1>Edit Receipt Record for {receipt.provider} on {receipt.trans_date}</h1>
                     <form onSubmit={handleSubmit}>
-                        <input
-                            type="date"
-                            name="trans_date"
-                            aria-label="Transaction date"
-                            onChange={handleFormChange}
-                            value={formData.trans_date}
-                            placeholder="Transaction date"
-                            required={true}
-                        />
+                        <div className="label-and-input">
+                            <label htmlFor="trans_date">Transaction date</label>
+                            <input
+                                type="date"
+                                name="trans_date"
+                                id="trans_date"
+                                onChange={handleFormChange}
+                                value={formData.trans_date}
+                                placeholder="Transaction date"
+                                required={true}
+                            />
+                        </div>
                         <input
                             type="text"
                             name="category"
@@ -160,16 +165,18 @@ function ReceiptRecordEdit() {
                             value={formData.description}
                             placeholder="Description"
                         />
-                        <label htmlFor="qualified_exp">Qualified Expense?</label>
-                        <select
-                            name="qualified_exp"
-                            id="qualified_exp"
-                            onChange={handleFormChange}
-                            value={formData.qualified_exp}
-                        >
-                            <option>Yes</option>
-                            <option>No</option>
-                        </select>
+                        <div className="label-and-input">
+                            <label htmlFor="qualified_exp">Qualified Expense?</label>
+                            <select
+                                name="qualified_exp"
+                                id="qualified_exp"
+                                onChange={handleFormChange}
+                                value={formData.qualified_exp}
+                            >
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
                         <input
                             type="text"
                             name="amount"
@@ -179,44 +186,51 @@ function ReceiptRecordEdit() {
                             placeholder="Amount"
                             required={true}
                         />
-                        <label htmlFor="payment_method">Payment Method</label>
-                        <select
-                            name="payment_method"
-                            id="payment_method"
-                            onChange={handleFormChange}
-                            value={formData.payment_method}
-                        >
-                            <option>Cash</option>
-                            <option>Check</option>
-                            <option>Debit Card</option>
-                            <option>Credit Card</option>
-                            <option>Electronic Bank Transfer</option>
-                            <option>HSA Debit Card</option>
-                        </select>
+                        <div className="label-and-input">
+                            <label htmlFor="payment_method">Payment Method</label>
+                            <select
+                                name="payment_method"
+                                id="payment_method"
+                                onChange={handleFormChange}
+                                value={formData.payment_method}
+                            >
+                                <option>Cash</option>
+                                <option>Check</option>
+                                <option>Debit Card</option>
+                                <option>Credit Card</option>
+                                <option>Electronic Bank Transfer</option>
+                                <option>HSA Debit Card</option>
+                            </select>
+                        </div>
                         {formData.qualified_exp === "Yes" ?
                             <>
-                                <label htmlFor="reimbursed">Reimbursed?</label>
-                                <select
-                                    name="reimbursed"
-                                    id="reimbursed"
-                                    onChange={handleFormChange}
-                                    value={formData.reimbursed}
-                                    required={true}
-                                >
-                                    <option></option>
-                                    <option>Yes</option>
-                                    <option>No</option>
-                                    <option>N/A</option>
-                                </select>
-                                {formData.reimbursed === "Yes" ?
-                                    <input
-                                        type="date"
-                                        name="reimbursed_date"
-                                        aria-label="Reimbursed Date"
+                                <div className="label-and-input">
+                                    <label htmlFor="reimbursed">Reimbursed?</label>
+                                    <select
+                                        name="reimbursed"
+                                        id="reimbursed"
                                         onChange={handleFormChange}
-                                        value={formData.reimbursed_date}
+                                        value={formData.reimbursed}
                                         required={true}
-                                    />
+                                    >
+                                        <option></option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                        <option>N/A</option>
+                                    </select>
+                                </div>
+                                {formData.reimbursed === "Yes" ?
+                                    <div className="label-and-input">
+                                        <label htmlFor="reimbursed_date">Reimbursed date</label>
+                                        <input
+                                            type="date"
+                                            name="reimbursed_date"
+                                            id="reimbursed_date"
+                                            onChange={handleFormChange}
+                                            value={formData.reimbursed_date}
+                                            required={true}
+                                        />
+                                    </div>
                                     : null
                                 }
                             </>
@@ -250,12 +264,10 @@ function ReceiptRecordEdit() {
                         <button><Link to={`/receipt-records/${id}`}>Cancel</Link></button>
                     </form>
                     {displayReceiptImages()}
-                </>
+                </section>
                 : null
             }
-
-        </>
-
+        </main>
     );
 };
 

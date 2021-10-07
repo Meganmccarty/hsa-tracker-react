@@ -1,5 +1,4 @@
-main#new-receipt {
-    border: 1px solid black;
+main#new-receipt, main#edit-receipt {
     width: 80%;
 }
 
@@ -77,6 +76,18 @@ main#new-receipt {
     background: rgb(51, 134, 193);
     color: white;
     font-size: 16px;
+}
+
+.receipt-form form button {
+    border: none;
+    padding: 10px;
+    background: rgb(51, 134, 193);
+    font-size: 16px;
+}
+
+.receipt-form form button a {
+    color: white;
+    text-decoration: none;
 }
 
 /* Color actual buttons for different browsers */
