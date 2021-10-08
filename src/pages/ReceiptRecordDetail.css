@@ -101,9 +101,11 @@ main#receipt-detail section.modal > button#close {
 
     .images {
         flex-direction: column;
+        width: 80%;
     }
 
     .images img {
         width: 100%;
+        margin: 15px 0 15px 0;
     }
 }
