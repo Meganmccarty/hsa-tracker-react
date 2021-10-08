@@ -207,10 +207,12 @@ function ReceiptRecordList() {
                             </div>
                         </div>
 
-                        <button onClick={() => handleYear("All")}>All</button>
-                        {getYearButtons()}
+                        <div className="buttons">
+                            <button onClick={() => handleYear("All")}>All</button>
+                            {getYearButtons()}
+                        </div>
 
-                        <table>
+                        <table id="receipt-list-table">
                             <thead>
                                 <tr>
                                     <th className="active false" onClick={handleSort}>Transaction Date</th>

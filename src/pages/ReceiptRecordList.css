@@ -52,6 +52,42 @@ div.expenses div.expense-category {
     padding: 5px;
 }
 
+main#receipt-list section div.buttons {
+    color: white;
+}
+
+table#receipt-list-table {
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+table#receipt-list-table td {
+    padding: 5px;
+}
+
+table#receipt-list-table thead {
+    background-color: rgb(196, 196, 196);
+}
+
+table#receipt-list-table th {
+    padding: 2px;
+}
+
+table#receipt-list-table th.active.false::after {
+    /* Table header sorted by ascending = false */
+    content: "\25bc";
+}
+
+table#receipt-list-table th.active.true::after {
+    /* Table header sorted by ascending = true */
+    content: "\25b2";
+}
+
+table#receipt-list-table tbody tr:nth-child(odd) {
+    background-color: rgb(235, 235 ,235);
+}
+
+
 @media all and (max-width: 600px) {
     div.expenses {
         flex-direction: column;
