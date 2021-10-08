@@ -52,8 +52,7 @@ main#new-receipt, main#edit-receipt {
 }
 
 .receipt-form form input {
-    flex-basis: 33.33333%;
-    margin: 10px;
+    margin: 5px;
     padding: 10px;
     border: none;
     font-size: 16px;
@@ -70,6 +69,32 @@ main#new-receipt, main#edit-receipt {
     font-size: 16px;
     border: none;
     background-color: rgb(235, 235, 235);
+}
+
+.images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-card {
+    margin: 15px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.images .image-card img {
+    width: 100%;
+}
+
+#cancel, .images .image-card .delete {
+    background-color: rgb(199, 41, 41);
+    color: white;
 }
 
 .receipt-form form input[type="submit"] {
@@ -124,10 +149,19 @@ main#new-receipt, main#edit-receipt {
     .receipt-form form {
         flex-direction: column;
     }
+}
 
-    .receipt-form form input {
-        flex-basis: none;
-        width: 75%;
+@media all and (max-width: 650px) {
+    .receipt-form form .label-and-input {
+        flex-direction: column;
+    }
+    
+    .images {
+        flex-direction: column;
+    }
+
+    .image-card {
+        width: 80%;
     }
 }
 

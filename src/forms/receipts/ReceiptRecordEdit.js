@@ -54,9 +54,9 @@ function ReceiptRecordEdit() {
         if (receipt && receipt.receipt_images) {
             return receipt.receipt_images.map(image => {
                 return (
-                    <div key={image.url}>
+                    <div className="image-card" key={image.url}>
                         <img src={image.url} alt="receipt" width="25%" />
-                        <button onClick={(e) => handleDelete(e, image.id)}>Delete</button>
+                        <button className="delete" onClick={(e) => handleDelete(e, image.id)}>Delete</button>
                     </div>
                 )
             })
@@ -140,31 +140,40 @@ function ReceiptRecordEdit() {
                                 required={true}
                             />
                         </div>
-                        <input
-                            type="text"
-                            name="category"
-                            aria-label="category"
-                            onChange={handleFormChange}
-                            value={formData.category}
-                            placeholder="Category"
-                        />
-                        <input
-                            type="text"
-                            name="provider"
-                            aria-label="Provider"
-                            onChange={handleFormChange}
-                            value={formData.provider}
-                            placeholder="Provider"
-                            required={true}
-                        />
-                        <input
-                            type="text"
-                            name="description"
-                            aria-label="Description"
-                            onChange={handleFormChange}
-                            value={formData.description}
-                            placeholder="Description"
-                        />
+                        <div className="label-and-input">
+                            <label htmlFor="category">Category</label>
+                            <input
+                                type="text"
+                                name="category"
+                                id="category"
+                                onChange={handleFormChange}
+                                value={formData.category}
+                                placeholder="Category"
+                            />
+                        </div>
+                        <div className="label-and-input">
+                            <label htmlFor="provider">Provider</label>
+                            <input
+                                type="text"
+                                name="provider"
+                                id="provider"
+                                onChange={handleFormChange}
+                                value={formData.provider}
+                                placeholder="Provider"
+                                required={true}
+                            />
+                        </div>
+                        <div className="label-and-input">
+                            <label htmlFor="description">Description</label>
+                            <input
+                                type="text"
+                                name="description"
+                                id="description"
+                                onChange={handleFormChange}
+                                value={formData.description}
+                                placeholder="Description"
+                            />
+                        </div>
                         <div className="label-and-input">
                             <label htmlFor="qualified_exp">Qualified Expense?</label>
                             <select
@@ -177,15 +186,18 @@ function ReceiptRecordEdit() {
                                 <option>No</option>
                             </select>
                         </div>
-                        <input
-                            type="text"
-                            name="amount"
-                            aria-label="Amount"
-                            onChange={handleFormChange}
-                            value={parseFloat(formData.amount).toFixed(2)}
-                            placeholder="Amount"
-                            required={true}
-                        />
+                        <div className="label-and-input">
+                            <label htmlFor="amount">Amount</label>
+                            <input
+                                type="text"
+                                name="amount"
+                                id="amount"
+                                onChange={handleFormChange}
+                                value={parseFloat(formData.amount).toFixed(2)}
+                                placeholder="Amount"
+                                required={true}
+                            />
+                        </div>
                         <div className="label-and-input">
                             <label htmlFor="payment_method">Payment Method</label>
                             <select
@@ -236,34 +248,33 @@ function ReceiptRecordEdit() {
                             </>
                             : null
                         }
-                        <input
-                            type="text"
-                            name="notes"
-                            aria-label="Notes"
-                            onChange={handleFormChange}
-                            value={formData.notes}
-                            placeholder="Notes"
-                        />
-                        <input
-                            type="text"
-                            name="hsa_trans_id"
-                            aria-label="HSA transaction ID"
-                            onChange={handleFormChange}
-                            value={formData.hsa_trans_id}
-                            placeholder="HSA transaction ID"
-                        />
+                        <div className="label-and-input">
+                            <label htmlFor="notes">Notes</label>
+                            <input
+                                type="text"
+                                name="notes"
+                                id="notes"
+                                onChange={handleFormChange}
+                                value={formData.notes}
+                                placeholder="Notes"
+                            />
+                        </div>
                         <input
                             type="file"
                             name="receipt_images"
-                            aria-label="Upload images"
+                            aria-label="Upload receipt images"
                             accept="image/*"
                             multiple={true}
                             onChange={handleImageChange}
                         />
-                        <input type="submit" aria-label="Submit button" />
-                        <button><Link to={`/receipt-records/${id}`}>Cancel</Link></button>
+                        <div className="images">
+                            {displayReceiptImages()}
+                        </div>
+                        <div className="buttons">
+                            <input type="submit" aria-label="Submit button" />
+                            <button id="cancel"><Link to={`/receipt-records/${id}`}>Cancel</Link></button>
+                        </div>
                     </form>
-                    {displayReceiptImages()}
                 </section>
                 : null
             }
