@@ -29,3 +29,31 @@ main#receipt-list section input {
     font-size: 16px;
     background-color: rgb(235, 235, 235);
 }
+
+div.expenses {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color:rgb(235, 235, 235);
+    margin-bottom: 10px;
+}
+
+div.expenses h4 {
+    word-wrap: break-word;
+    width: 200px;
+}
+
+div.expenses div.expense-category {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+}
+
+@media all and (max-width: 600px) {
+    div.expenses {
+        flex-direction: column;
+    }
+}

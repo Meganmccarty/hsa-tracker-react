@@ -187,17 +187,25 @@ function ReceiptRecordList() {
                     :
                     <>
                         <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." />
-                        <h3>Total Qualified Expenses -- {year}</h3>
-                        {parseFloat(qualifiedExpenses).toFixed(2)}
-
-                        <h3>Total Reimbursed Expenses -- {year}</h3>
-                        {parseFloat(reimbursedExpenses).toFixed(2)}
-
-                        <h3>Total Expenses Paid with HSA Card -- {year}</h3>
-                        {parseFloat(HSAExpenses).toFixed(2)}
-
-                        <h3>Remaining Safe Amount to Withdraw from HSA -- {year}</h3>
-                        {parseFloat(qualifiedExpenses - reimbursedExpenses - HSAExpenses).toFixed(2)}
+                        <h3>Total Expenses ({year})</h3>
+                        <div className="expenses">
+                            <div className="expense-category">
+                                <h4>Qualified Expenses</h4>
+                                <h4>${parseFloat(qualifiedExpenses).toFixed(2)}</h4>
+                            </div>
+                            <div className="expense-category">
+                                <h4>Reimbursed Expenses</h4>
+                                <h4>${parseFloat(reimbursedExpenses).toFixed(2)}</h4>
+                            </div>
+                            <div className="expense-category">
+                                <h4>Paid with HSA Card</h4>
+                                <h4>${parseFloat(HSAExpenses).toFixed(2)}</h4>
+                            </div>
+                            <div className="expense-category">
+                                <h4>Can Withdraw from HSA</h4>
+                                <h4>${parseFloat(qualifiedExpenses - reimbursedExpenses - HSAExpenses).toFixed(2)}</h4>
+                            </div>
+                        </div>
 
                         <button onClick={() => handleYear("All")}>All</button>
                         {getYearButtons()}
