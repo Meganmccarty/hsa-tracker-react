@@ -146,10 +146,6 @@ function ReceiptRecordDetail() {
                                     <td>Notes</td>
                                     <td>{receipt.notes}</td>
                                 </tr>
-                                <tr>
-                                    <td>HSA transaction ID</td>
-                                    <td>{receipt.hsa_trans_id}</td>
-                                </tr>
                             </tbody>
                         </table>
                         <div className="buttons">
