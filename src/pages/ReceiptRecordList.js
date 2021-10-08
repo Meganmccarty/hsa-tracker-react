@@ -2,14 +2,19 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
+import { userActions } from '../store/userSlice';
 
 import Loading from '../components/Loading';
+
+import './ReceiptRecordList.css';
 
 function ReceiptRecordList() {
     const dispatch = useDispatch();
 
     const receipts = useSelector(state => state.receipts.receiptList);
     const loading = useSelector(state => state.receipts.loading);
+    const receiptMessage = useSelector(state => state.receipts.message);
+    const userMessage = useSelector(state => state.user.message);
 
     const [searchTerm, setSearchTerm] = useState("");
     const [year, setYear] = useState("All");
@@ -161,51 +166,62 @@ function ReceiptRecordList() {
                 name = headerName;
                 break;
         }
-        setSort({name: name, orderAsc: !sort.orderAsc})
+        setSort({ name: name, orderAsc: !sort.orderAsc })
     }
 
+    useEffect(() => {
+        return function cleanup() {
+            dispatch(receiptActions.setMessage(""));
+            dispatch(userActions.setMessage(""));
+        }
+    }, [dispatch])
+
     return (
-        <>
-            <h1>Receipt Records List</h1>
-            {loading ?
-                <Loading />
-                :
-                <>
-                    <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." />
-                    <h3>Total Qualified Expenses -- {year}</h3>
-                    {parseFloat(qualifiedExpenses).toFixed(2)}
+        <main id="receipt-list">
+            <section>
+                <h1>Receipt Records List</h1>
+                {receiptMessage ? <><div className="message">{receiptMessage}</div><br /></> : null}
+                {userMessage ? <><div className="message">{userMessage}</div><br /></> : null}
+                {loading ?
+                    <Loading />
+                    :
+                    <>
+                        <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." />
+                        <h3>Total Qualified Expenses -- {year}</h3>
+                        {parseFloat(qualifiedExpenses).toFixed(2)}
 
-                    <h3>Total Reimbursed Expenses -- {year}</h3>
-                    {parseFloat(reimbursedExpenses).toFixed(2)}
+                        <h3>Total Reimbursed Expenses -- {year}</h3>
+                        {parseFloat(reimbursedExpenses).toFixed(2)}
 
-                    <h3>Total Expenses Paid with HSA Card -- {year}</h3>
-                    {parseFloat(HSAExpenses).toFixed(2)}
+                        <h3>Total Expenses Paid with HSA Card -- {year}</h3>
+                        {parseFloat(HSAExpenses).toFixed(2)}
 
-                    <h3>Remaining Safe Amount to Withdraw from HSA -- {year}</h3>
-                    {parseFloat(qualifiedExpenses - reimbursedExpenses - HSAExpenses).toFixed(2)}
+                        <h3>Remaining Safe Amount to Withdraw from HSA -- {year}</h3>
+                        {parseFloat(qualifiedExpenses - reimbursedExpenses - HSAExpenses).toFixed(2)}
 
-                    <button onClick={() => handleYear("All")}>All</button>
-                    {getYearButtons()}
+                        <button onClick={() => handleYear("All")}>All</button>
+                        {getYearButtons()}
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th className="active false" onClick={handleSort}>Transaction Date</th>
-                                <th onClick={handleSort}>Provider</th>
-                                <th onClick={handleSort}>Description</th>
-                                <th onClick={handleSort}>Qualified Expense</th>
-                                <th onClick={handleSort}>Amount</th>
-                                <th onClick={handleSort}>Payment Method</th>
-                                <th onClick={handleSort}>Reimbursed</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {displayReceipts()}
-                        </tbody>
-                    </table>
-                </>
-            }
-        </>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th className="active false" onClick={handleSort}>Transaction Date</th>
+                                    <th onClick={handleSort}>Provider</th>
+                                    <th onClick={handleSort}>Description</th>
+                                    <th onClick={handleSort}>Qualified Expense</th>
+                                    <th onClick={handleSort}>Amount</th>
+                                    <th onClick={handleSort}>Payment Method</th>
+                                    <th onClick={handleSort}>Reimbursed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {displayReceipts()}
+                            </tbody>
+                        </table>
+                    </>
+                }
+            </section>
+        </main>
     );
 };
 
