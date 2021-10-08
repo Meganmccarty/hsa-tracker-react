@@ -136,7 +136,6 @@ function ReceiptRecordEdit() {
                                 id="trans_date"
                                 onChange={handleFormChange}
                                 value={formData.trans_date}
-                                placeholder="Transaction date"
                                 required={true}
                             />
                         </div>
@@ -148,7 +147,6 @@ function ReceiptRecordEdit() {
                                 id="category"
                                 onChange={handleFormChange}
                                 value={formData.category}
-                                placeholder="Category"
                             />
                         </div>
                         <div className="label-and-input">
@@ -159,7 +157,6 @@ function ReceiptRecordEdit() {
                                 id="provider"
                                 onChange={handleFormChange}
                                 value={formData.provider}
-                                placeholder="Provider"
                                 required={true}
                             />
                         </div>
@@ -171,7 +168,6 @@ function ReceiptRecordEdit() {
                                 id="description"
                                 onChange={handleFormChange}
                                 value={formData.description}
-                                placeholder="Description"
                             />
                         </div>
                         <div className="label-and-input">
@@ -194,7 +190,6 @@ function ReceiptRecordEdit() {
                                 id="amount"
                                 onChange={handleFormChange}
                                 value={parseFloat(formData.amount).toFixed(2)}
-                                placeholder="Amount"
                                 required={true}
                             />
                         </div>
@@ -256,7 +251,6 @@ function ReceiptRecordEdit() {
                                 id="notes"
                                 onChange={handleFormChange}
                                 value={formData.notes}
-                                placeholder="Notes"
                             />
                         </div>
                         <input
