@@ -36,11 +36,6 @@ main#receipt-detail section h1 {
     text-align: right;
 }
 
-.buttons button.delete {
-    background-color: rgb(199, 41, 41);
-    color: white;
-}
-
 .images {
     display: flex;
     flex-direction: row;
@@ -80,18 +75,6 @@ main#receipt-detail section.modal > img {
     width: 80%;
     box-shadow: 5px 5px 20px 2px rgb(107, 107, 107);
     margin-bottom: 15px;
-}
-
-main#receipt-detail section.modal > button#close {
-    background: white;
-    color: black;
-    font-size: 16px;
-    border: none;
-    padding: 16px;
-}
-
-.buttons button#cancel {
-    color: white;
 }
 
 @media all and (max-width: 650px) {

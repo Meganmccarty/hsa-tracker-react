@@ -86,27 +86,10 @@ main#new-receipt, main#edit-receipt {
     width: 100%;
 }
 
-.images .image-card .delete {
-    background-color: rgb(199, 41, 41);
-    color: white;
-}
-
 .receipt-form form input[type="submit"] {
     background: rgb(51, 134, 193);
     color: white;
     font-size: 16px;
-}
-
-.receipt-form form button {
-    border: none;
-    padding: 10px;
-    background: rgb(51, 134, 193);
-    font-size: 16px;
-}
-
-.receipt-form form button a {
-    color: white;
-    text-decoration: none;
 }
 
 /* Color actual buttons for different browsers */

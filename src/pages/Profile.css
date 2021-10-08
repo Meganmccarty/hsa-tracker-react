@@ -28,20 +28,8 @@ main#profile section .buttons {
 }
 
 .details span,
-.buttons button {
+.buttons a {
     margin: 5px;
-}
-
-.buttons button {
-    border: none;
-    padding: 10px;
-    background: rgb(51, 134, 193);
-    font-size: 16px;
-}
-
-.buttons button a {
-    color: white;
-    text-decoration: none;
 }
 
 #message {
