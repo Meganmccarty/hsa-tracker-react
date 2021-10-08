@@ -21,20 +21,6 @@ main#new-receipt, main#edit-receipt {
     text-align: center;
 }
 
-/* .user-form #message {
-    padding: 10px;
-    background-color: rgb(8, 175, 128);
-    color: black;
-    text-align: center;
-}
-
-.user-form #errors {
-    padding: 10px;
-    background-color: rgb(199, 41, 41);
-    color: white;
-    text-align: center;
-} */
-
 .receipt-form form {
     margin: 5px;
     display: flex;
@@ -45,7 +31,15 @@ main#new-receipt, main#edit-receipt {
     width: 100%;
 }
 
-.receipt-form .label-and-input {
+.receipt-form .fields {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;   
+}
+
+.fields .label-and-input {
     display: flex;
     flex-direction: row;
     align-items: center;
