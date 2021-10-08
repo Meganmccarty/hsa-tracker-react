@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
@@ -8,11 +8,14 @@ import Loading from '../components/Loading';
 import './ReceiptRecordDetail.css';
 
 function ReceiptRecordDetail() {
-    const id = parseInt(useParams().id)
+    const id = parseInt(useParams().id);
     const history = useHistory();
+
     const dispatch = useDispatch();
     const loading = useSelector(state => state.receipts.loading);
     const receipt = useSelector(state => state.receipts.receipt);
+
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         fetch(`/receipt-records/${id}`, {
@@ -65,7 +68,7 @@ function ReceiptRecordDetail() {
         if (receipt && receipt.receipt_images) {
             return receipt.receipt_images.map(image => {
                 return (
-                    <img key={image.url} src={image.url} alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`}/>
+                    <img key={image.url} src={image.url} alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`} />
                 )
             })
         }
@@ -73,6 +76,20 @@ function ReceiptRecordDetail() {
 
     return (
         <main id="receipt-detail">
+            {showModal ?
+                <section id="modal">
+                    <div id="content">
+                        <h2>Are you sure you want to delete this receipt record?</h2>
+                        <h3>This action cannot be undone!</h3>
+
+                        <div className="buttons">
+                            <button id="cancel" onClick={() => setShowModal(false)}>Cancel</button>
+                            <button className="delete" onClick={handleDelete}>Delete</button>
+                        </div>
+                    </div>
+                </section>
+                : null
+            }
             {loading ? <Loading /> :
                 receipt ?
                     <section>
@@ -135,9 +152,9 @@ function ReceiptRecordDetail() {
                         </table>
                         <div className="buttons">
                             <button id="edit"><Link to={`/receipt-records/${id}/edit`}>Edit</Link></button>
-                            <button id="delete" onClick={handleDelete}>Delete</button>
+                            <button className="delete" onClick={() => setShowModal(true)}>Delete</button>
                         </div>
-                        <h2>Receipt Record Images</h2>
+                        {receipt.receipt_images ? <h2>Receipt Record Images</h2> : <h2>No Images</h2>}
                         <div className="images">
                             {displayReceiptImages()}
                         </div>
