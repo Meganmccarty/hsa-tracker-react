@@ -84,6 +84,12 @@ function ReceiptRecordDetail() {
         }
     }
 
+    useEffect(() => {
+        return function cleanup() {
+            dispatch(receiptActions.setMessage(""));
+        };
+    }, [dispatch]);
+
     return (
         <main id="receipt-detail">
             {showModal ?
