@@ -5,7 +5,7 @@ import { receiptActions } from '../store/receiptSlice';
 
 import Loading from '../components/Loading';
 
-function ReceiptRecordsList() {
+function ReceiptRecordList() {
     const dispatch = useDispatch();
 
     const receipts = useSelector(state => state.receipts.receiptList);
@@ -209,4 +209,4 @@ function ReceiptRecordsList() {
     );
 };
 
-export default ReceiptRecordsList;
+export default ReceiptRecordList;

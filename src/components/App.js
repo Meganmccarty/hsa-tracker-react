@@ -12,7 +12,7 @@ import Signup from '../forms/users/Signup';
 import Profile from '../pages/Profile';
 import EditProfile from '../forms/users/EditProfile';
 import ChangePassword from '../forms/passwords/ChangePassword';
-import ReceiptRecordsList from '../pages/ReceiptRecordsList';
+import ReceiptRecordList from '../pages/ReceiptRecordList';
 import ReceiptRecordDetail from '../pages/ReceiptRecordDetail';
 import ReceiptRecordEdit from '../forms/receipts/ReceiptRecordEdit';
 import ReceiptRecordForm from '../forms/receipts/ReceiptRecordForm';
@@ -84,7 +84,7 @@ function App() {
                         {loading ? <Loading /> : user ? <ReceiptRecordDetail /> : <Redirect to="/login" />}
                     </Route>
                     <Route exact path="/receipt-records">
-                        {loading ? <Loading /> : !user ? <Redirect to="/login" /> : <ReceiptRecordsList />}
+                        {loading ? <Loading /> : !user ? <Redirect to="/login" /> : <ReceiptRecordList />}
                     </Route>
                 </Switch>
             </div>
