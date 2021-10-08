@@ -5,6 +5,8 @@ import { receiptActions } from '../store/receiptSlice';
 
 import Loading from '../components/Loading';
 
+import './ReceiptRecordDetail.css';
+
 function ReceiptRecordDetail() {
     const id = parseInt(useParams().id)
     const history = useHistory();
@@ -63,18 +65,19 @@ function ReceiptRecordDetail() {
         if (receipt && receipt.receipt_images) {
             return receipt.receipt_images.map(image => {
                 return (
-                    <img key={image.url} src={image.url} alt="receipt" width="25%" />
+                    <img key={image.url} src={image.url} alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`}/>
                 )
             })
         }
     }
 
     return (
-        <>
+        <main id="receipt-detail">
             {loading ? <Loading /> :
                 receipt ?
-                    <>
-                        <table>
+                    <section>
+                        <h1>Receipt Record for {receipt.provider} on {receipt.trans_date}</h1>
+                        <table id="detail-table">
                             <tbody>
                                 <tr>
                                     <td>Date</td>
@@ -130,13 +133,18 @@ function ReceiptRecordDetail() {
                                 </tr>
                             </tbody>
                         </table>
-                        <button><Link to={`/receipt-records/${id}/edit`}>Edit</Link></button>
-                        <button onClick={handleDelete}>Delete</button>
-                        {displayReceiptImages()}
-                    </>
+                        <div className="buttons">
+                            <button id="edit"><Link to={`/receipt-records/${id}/edit`}>Edit</Link></button>
+                            <button id="delete" onClick={handleDelete}>Delete</button>
+                        </div>
+                        <h2>Receipt Record Images</h2>
+                        <div className="images">
+                            {displayReceiptImages()}
+                        </div>
+                    </section>
                     : null
             }
-        </>
+        </main>
     );
 };
 

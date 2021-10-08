@@ -1,0 +1,70 @@
+main#receipt-detail {
+    width: 80%;
+}
+
+main#receipt-detail section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 5px 5px 20px 2px rgb(64, 1, 77);
+}
+
+main#receipt-detail section h1 {
+    text-align: center;
+}
+
+#detail-table {
+    width: 500px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+#detail-table tr:nth-child(odd) {
+    background-color: rgb(235, 235 ,235);
+}
+
+#detail-table td {
+    padding: 5px;
+}
+
+#detail-table td:nth-child(1) {
+    text-align: right;
+}
+
+.buttons button#delete {
+    background-color: rgb(199, 41, 41);
+    color: white;
+}
+
+.images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.images img {
+    width: 40%;
+    margin: 15px;
+    box-shadow: 5px 5px 20px 2px rgb(206, 205, 205);
+}
+
+@media all and (max-width: 650px) {
+    #detail-table {
+        width: 90%;
+    }
+
+    .images {
+        flex-direction: column;
+    }
+
+    .images img {
+        width: 100%;
+    }
+}
