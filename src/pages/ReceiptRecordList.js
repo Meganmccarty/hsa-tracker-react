@@ -80,7 +80,7 @@ function ReceiptRecordList() {
                             <td>{receipt.provider}</td>
                             <td>{receipt.description}</td>
                             <td>{receipt.qualified_exp}</td>
-                            <td>{parseFloat(receipt.amount).toFixed(2)}</td>
+                            <td>${parseFloat(receipt.amount).toFixed(2)}</td>
                             <td>{receipt.payment_method}</td>
                             <td>{receipt.reimbursed}</td>
                         </tr>

@@ -142,7 +142,7 @@ function ReceiptRecordDetail() {
                                 </tr>
                                 <tr>
                                     <td>Amount</td>
-                                    <td>{parseFloat(receipt.amount).toFixed(2)}</td>
+                                    <td>${parseFloat(receipt.amount).toFixed(2)}</td>
                                 </tr>
                                 <tr>
                                     <td>Payment Method</td>
