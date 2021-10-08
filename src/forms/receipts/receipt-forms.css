@@ -86,7 +86,7 @@ main#new-receipt, main#edit-receipt {
     width: 100%;
 }
 
-#cancel, .images .image-card .delete {
+.images .image-card .delete {
     background-color: rgb(199, 41, 41);
     color: white;
 }
