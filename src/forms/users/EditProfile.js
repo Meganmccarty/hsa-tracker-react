@@ -88,7 +88,7 @@ function EditProfile() {
                         required={true}
                     />
                     <input type="submit" aria-label="Submit button" />
-                    <Link to="/profile" className="cancel">Cancel</Link>
+                    <Link className="red button" to="/profile">Cancel</Link>
                 </form>
             </section>
         </main>

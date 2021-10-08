@@ -99,8 +99,8 @@ function ReceiptRecordDetail() {
                         <h3>This action cannot be undone!</h3>
 
                         <div className="buttons">
-                            <button id="cancel" onClick={() => setShowModal(false)}>Cancel</button>
-                            <button className="delete" onClick={handleDelete}>Delete</button>
+                            <button className="blue" onClick={() => setShowModal(false)}>Cancel</button>
+                            <button className="red" onClick={handleDelete}>Delete</button>
                         </div>
                     </div>
                 </section>
@@ -109,7 +109,7 @@ function ReceiptRecordDetail() {
             {showLightbox.show ?
                 <section className="modal">
                     <img src={showLightbox.image} alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`} />
-                    <button id="close" onClick={() => setShowLightbox({ show: false, image: "" })}>Close</button>
+                    <button className="white" onClick={() => setShowLightbox({ show: false, image: "" })}>Close</button>
                 </section>
                 : null
             }
@@ -171,8 +171,8 @@ function ReceiptRecordDetail() {
                             </tbody>
                         </table>
                         <div className="buttons">
-                            <button id="edit"><Link to={`/receipt-records/${id}/edit`}>Edit</Link></button>
-                            <button className="delete" onClick={() => setShowModal(true)}>Delete</button>
+                            <Link className="blue button" to={`/receipt-records/${id}/edit`}>Edit</Link>
+                            <button className="red" onClick={() => setShowModal(true)}>Delete</button>
                         </div>
                         {receipt.receipt_images ? <h2>Receipt Record Images</h2> : <h2>No Images</h2>}
                         <div className="images">

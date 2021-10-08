@@ -97,7 +97,7 @@ function ReceiptRecordList() {
         if (receipts) {
             const years = Array.from(new Set(receipts.map(receipt => receipt.trans_date.slice(0, 4))))
             return years.map(year => {
-                return <button key={year} onClick={() => handleYear(year)}>{year}</button>
+                return <button key={year} className="blue" onClick={() => handleYear(year)}>{year}</button>
             })
         }
     }
@@ -208,7 +208,7 @@ function ReceiptRecordList() {
                         </div>
 
                         <div className="buttons">
-                            <button onClick={() => handleYear("All")}>All</button>
+                            <button className="blue" onClick={() => handleYear("All")}>All</button>
                             {getYearButtons()}
                         </div>
 

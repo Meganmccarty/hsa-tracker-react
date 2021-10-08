@@ -34,8 +34,8 @@ function Profile() {
                     <span>********</span>
                 </div>
                 <div className="buttons">
-                    <button><Link to={`/profile/${user.id}/edit`}>Edit Profile</Link></button>
-                    <button><Link to={`/profile/${user.id}/change-password`}>Change Password</Link></button>
+                    <Link className="blue button" to={`/profile/${user.id}/edit`}>Edit Profile</Link>
+                    <Link className="blue button" to={`/profile/${user.id}/change-password`}>Change Password</Link>
                 </div>
             </section>
         </main>

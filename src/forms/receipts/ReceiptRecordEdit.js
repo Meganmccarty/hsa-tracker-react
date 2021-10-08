@@ -56,7 +56,7 @@ function ReceiptRecordEdit() {
                 return (
                     <div className="image-card" key={image.url}>
                         <img src={image.url} alt="receipt" width="25%" />
-                        <button className="delete" onClick={(e) => handleDelete(e, image.id)}>Delete</button>
+                        <button className="red" onClick={(e) => handleDelete(e, image.id)}>Delete</button>
                     </div>
                 )
             })
@@ -268,7 +268,7 @@ function ReceiptRecordEdit() {
                         </div>
                         <div className="buttons">
                             <input type="submit" aria-label="Submit button" />
-                            <button id="cancel"><Link to={`/receipt-records/${id}`}>Cancel</Link></button>
+                            <Link className="blue button" to={`/receipt-records/${id}`}>Cancel</Link>
                         </div>
                     </form>
                 </section>
