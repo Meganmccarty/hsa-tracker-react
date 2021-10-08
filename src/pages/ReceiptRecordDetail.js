@@ -17,6 +17,10 @@ function ReceiptRecordDetail() {
     const message = useSelector(state => state.receipts.message);
 
     const [showModal, setShowModal] = useState(false);
+    const [showLightbox, setShowLightbox] = useState({
+        show: false,
+        image: ""
+    });
 
     useEffect(() => {
         fetch(`/receipt-records/${id}`, {
@@ -69,7 +73,12 @@ function ReceiptRecordDetail() {
         if (receipt && receipt.receipt_images) {
             return receipt.receipt_images.map(image => {
                 return (
-                    <img key={image.url} src={image.url} alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`} />
+                    <img
+                        key={image.url}
+                        src={image.url}
+                        alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`}
+                        onClick={() => setShowLightbox({show: true, image: image.url })}
+                    />
                 )
             })
         }
@@ -78,7 +87,7 @@ function ReceiptRecordDetail() {
     return (
         <main id="receipt-detail">
             {showModal ?
-                <section id="modal">
+                <section className="modal">
                     <div id="content">
                         <h2>Are you sure you want to delete this receipt record?</h2>
                         <h3>This action cannot be undone!</h3>
@@ -88,6 +97,13 @@ function ReceiptRecordDetail() {
                             <button className="delete" onClick={handleDelete}>Delete</button>
                         </div>
                     </div>
+                </section>
+                : null
+            }
+            {showLightbox.show ?
+                <section className="modal">
+                    <img src={showLightbox.image} alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`} />
+                    <button id="close" onClick={() => setShowLightbox({ show: false, image: "" })}>Close</button>
                 </section>
                 : null
             }

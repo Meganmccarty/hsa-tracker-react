@@ -55,8 +55,9 @@ main#receipt-detail section h1 {
     box-shadow: 5px 5px 20px 2px rgb(206, 205, 205);
 }
 
-main#receipt-detail section#modal {
+main#receipt-detail section.modal {
     position: fixed;
+    width: 100%;
     left: 0;
     top: 0;
     right: 0;
@@ -68,11 +69,25 @@ main#receipt-detail section#modal {
     justify-content: center;
 }
 
-main#receipt-detail section#modal div#content {
+main#receipt-detail section.modal div#content {
     background-color: white;
     padding: 15px;
     border-radius: 15px;
     box-shadow: 5px 5px 20px 2px rgb(107, 107, 107);
+}
+
+main#receipt-detail section.modal > img {
+    width: 80%;
+    box-shadow: 5px 5px 20px 2px rgb(107, 107, 107);
+    margin-bottom: 15px;
+}
+
+main#receipt-detail section.modal > button#close {
+    background: white;
+    color: black;
+    font-size: 16px;
+    border: none;
+    padding: 16px;
 }
 
 .buttons button#cancel {
