@@ -14,6 +14,7 @@ function ReceiptRecordDetail() {
     const dispatch = useDispatch();
     const loading = useSelector(state => state.receipts.loading);
     const receipt = useSelector(state => state.receipts.receipt);
+    const message = useSelector(state => state.receipts.message);
 
     const [showModal, setShowModal] = useState(false);
 
@@ -94,6 +95,7 @@ function ReceiptRecordDetail() {
                 receipt ?
                     <section>
                         <h1>Receipt Record for {receipt.provider} on {receipt.trans_date}</h1>
+                        {message ? <><div id="message">{message}</div><br /></> : null}
                         <table id="detail-table">
                             <tbody>
                                 <tr>
