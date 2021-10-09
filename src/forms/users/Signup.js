@@ -3,8 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
-import '../user-forms.css';
-import './Signup.css';
+import styles from '../auth-forms.module.css';
 
 function Signup() {
     const history = useHistory();
@@ -62,55 +61,53 @@ function Signup() {
     }, [dispatch])
 
     return (
-        <main>
-            <section className="user-form" id="signup">
-                <h1>Sign Up</h1>
-                {errors.length > 0 ? <div id="errors">{errors}</div> : null}
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="first_name"
-                        aria-label="First name"
-                        onChange={handleFormChange}
-                        placeholder="First name"
-                        required={true}
-                    />
-                    <input
-                        type="text"
-                        name="last_name"
-                        aria-label="Last name"
-                        onChange={handleFormChange}
-                        placeholder="Last name"
-                        required={true}
-                    />
-                    <input
-                        type="email"
-                        name="email"
-                        aria-label="Email address"
-                        onChange={handleFormChange}
-                        placeholder="Email address"
-                        required={true}
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        aria-label="Password"
-                        onChange={handleFormChange}
-                        placeholder="Password"
-                        required={true}
-                    />
-                    <input
-                        type="password"
-                        name="password_confirmation"
-                        aria-label="Confirm password"
-                        onChange={handleFormChange}
-                        placeholder="Confirm password"
-                        required={true}
-                    />
-                    <input type="submit" aria-label="Submit button" />
-                </form>
-            </section>
-        </main>
+        <section className={styles.authForm}>
+            <h1>Sign Up</h1>
+            {errors.length > 0 ? <div className={styles.errors}>{errors}</div> : null}
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="first_name"
+                    aria-label="First name"
+                    onChange={handleFormChange}
+                    placeholder="First name"
+                    required={true}
+                />
+                <input
+                    type="text"
+                    name="last_name"
+                    aria-label="Last name"
+                    onChange={handleFormChange}
+                    placeholder="Last name"
+                    required={true}
+                />
+                <input
+                    type="email"
+                    name="email"
+                    aria-label="Email address"
+                    onChange={handleFormChange}
+                    placeholder="Email address"
+                    required={true}
+                />
+                <input
+                    type="password"
+                    name="password"
+                    aria-label="Password"
+                    onChange={handleFormChange}
+                    placeholder="Password"
+                    required={true}
+                />
+                <input
+                    type="password"
+                    name="password_confirmation"
+                    aria-label="Confirm password"
+                    onChange={handleFormChange}
+                    placeholder="Confirm password"
+                    required={true}
+                />
+                <input type="submit" aria-label="Submit button" />
+            </form>
+        </section>
     );
 };
 
