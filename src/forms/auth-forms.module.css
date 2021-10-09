@@ -10,7 +10,7 @@
     box-shadow: 5px 5px 20px 2px rgb(64, 1, 77);
 }
 
-.authForm h1 {
+.authForm h1, .authForm p {
     color: black;
     margin: 5px;
     padding: 10px;
