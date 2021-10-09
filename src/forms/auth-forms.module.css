@@ -73,6 +73,10 @@
     text-decoration: none;
 }
 
+.authForm form .cancel:hover {
+    background-color: rgb(161, 41, 41);
+}
+
 @media all and (max-width: 400px) {
     .authForm {
         width: 200px;
