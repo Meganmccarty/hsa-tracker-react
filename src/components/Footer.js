@@ -1,8 +1,8 @@
-import './Footer.css';
+import styles from './Footer.module.css';
 
 function Footer() {
     return (
-        <footer>Website created by Megan McCarty</footer>
+        <footer className={styles.footer}>Website created by Megan McCarty</footer>
     );
 };
 
