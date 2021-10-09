@@ -1,8 +1,8 @@
 import loadingGIF from '../loading.gif';
-import './Loading.css'
+import styles from './Loading.module.css'
 
 function Loading() {
-    return <img src={loadingGIF} alt="Loading..." id="loading"/>
+    return <img src={loadingGIF} alt="Loading..." className={styles.loading}/>
 };
 
 export default Loading;
