@@ -58,6 +58,10 @@
     width: 81.5%;
 }
 
+.authForm form input[type="submit"]:hover {
+    background-color: rgb(30, 104, 156);
+}
+
 .authForm form .cancel {
     background-color: rgb(199, 41, 41);
     text-align: center;
