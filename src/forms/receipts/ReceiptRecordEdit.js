@@ -3,7 +3,7 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { receiptActions } from '../../store/receiptSlice';
 
-import './receipt-forms.css';
+import styles from './receipt-forms.module.css';
 
 function ReceiptRecordEdit() {
     const id = parseInt(useParams().id);
@@ -54,9 +54,9 @@ function ReceiptRecordEdit() {
         if (receipt && receipt.receipt_images) {
             return receipt.receipt_images.map(image => {
                 return (
-                    <div className="image-card" key={image.url}>
-                        <img src={image.url} alt="receipt" width="25%" />
-                        <button className="red" onClick={(e) => handleDelete(e, image.id)}>Delete</button>
+                    <div className={styles.imageCard} key={image.url}>
+                        <img src={image.url} alt="receipt" />
+                        <button className={styles.red} onClick={(e) => handleDelete(e, image.id)}>Delete</button>
                     </div>
                 )
             })
@@ -123,158 +123,155 @@ function ReceiptRecordEdit() {
     }
 
     return (
-        <main id="edit-receipt">
-            {receipt && formData ?
-                <section className="receipt-form">
-                    <h1>Edit Receipt Record for {receipt.provider} on {receipt.trans_date}</h1>
-                    <form onSubmit={handleSubmit}>
-                        <div className="fields">
-                            <div className="label-and-input">
-                                <label htmlFor="trans_date">Transaction date</label>
-                                <input
-                                    type="date"
-                                    name="trans_date"
-                                    id="trans_date"
-                                    onChange={handleFormChange}
-                                    value={formData.trans_date}
-                                    required={true}
-                                />
-                            </div>
-                            <div className="label-and-input">
-                                <label htmlFor="category">Category</label>
-                                <input
-                                    type="text"
-                                    name="category"
-                                    id="category"
-                                    onChange={handleFormChange}
-                                    value={formData.category}
-                                />
-                            </div>
-                            <div className="label-and-input">
-                                <label htmlFor="provider">Provider</label>
-                                <input
-                                    type="text"
-                                    name="provider"
-                                    id="provider"
-                                    onChange={handleFormChange}
-                                    value={formData.provider}
-                                    required={true}
-                                />
-                            </div>
-                            <div className="label-and-input">
-                                <label htmlFor="description">Description</label>
-                                <input
-                                    type="text"
-                                    name="description"
-                                    id="description"
-                                    onChange={handleFormChange}
-                                    value={formData.description}
-                                />
-                            </div>
-                            <div className="label-and-input">
-                                <label htmlFor="qualified_exp">Qualified Expense?</label>
-                                <select
-                                    name="qualified_exp"
-                                    id="qualified_exp"
-                                    onChange={handleFormChange}
-                                    value={formData.qualified_exp}
-                                >
-                                    <option>Yes</option>
-                                    <option>No</option>
-                                </select>
-                            </div>
-                            <div className="label-and-input">
-                                <label htmlFor="amount">Amount</label>
-                                <input
-                                    type="text"
-                                    name="amount"
-                                    id="amount"
-                                    onChange={handleFormChange}
-                                    value={parseFloat(formData.amount).toFixed(2)}
-                                    required={true}
-                                />
-                            </div>
-                            <div className="label-and-input">
-                                <label htmlFor="payment_method">Payment Method</label>
-                                <select
-                                    name="payment_method"
-                                    id="payment_method"
-                                    onChange={handleFormChange}
-                                    value={formData.payment_method}
-                                >
-                                    <option>Cash</option>
-                                    <option>Check</option>
-                                    <option>Debit Card</option>
-                                    <option>Credit Card</option>
-                                    <option>Electronic Bank Transfer</option>
-                                    <option>HSA Debit Card</option>
-                                </select>
-                            </div>
-                            {formData.qualified_exp === "Yes" ?
-                                <>
-                                    <div className="label-and-input">
-                                        <label htmlFor="reimbursed">Reimbursed?</label>
-                                        <select
-                                            name="reimbursed"
-                                            id="reimbursed"
-                                            onChange={handleFormChange}
-                                            value={formData.reimbursed}
-                                            required={true}
-                                        >
-                                            <option></option>
-                                            <option>Yes</option>
-                                            <option>No</option>
-                                            <option>N/A</option>
-                                        </select>
-                                    </div>
-                                    {formData.reimbursed === "Yes" ?
-                                        <div className="label-and-input">
-                                            <label htmlFor="reimbursed_date">Reimbursed date</label>
-                                            <input
-                                                type="date"
-                                                name="reimbursed_date"
-                                                id="reimbursed_date"
-                                                onChange={handleFormChange}
-                                                value={formData.reimbursed_date}
-                                                required={true}
-                                            />
-                                        </div>
-                                        : null
-                                    }
-                                </>
-                                : null
-                            }
-                            <div className="label-and-input">
-                                <label htmlFor="notes">Notes</label>
-                                <input
-                                    type="text"
-                                    name="notes"
-                                    id="notes"
-                                    onChange={handleFormChange}
-                                    value={formData.notes}
-                                />
-                            </div>
+        receipt && formData ?
+            <section className={styles.receiptForm}>
+                <h1>Edit Receipt Record for {receipt.provider} on {receipt.trans_date}</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className={styles.fields}>
+                        <div className={styles.labelAndInput}>
+                            <label htmlFor="trans_date">Transaction date</label>
                             <input
-                                type="file"
-                                name="receipt_images"
-                                aria-label="Upload receipt images"
-                                accept="image/*"
-                                multiple={true}
-                                onChange={handleImageChange}
+                                type="date"
+                                name="trans_date"
+                                id="trans_date"
+                                onChange={handleFormChange}
+                                value={formData.trans_date}
+                                required={true}
                             />
                         </div>
-                        <div className="images">
-                            {displayReceiptImages()}
+                        <div className={styles.labelAndInput}>
+                            <label htmlFor="category">Category</label>
+                            <input
+                                type="text"
+                                name="category"
+                                id="category"
+                                onChange={handleFormChange}
+                                value={formData.category}
+                            />
                         </div>
-                        <div className="buttons">
-                            <input type="submit" aria-label="Submit button" />
-                            <Link className="blue button" to={`/receipt-records/${id}`}>Cancel</Link>
+                        <div className={styles.labelAndInput}>
+                            <label htmlFor="provider">Provider</label>
+                            <input
+                                type="text"
+                                name="provider"
+                                id="provider"
+                                onChange={handleFormChange}
+                                value={formData.provider}
+                                required={true}
+                            />
                         </div>
-                    </form>
-                </section>
-                : null
-            }
-        </main>
+                        <div className={styles.labelAndInput}>
+                            <label htmlFor="description">Description</label>
+                            <input
+                                type="text"
+                                name="description"
+                                id="description"
+                                onChange={handleFormChange}
+                                value={formData.description}
+                            />
+                        </div>
+                        <div className={styles.labelAndInput}>
+                            <label htmlFor="qualified_exp">Qualified Expense?</label>
+                            <select
+                                name="qualified_exp"
+                                id="qualified_exp"
+                                onChange={handleFormChange}
+                                value={formData.qualified_exp}
+                            >
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <div className={styles.labelAndInput}>
+                            <label htmlFor="amount">Amount</label>
+                            <input
+                                type="text"
+                                name="amount"
+                                id="amount"
+                                onChange={handleFormChange}
+                                value={parseFloat(formData.amount).toFixed(2)}
+                                required={true}
+                            />
+                        </div>
+                        <div className={styles.labelAndInput}>
+                            <label htmlFor="payment_method">Payment Method</label>
+                            <select
+                                name="payment_method"
+                                id="payment_method"
+                                onChange={handleFormChange}
+                                value={formData.payment_method}
+                            >
+                                <option>Cash</option>
+                                <option>Check</option>
+                                <option>Debit Card</option>
+                                <option>Credit Card</option>
+                                <option>Electronic Bank Transfer</option>
+                                <option>HSA Debit Card</option>
+                            </select>
+                        </div>
+                        {formData.qualified_exp === "Yes" ?
+                            <>
+                                <div className={styles.labelAndInput}>
+                                    <label htmlFor="reimbursed">Reimbursed?</label>
+                                    <select
+                                        name="reimbursed"
+                                        id="reimbursed"
+                                        onChange={handleFormChange}
+                                        value={formData.reimbursed}
+                                        required={true}
+                                    >
+                                        <option></option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                        <option>N/A</option>
+                                    </select>
+                                </div>
+                                {formData.reimbursed === "Yes" ?
+                                    <div className={styles.labelAndInput}>
+                                        <label htmlFor="reimbursed_date">Reimbursed date</label>
+                                        <input
+                                            type="date"
+                                            name="reimbursed_date"
+                                            id="reimbursed_date"
+                                            onChange={handleFormChange}
+                                            value={formData.reimbursed_date}
+                                            required={true}
+                                        />
+                                    </div>
+                                    : null
+                                }
+                            </>
+                            : null
+                        }
+                        <div className={styles.labelAndInput}>
+                            <label htmlFor="notes">Notes</label>
+                            <input
+                                type="text"
+                                name="notes"
+                                id="notes"
+                                onChange={handleFormChange}
+                                value={formData.notes}
+                            />
+                        </div>
+                        <input
+                            type="file"
+                            name="receipt_images"
+                            aria-label="Upload receipt images"
+                            accept="image/*"
+                            multiple={true}
+                            onChange={handleImageChange}
+                        />
+                    </div>
+                    <div className={styles.images}>
+                        {displayReceiptImages()}
+                    </div>
+                    <div className={styles.buttons}>
+                        <input type="submit" aria-label="Submit button" />
+                        <Link className={styles.red} to={`/receipt-records/${id}`}>Cancel</Link>
+                    </div>
+                </form>
+            </section>
+            : null
     );
 };
 
