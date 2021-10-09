@@ -3,7 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
-import '../user-forms.css';
+import styles from '../auth-forms.module.css';
 
 function EditProfile() {
     const history = useHistory();
@@ -55,43 +55,41 @@ function EditProfile() {
     }, [dispatch])
 
     return (
-        <main>
-            <section className="user-form" id="edit-profile">
-                <h1>Edit Profile</h1>
-                {errors.length > 0 ? <div id="errors">{errors}</div> : null}
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="first_name"
-                        aria-label="First name"
-                        onChange={handleProfileChange}
-                        value={profileForm.first_name}
-                        placeholder="First name"
-                        required={true}
-                    />
-                    <input
-                        type="text"
-                        name="last_name"
-                        aria-label="Last name"
-                        onChange={handleProfileChange}
-                        value={profileForm.last_name}
-                        placeholder="Last name"
-                        required={true}
-                    />
-                    <input
-                        type="email"
-                        name="email"
-                        aria-label="Email address"
-                        onChange={handleProfileChange}
-                        value={profileForm.email}
-                        placeholder="Email address"
-                        required={true}
-                    />
-                    <input type="submit" aria-label="Submit button" />
-                    <Link className="red button" to="/profile">Cancel</Link>
-                </form>
-            </section>
-        </main>
+        <section className={styles.authForm}>
+            <h1>Edit Profile</h1>
+            {errors.length > 0 ? <div className={styles.errors}>{errors}</div> : null}
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="first_name"
+                    aria-label="First name"
+                    onChange={handleProfileChange}
+                    value={profileForm.first_name}
+                    placeholder="First name"
+                    required={true}
+                />
+                <input
+                    type="text"
+                    name="last_name"
+                    aria-label="Last name"
+                    onChange={handleProfileChange}
+                    value={profileForm.last_name}
+                    placeholder="Last name"
+                    required={true}
+                />
+                <input
+                    type="email"
+                    name="email"
+                    aria-label="Email address"
+                    onChange={handleProfileChange}
+                    value={profileForm.email}
+                    placeholder="Email address"
+                    required={true}
+                />
+                <input type="submit" aria-label="Submit button" />
+                <Link className={styles.cancel} to="/profile">Cancel</Link>
+            </form>
+        </section>
     );
 };
 
