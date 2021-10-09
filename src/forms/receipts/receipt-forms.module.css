@@ -90,6 +90,13 @@
     width: 100%;
 }
 
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Color actual buttons for different browsers */
 /* Courtesy of Stokely: https://stackoverflow.com/a/65865799/11860889 */
 
