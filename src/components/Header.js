@@ -2,7 +2,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../store/userSlice';
 import { receiptActions } from '../store/receiptSlice';
-import './Header.css';
+
+import styles from './Header.module.css';
 
 function Header() {
     const history = useHistory();
@@ -23,19 +24,19 @@ function Header() {
             })
     };
 
-    function toggleNavBar(e) {
-        const nav = document.querySelector(".navbar");
-        if (nav.className === "navbar") {
-            nav.classList.add("responsive")
+    function toggleNavBar() {
+        const nav = document.querySelector("nav");
+        if (nav.className === styles.navbar) {
+            nav.classList.add(styles.responsive)
         } else {
-            nav.className = "navbar"
+            nav.className = styles.navbar
         }
     }
 
     return (
-        <nav className="navbar">
-            <Link className="home" to="/">HSA Tracker</Link>
-            <div className="main-links">
+        <nav className={styles.navbar}>
+            <Link className={styles.home} to="/">HSA Tracker</Link>
+            <div className={styles.mainLinks}>
                 {user ?
                     <>
                         <Link to="/receipt-records">My Receipt Records</Link>
@@ -50,7 +51,7 @@ function Header() {
                     </>
                 }
             </div>
-            <Link to="#" className="icon" aria-label="Open the menu" onClick={toggleNavBar}>
+            <Link to="#" className={styles.icon} aria-label="Open the menu" onClick={toggleNavBar}>
                 <i className="fa fa-bars" aria-hidden={true}></i>
             </Link>
         </nav>
