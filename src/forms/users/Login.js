@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
-import '../user-forms.css';
+import styles from '../auth-forms.module.css';
 
 function Login() {
     const dispatch = useDispatch();
@@ -60,31 +60,29 @@ function Login() {
     }, [dispatch]);
 
     return (
-        <main>
-            <section className="user-form" id="login">
-                <h1>Login</h1>
-                {message ? <div id="message">{message}</div> : null}
-                {errors.length > 0 ? <div id="errors">{errors}</div> : null}
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="email"
-                        name="email"
-                        aria-label="Email address"
-                        onChange={handleFormChange}
-                        placeholder="Email address"
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        aria-label="Password"
-                        onChange={handleFormChange}
-                        placeholder="Password"
-                    />
-                    <input type="submit" aria-label="Submit button" />
-                </form>
-                <Link to="/forgot-password">Forgot Password</Link>
-            </section>
-        </main>
+        <section className={styles.authForm}>
+            <h1>Login</h1>
+            {message ? <div className={styles.message}>{message}</div> : null}
+            {errors.length > 0 ? <div className={styles.errors}>{errors}</div> : null}
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="email"
+                    name="email"
+                    aria-label="Email address"
+                    onChange={handleFormChange}
+                    placeholder="Email address"
+                />
+                <input
+                    type="password"
+                    name="password"
+                    aria-label="Password"
+                    onChange={handleFormChange}
+                    placeholder="Password"
+                />
+                <input type="submit" aria-label="Submit button" />
+            </form>
+            <Link to="/forgot-password">Forgot Password</Link>
+        </section>
     );
 };
 
