@@ -50,10 +50,12 @@
 }
 
 .receiptForm form input[type="date"] {
+    font-family: 'Work Sans', sans-serif;
     min-width: 150px;
 }
 
 .receiptForm form input[type="submit"] {
+    font-family: 'Work Sans', sans-serif;
     background: rgb(51, 134, 193);
     color: white;
     font-size: 16px;
