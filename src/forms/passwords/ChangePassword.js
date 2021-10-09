@@ -3,7 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
-import '../user-forms.css';
+import styles from '../auth-forms.module.css';
 
 function ChangePassword() {
     const history = useHistory();
@@ -55,43 +55,41 @@ function ChangePassword() {
     }, [dispatch])
 
     return (
-        <main>
-            <section className="user-form" id="change-password">
-                <h1>Change Password</h1>
-                {errors.length > 0 ? <div id="errors">{errors}</div> : null}
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="password"
-                        name="old_password"
-                        aria-label="Old password"
-                        onChange={handlePasswordChange}
-                        value={passwordForm.old_password}
-                        placeholder="Old password"
-                        required={true}
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        aria-label="New password"
-                        onChange={handlePasswordChange}
-                        value={passwordForm.password}
-                        placeholder="New password"
-                        required={true}
-                    />
-                    <input
-                        type="password"
-                        name="password_confirmation"
-                        aria-label="Confirm new password"
-                        onChange={handlePasswordChange}
-                        value={passwordForm.password_confirmation}
-                        placeholder="Confirm new password"
-                        required={true}
-                    />
-                    <input type="submit" aria-label="Submit button" />
-                    <Link to="/profile" className="cancel">Cancel</Link>
-                </form>
-            </section>
-        </main>
+        <section className={styles.authForm}>
+            <h1>Change Password</h1>
+            {errors.length > 0 ? <div className={styles.errors}>{errors}</div> : null}
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="password"
+                    name="old_password"
+                    aria-label="Old password"
+                    onChange={handlePasswordChange}
+                    value={passwordForm.old_password}
+                    placeholder="Old password"
+                    required={true}
+                />
+                <input
+                    type="password"
+                    name="password"
+                    aria-label="New password"
+                    onChange={handlePasswordChange}
+                    value={passwordForm.password}
+                    placeholder="New password"
+                    required={true}
+                />
+                <input
+                    type="password"
+                    name="password_confirmation"
+                    aria-label="Confirm new password"
+                    onChange={handlePasswordChange}
+                    value={passwordForm.password_confirmation}
+                    placeholder="Confirm new password"
+                    required={true}
+                />
+                <input type="submit" aria-label="Submit button" />
+                <Link className={styles.cancel} to="/profile">Cancel</Link>
+            </form>
+        </section>
     );
 };
 
