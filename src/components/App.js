@@ -20,7 +20,7 @@ import Footer from './Footer';
 
 import Loading from './Loading';
 
-import styles from './App.css'
+import styles from './App.module.css';
 
 function App() {
     const dispatch = useDispatch();
