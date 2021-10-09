@@ -20,7 +20,7 @@ import Footer from './Footer';
 
 import Loading from './Loading';
 
-import './App.css'
+import styles from './App.css'
 
 function App() {
     const dispatch = useDispatch();
@@ -50,7 +50,7 @@ function App() {
     return (
         <Router>
             <Header />
-            <div id="main-container">
+            <main className={styles.mainContainer}>
                 <Switch>
                     <Route exact path="/"><Home /></Route>
                     <Route exact path="/login">
@@ -87,7 +87,7 @@ function App() {
                         {loading ? <Loading /> : !user ? <Redirect to="/login" /> : <ReceiptRecordList />}
                     </Route>
                 </Switch>
-            </div>
+            </main>
             <Footer />
         </Router>
     );
