@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { receiptActions } from '../../store/receiptSlice';
 
-import './receipt-forms.css';
+import styles from './receipt-forms.module.css';
 
 function ReceiptRecordForm() {
     const dispatch = useDispatch();
@@ -81,131 +81,129 @@ function ReceiptRecordForm() {
     }
 
     return (
-        <main id="new-receipt">
-            <section className="receipt-form">
-                <h1>New Receipt</h1>
-                <form onSubmit={handleSubmit}>
-                    <div className="fields">
-                        <div className="label-and-input">
-                            <label htmlFor="trans_date">Transaction date</label>
-                            <input
-                                type="date"
-                                name="trans_date"
-                                id="trans_date"
-                                onChange={handleFormChange}
-                                required={true}
-                            />
-                        </div>
-                        <div className="label-and-input">
-                            <label htmlFor="category">Category</label>
-                            <input
-                                type="text"
-                                name="category"
-                                id="category"
-                                onChange={handleFormChange}
-                            />
-                        </div>
-                        <div className="label-and-input">
-                            <label htmlFor="provider">Provider</label>
-                            <input
-                                type="text"
-                                name="provider"
-                                id="provider"
-                                onChange={handleFormChange}
-                                required={true}
-                            />
-                        </div>
-                        <div className="label-and-input">
-                            <label htmlFor="description">Description</label>
-                            <input
-                                type="text"
-                                name="description"
-                                id="description"
-                                onChange={handleFormChange}
-                            />
-                        </div>
-                        <div className="label-and-input">
-                            <label htmlFor="qualified_exp">Qualified Expense?</label>
-                            <select name="qualified_exp" id="qualified_exp" onChange={handleFormChange} required={true}>
-                                <option></option>
-                                <option>Yes</option>
-                                <option>No</option>
-                            </select>
-                        </div>
-                        <div className="label-and-input">
-                            <label htmlFor="amount">Amount</label>
-                            <input
-                                type="text"
-                                name="amount"
-                                id="amount"
-                                onChange={handleFormChange}
-                                required={true}
-                            />
-                        </div>
-                        <div className="label-and-input">
-                            <label htmlFor="payment_method">Payment Method</label>
-                            <select name="payment_method" id="payment_method" onChange={handleFormChange} required={true}>
-                                <option></option>
-                                <option>Cash</option>
-                                <option>Check</option>
-                                <option>Debit Card</option>
-                                <option>Credit Card</option>
-                                <option>Electronic Bank Transfer</option>
-                                <option>HSA Debit Card</option>
-                            </select>
-                        </div>
-                        {formData.qualified_exp === "Yes" ?
-                            <>
-                                <div className="label-and-input">
-                                    <label htmlFor="reimbursed">Reimbursed?</label>
-                                    <select name="reimbursed" id="reimbursed" onChange={handleFormChange} required={true}>
-                                        <option></option>
-                                        <option>Yes</option>
-                                        <option>No</option>
-                                        <option>N/A</option>
-                                    </select>
-                                </div>
-                                {formData.reimbursed === "Yes" ?
-                                    <div className="label-and-input">
-                                        <label htmlFor="reimbursed_date">Reimbursed date</label>
-                                        <input
-                                            type="date"
-                                            name="reimbursed_date"
-                                            id="reimbursed_date"
-                                            onChange={handleFormChange}
-                                            value={formData.reimbursed_date}
-                                            required={true}
-                                        />
-                                    </div>
-                                    : null
-                                }
-                            </>
-                            : null
-                        }
-                        <div className="label-and-input">
-                            <label htmlFor="notes">Notes</label>
-                            <input
-                                type="text"
-                                name="notes"
-                                id="notes"
-                                onChange={handleFormChange}
-                            />
-                        </div>
+        <section className={styles.receiptForm}>
+            <h1>New Receipt</h1>
+            <form onSubmit={handleSubmit}>
+                <div className={styles.fields}>
+                    <div className={styles.labelAndInput}>
+                        <label htmlFor="trans_date">Transaction date</label>
                         <input
-                            type="file"
-                            name="receipt_images"
-                            aria-label="Upload receipt images"
-                            accept="image/*"
-                            multiple={true}
-                            onChange={handleImageChange}
+                            type="date"
+                            name="trans_date"
+                            id="trans_date"
+                            onChange={handleFormChange}
+                            required={true}
                         />
                     </div>
-                    <div className="buttons">
-                        <input type="submit" aria-label="Submit button" />
+                    <div className={styles.labelAndInput}>
+                        <label htmlFor="category">Category</label>
+                        <input
+                            type="text"
+                            name="category"
+                            id="category"
+                            onChange={handleFormChange}
+                        />
                     </div>
-                </form>
-            </section>
-        </main>
+                    <div className={styles.labelAndInput}>
+                        <label htmlFor="provider">Provider</label>
+                        <input
+                            type="text"
+                            name="provider"
+                            id="provider"
+                            onChange={handleFormChange}
+                            required={true}
+                        />
+                    </div>
+                    <div className={styles.labelAndInput}>
+                        <label htmlFor="description">Description</label>
+                        <input
+                            type="text"
+                            name="description"
+                            id="description"
+                            onChange={handleFormChange}
+                        />
+                    </div>
+                    <div className={styles.labelAndInput}>
+                        <label htmlFor="qualified_exp">Qualified Expense?</label>
+                        <select name="qualified_exp" id="qualified_exp" onChange={handleFormChange} required={true}>
+                            <option></option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div className={styles.labelAndInput}>
+                        <label htmlFor="amount">Amount</label>
+                        <input
+                            type="text"
+                            name="amount"
+                            id="amount"
+                            onChange={handleFormChange}
+                            required={true}
+                        />
+                    </div>
+                    <div className={styles.labelAndInput}>
+                        <label htmlFor="payment_method">Payment Method</label>
+                        <select name="payment_method" id="payment_method" onChange={handleFormChange} required={true}>
+                            <option></option>
+                            <option>Cash</option>
+                            <option>Check</option>
+                            <option>Debit Card</option>
+                            <option>Credit Card</option>
+                            <option>Electronic Bank Transfer</option>
+                            <option>HSA Debit Card</option>
+                        </select>
+                    </div>
+                    {formData.qualified_exp === "Yes" ?
+                        <>
+                            <div className={styles.labelAndInput}>
+                                <label htmlFor="reimbursed">Reimbursed?</label>
+                                <select name="reimbursed" id="reimbursed" onChange={handleFormChange} required={true}>
+                                    <option></option>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                    <option>N/A</option>
+                                </select>
+                            </div>
+                            {formData.reimbursed === "Yes" ?
+                                <div className={styles.labelAndInput}>
+                                    <label htmlFor="reimbursed_date">Reimbursed date</label>
+                                    <input
+                                        type="date"
+                                        name="reimbursed_date"
+                                        id="reimbursed_date"
+                                        onChange={handleFormChange}
+                                        value={formData.reimbursed_date}
+                                        required={true}
+                                    />
+                                </div>
+                                : null
+                            }
+                        </>
+                        : null
+                    }
+                    <div className={styles.labelAndInput}>
+                        <label htmlFor="notes">Notes</label>
+                        <input
+                            type="text"
+                            name="notes"
+                            id="notes"
+                            onChange={handleFormChange}
+                        />
+                    </div>
+                    <input
+                        type="file"
+                        name="receipt_images"
+                        aria-label="Upload receipt images"
+                        accept="image/*"
+                        multiple={true}
+                        onChange={handleImageChange}
+                    />
+                </div>
+                <div className={styles.buttons}>
+                    <input type="submit" aria-label="Submit button" />
+                </div>
+            </form>
+        </section>
     );
 };
 
