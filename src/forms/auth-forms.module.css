@@ -1,4 +1,4 @@
-.user-form {
+.authForm {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,28 +10,28 @@
     box-shadow: 5px 5px 20px 2px rgb(64, 1, 77);
 }
 
-.user-form h1 {
+.authForm h1 {
     color: black;
     margin: 5px;
     padding: 10px;
     text-align: center;
 }
 
-.user-form #message {
+.message {
     padding: 10px;
     background-color: rgb(8, 175, 128);
     color: black;
     text-align: center;
 }
 
-.user-form #errors {
+.errors {
     padding: 10px;
     background-color: rgb(199, 41, 41);
     color: white;
     text-align: center;
 }
 
-.user-form form {
+.authForm form {
     margin: 5px;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@
     width: 100%;
 }
 
-.user-form form input {
+.authForm form input {
     margin: 10px;
     padding: 10px;
     width: 75%;
@@ -49,14 +49,14 @@
     background-color: rgb(235, 235, 235);
 }
 
-.user-form form input[type="submit"] {
+.authForm form input[type="submit"] {
     background-color: rgb(51, 134, 193);
     color: white;
     font-size: 16px;
     padding: 10px;
 }
 
-.user-form form .cancel {
+.authForm form .cancel {
     background-color: rgb(199, 41, 41);
     text-align: center;
     font-size: 16px;
@@ -68,7 +68,7 @@
 }
 
 @media all and (max-width: 400px) {
-    .user-form {
+    .authForm {
         width: 200px;
     }
 }
