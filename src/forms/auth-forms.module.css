@@ -50,6 +50,7 @@
 }
 
 .authForm form input[type="submit"] {
+    font-family: 'Work Sans', sans-serif;
     background-color: rgb(51, 134, 193);
     color: white;
     font-size: 16px;
