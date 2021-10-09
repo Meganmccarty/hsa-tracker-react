@@ -1,27 +1,23 @@
-main#new-receipt, main#edit-receipt {
-    width: 80%;
-}
-
-.receipt-form {
+.receiptForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: white;
     color: black;
-    width: 100%;
+    width: 80%;
     padding: 10px;
     box-shadow: 5px 5px 20px 2px rgb(64, 1, 77);
 }
 
-.receipt-form h1 {
+.receiptForm h1 {
     color: black;
     margin: 5px;
     padding: 10px;
     text-align: center;
 }
 
-.receipt-form form {
+.receiptForm form {
     margin: 5px;
     display: flex;
     flex-direction: row;
@@ -31,7 +27,7 @@ main#new-receipt, main#edit-receipt {
     width: 100%;
 }
 
-.receipt-form .fields {
+.fields {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -39,13 +35,13 @@ main#new-receipt, main#edit-receipt {
     justify-content: center;   
 }
 
-.fields .label-and-input {
+.labelAndInput {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.receipt-form form input {
+.receiptForm form input {
     margin: 5px;
     padding: 10px;
     border: none;
@@ -53,11 +49,17 @@ main#new-receipt, main#edit-receipt {
     background-color: rgb(235, 235, 235);
 }
 
-.receipt-form form input[type="date"] {
+.receiptForm form input[type="date"] {
     min-width: 150px;
 }
 
-.receipt-form form select {
+.receiptForm form input[type="submit"] {
+    background: rgb(51, 134, 193);
+    color: white;
+    font-size: 16px;
+}
+
+.receiptForm form select {
     margin: 10px;
     padding: 10px;
     font-size: 16px;
@@ -73,7 +75,7 @@ main#new-receipt, main#edit-receipt {
     justify-content: center;
 }
 
-.image-card {
+.imageCard {
     margin: 15px;
     width: 40%;
     display: flex;
@@ -82,14 +84,8 @@ main#new-receipt, main#edit-receipt {
     justify-content: center;
 }
 
-.images .image-card img {
+.imageCard img {
     width: 100%;
-}
-
-.receipt-form form input[type="submit"] {
-    background: rgb(51, 134, 193);
-    color: white;
-    font-size: 16px;
 }
 
 /* Color actual buttons for different browsers */
@@ -123,13 +119,13 @@ main#new-receipt, main#edit-receipt {
 }
 
 @media all and (max-width: 720px) {
-    .receipt-form form {
+    .receiptForm form {
         flex-direction: column;
     }
 }
 
 @media all and (max-width: 650px) {
-    .receipt-form form .label-and-input {
+    .labelAndInput {
         flex-direction: column;
     }
     
@@ -137,13 +133,13 @@ main#new-receipt, main#edit-receipt {
         flex-direction: column;
     }
 
-    .image-card {
+    .imageCard {
         width: 80%;
     }
 }
 
 @media all and (max-width: 470px) {
-    .receipt-form .label-and-input {
+    .labelAndInput {
         flex-direction: column;
         justify-content: center;
     }
