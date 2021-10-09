@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
 
-import '../user-forms.css';
+import styles from '../auth-forms.module.css';
 
 function PasswordReset() {
     const history = useHistory();
@@ -56,36 +56,37 @@ function PasswordReset() {
     }, [dispatch]);
 
     return (
-        <main>
-            <section className="user-form" id="password-reset">
-                <h1>Reset Password</h1>
-                {errors.length > 0 ? <div id="errors">{errors}</div> : null}
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="token"
-                        aria-label="Reset code"
-                        onChange={handlePasswordChange}
-                        placeholder="Reset code"
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        aria-label="New password"
-                        onChange={handlePasswordChange}
-                        placeholder="New password"
-                    />
-                    <input
-                        type="password"
-                        name="password_confirmation"
-                        aria-label="Confirm new password"
-                        onChange={handlePasswordChange}
-                        placeholder="Confirm new password"
-                    />
-                    <input type="submit" aria-label="Submit button" />
-                </form>
-            </section>
-        </main>
+        <section className={styles.authForm}>
+            <h1>Reset Password</h1>
+            {errors.length > 0 ? <div className={styles.errors}>{errors}</div> : null}
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="token"
+                    aria-label="Reset code"
+                    onChange={handlePasswordChange}
+                    placeholder="Reset code"
+                    required={true}
+                />
+                <input
+                    type="password"
+                    name="password"
+                    aria-label="New password"
+                    onChange={handlePasswordChange}
+                    placeholder="New password"
+                    required={true}
+                />
+                <input
+                    type="password"
+                    name="password_confirmation"
+                    aria-label="Confirm new password"
+                    onChange={handlePasswordChange}
+                    placeholder="Confirm new password"
+                    required={true}
+                />
+                <input type="submit" aria-label="Submit button" />
+            </form>
+        </section>
     );
 }
 export default PasswordReset;
