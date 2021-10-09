@@ -1,3 +1,5 @@
+/* Styling for navbar on wide screen (laptop, desktop, etc.) */
+
 .navbar {
     overflow: hidden;
     background-color: rgb(104, 2, 124);
@@ -25,34 +27,49 @@
     color: black;
 }
 
-.navbar a.icon {
+.navbar .icon {
     display: none;
 }
 
+/* Styling for mobile navbar */
+
 @media screen and (max-width: 650px) {
-    .main-links,
+
+    /* Styling for when mobile navbar is collapsed */
+
+    .mainLinks,
     .navbar button {
         display: none;
     }
 
-    .navbar a.icon {
+    .navbar .icon {
         display: block;
     }
 
-    .navbar.responsive {
+    /* Styling for when mobile navbar is expanded */
+
+    .responsive {
         flex-direction: column;
         align-items: flex-start;
         background-color:rgb(68, 2, 82);
     }
 
-    .navbar.responsive a.icon {
+    .responsive .icon {
         position: absolute;
         right: 0;
         top: 0;
     }
 
-    .navbar.responsive .main-links,
-    .navbar.responsive button {
+    .responsive > a:first-child {
+        width: 84%;
+    }
+
+    .responsive > a:last-child {
+        width: 3%;
+    }
+
+    .responsive .mainLinks,
+    .responsive button {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -60,25 +77,16 @@
         width: 100%;
     }
 
-    .navbar.responsive > a:first-child {
-        width: 84%;
-    }
-
-    .navbar.responsive > a:last-child {
-        width: 3%;
-    }
-
-    .navbar.responsive .main-links a,
-    .navbar.responsive button {
+    .responsive .mainLinks a {
         width: 100%;
     }
 
-    .navbar.responsive button {
+    .responsive button {
         background-color:rgb(68, 2, 82);
         text-align: left;
     }
 
-    .navbar.responsive button:hover {
+    .responsive button:hover {
         background-color: rgb(213, 176, 212);
         color: black;
     }
