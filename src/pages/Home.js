@@ -14,18 +14,18 @@ function Home() {
             <h2>The app for tracking your Health Savings Account receipts!</h2>
             <section className={styles.details}>
                 <img src={newReceipt} alt="New Receipt Form" />
-                <h3>Easily add a new receipt record and attach associated images!</h3>
+                <h3>Easily add a new receipt and attach associated images!</h3>
             </section>
             <section className={styles.details}>
-                <h3>See all of your receipt records in a sortable, searchable table. You can also filter the table by year!</h3>
+                <h3>See all of your receipts in a sortable, searchable table. You can also filter the table by year!</h3>
                 <img src={receiptTable} alt="Receipt Records Table" />
             </section>
             <section className={styles.details}>
                 <img src={receiptDetail} alt="Detailed Receipt Record" />
-                <h3>View the details of an individual receipt record, with options to edit or delete the record!</h3>
+                <h3>View the details of an individual receipt with edit and delete options!</h3>
             </section>
             <section className={styles.details}>
-                <h3>View your attached receipt images. You can add as many images as you'd like for each receipt record!</h3>
+                <h3>View your attached receipt images. You can add as many images as you'd like for each receipt!</h3>
                 <img src={receiptImage} alt="Receipt Image" />
             </section>
             <section className={styles.details}>

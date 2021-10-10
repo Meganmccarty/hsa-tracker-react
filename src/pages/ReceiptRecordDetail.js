@@ -118,7 +118,7 @@ function ReceiptRecordDetail() {
             {loading ? <Loading /> :
                 receipt ?
                     <section className={styles.receiptDetail}>
-                        <h1>Receipt Record for {receipt.provider} on {receipt.trans_date}</h1>
+                        <h1>Receipt for {receipt.provider} on {receipt.trans_date}</h1>
                         {message ? <><div className={styles.message}>{message}</div><br /></> : null}
                         <table>
                             <tbody>
@@ -176,7 +176,7 @@ function ReceiptRecordDetail() {
                             <Link className={styles.blue} to={`/receipt-records/${id}/edit`}>Edit</Link>
                             <button className={styles.red} onClick={() => setShowModal(true)}>Delete</button>
                         </div>
-                        {receipt.receipt_images ? <h2>Receipt Record Images</h2> : <h2>No Images</h2>}
+                        {receipt.receipt_images ? <h2>Receipt Images</h2> : <h2>No Images</h2>}
                         <div className={styles.images}>
                             {displayReceiptImages()}
                         </div>

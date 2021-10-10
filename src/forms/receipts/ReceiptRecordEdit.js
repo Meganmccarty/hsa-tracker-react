@@ -125,7 +125,7 @@ function ReceiptRecordEdit() {
     return (
         receipt && formData ?
             <section className={styles.receiptForm}>
-                <h1>Edit Receipt Record for {receipt.provider} on {receipt.trans_date}</h1>
+                <h1>Edit Receipt for {receipt.provider} on {receipt.trans_date}</h1>
                 <form onSubmit={handleSubmit}>
                     <div className={styles.fields}>
                         <div className={styles.labelAndInput}>

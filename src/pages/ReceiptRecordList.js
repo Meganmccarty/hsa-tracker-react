@@ -181,7 +181,7 @@ function ReceiptRecordList() {
 
     return (
         <section className={styles.receiptList}>
-            <h1>Receipt Records List</h1>
+            <h1>My Receipts</h1>
             {receiptMessage ? <><div className={styles.message}>{receiptMessage}</div><br /></> : null}
             {userMessage ? <><div className={styles.message}>{userMessage}</div><br /></> : null}
             {loading ?
@@ -209,6 +209,7 @@ function ReceiptRecordList() {
                         </div>
                     </div>
 
+                    <h3>Receipts</h3>
                     <div className={styles.buttons}>
                         <button className={cx(styles.blue, styles.blueActive)} onClick={(e) => handleYear(e, "All")}>All</button>
                         {getYearButtons()}

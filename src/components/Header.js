@@ -39,7 +39,7 @@ function Header() {
             <div className={styles.mainLinks}>
                 {user ?
                     <>
-                        <Link to="/receipt-records">My Receipt Records</Link>
+                        <Link to="/receipt-records">My Receipts</Link>
                         <Link to="/receipt-records/new">Add Receipt</Link>
                         <Link to="/profile">Profile</Link>
                         <button onClick={handleLogout}>Log Out</button>
