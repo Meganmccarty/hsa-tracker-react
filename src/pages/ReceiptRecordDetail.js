@@ -5,7 +5,7 @@ import { receiptActions } from '../store/receiptSlice';
 
 import Loading from '../components/Loading';
 
-import './ReceiptRecordDetail.css';
+import styles from './ReceiptRecordDetail.module.css';
 
 function ReceiptRecordDetail() {
     const id = parseInt(useParams().id);
@@ -91,34 +91,34 @@ function ReceiptRecordDetail() {
     }, [dispatch]);
 
     return (
-        <main id="receipt-detail">
+        <>
             {showModal ?
-                <section className="modal">
-                    <div id="content">
+                <section className={styles.modal}>
+                    <div className={styles.content}>
                         <h2>Are you sure you want to delete this receipt record?</h2>
                         <h3>This action cannot be undone!</h3>
 
-                        <div className="buttons">
-                            <button className="blue" onClick={() => setShowModal(false)}>Cancel</button>
-                            <button className="red" onClick={handleDelete}>Delete</button>
+                        <div className={styles.buttons}>
+                            <button className={styles.blue} onClick={() => setShowModal(false)}>Cancel</button>
+                            <button className={styles.red} onClick={handleDelete}>Delete</button>
                         </div>
                     </div>
                 </section>
                 : null
             }
             {showLightbox.show ?
-                <section className="modal">
+                <section className={styles.modal}>
                     <img src={showLightbox.image} alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`} />
-                    <button className="white" onClick={() => setShowLightbox({ show: false, image: "" })}>Close</button>
+                    <button className={styles.white} onClick={() => setShowLightbox({ show: false, image: "" })}>Close</button>
                 </section>
                 : null
             }
             {loading ? <Loading /> :
                 receipt ?
-                    <section>
+                    <section className={styles.receiptDetail}>
                         <h1>Receipt Record for {receipt.provider} on {receipt.trans_date}</h1>
-                        {message ? <><div id="message">{message}</div><br /></> : null}
-                        <table id="detail-table">
+                        {message ? <><div className={styles.message}>{message}</div><br /></> : null}
+                        <table>
                             <tbody>
                                 <tr>
                                     <td>Date</td>
@@ -170,18 +170,18 @@ function ReceiptRecordDetail() {
                                 </tr>
                             </tbody>
                         </table>
-                        <div className="buttons">
-                            <Link className="blue button" to={`/receipt-records/${id}/edit`}>Edit</Link>
-                            <button className="red" onClick={() => setShowModal(true)}>Delete</button>
+                        <div className={styles.buttons}>
+                            <Link className={styles.blue} to={`/receipt-records/${id}/edit`}>Edit</Link>
+                            <button className={styles.red} onClick={() => setShowModal(true)}>Delete</button>
                         </div>
                         {receipt.receipt_images ? <h2>Receipt Record Images</h2> : <h2>No Images</h2>}
-                        <div className="images">
+                        <div className={styles.images}>
                             {displayReceiptImages()}
                         </div>
                     </section>
                     : null
             }
-        </main>
+        </>
     );
 };
 
