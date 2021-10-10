@@ -2,7 +2,7 @@ import styles from './Footer.module.css';
 
 function Footer() {
     return (
-        <footer className={styles.footer}>Website created by Megan McCarty</footer>
+        <footer className={styles.footer}>Created by Megan McCarty | <a href="https://github.com/Meganmccarty/hsa-tracker-react">GitHub</a></footer>
     );
 };
 
