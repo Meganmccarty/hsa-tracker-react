@@ -1,27 +1,23 @@
-main#receipt-list {
-    width: 80%;
-}
-
-main#receipt-list section {
+.receiptList {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: white;
     color: black;
-    width: 100%;
+    width: 80%;
     padding: 10px;
     box-shadow: 5px 5px 20px 2px rgb(64, 1, 77);
 }
 
-main#receipt-list section .message {
+.message {
     padding: 10px;
     background-color: rgb(8, 175, 128);
     color: black;
     text-align: center;
 }
 
-main#receipt-list section input {
+.receiptList input {
     margin: 10px;
     padding: 10px;
     width: 50%;
@@ -30,7 +26,7 @@ main#receipt-list section input {
     background-color: rgb(235, 235, 235);
 }
 
-div.expenses {
+.expenses {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -40,56 +36,70 @@ div.expenses {
     margin-bottom: 10px;
 }
 
-div.expenses h4 {
-    word-wrap: break-word;
-    width: 200px;
-}
-
-div.expenses div.expense-category {
+.expenseCategory {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     padding: 5px;
 }
 
-main#receipt-list section div.buttons {
+.expenseCategory h4 {
+    word-wrap: break-word;
+    width: 200px;
+}
+
+.buttons {
     color: white;
 }
 
-table#receipt-list-table {
+.blue {
+    background-color: rgb(51, 134, 193);
+    text-align: center;
+    font-size: 16px;
+    border: none;
+    padding: 10px;
+    color: white;
+    margin: 5px;
+}
+
+.blue:hover {
+    background-color: rgb(30, 104, 156);
+}
+
+.receiptList table {
     border: 2px solid black;
     border-radius: 10px;
 }
 
-table#receipt-list-table td {
+.receiptList table td {
     padding: 5px;
 }
 
-table#receipt-list-table thead {
+.receiptList table thead {
     background-color: rgb(196, 196, 196);
 }
 
-table#receipt-list-table th {
+.receiptList table th {
     padding: 2px;
 }
 
-table#receipt-list-table th.active.false::after {
+.receiptList table th.active.false::after {
     /* Table header sorted by ascending = false */
     content: "\25bc";
 }
 
-table#receipt-list-table th.active.true::after {
+.receiptList table th.active.true::after {
     /* Table header sorted by ascending = true */
     content: "\25b2";
 }
 
-table#receipt-list-table tbody tr:nth-child(odd) {
+.receiptList table tbody tr:nth-child(odd) {
     background-color: rgb(235, 235 ,235);
 }
 
 
 @media all and (max-width: 600px) {
-    div.expenses {
+    .expenses {
         flex-direction: column;
     }
 }
