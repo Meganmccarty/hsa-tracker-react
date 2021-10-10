@@ -32,7 +32,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;   
+    justify-content: center;
 }
 
 .labelAndInput {
@@ -79,6 +79,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .imageCard {
@@ -91,7 +92,9 @@
 }
 
 .imageCard img {
-    width: 100%;
+    width: 50%;
+    margin: 5px;
+    box-shadow: 5px 5px 20px 2px rgb(206, 205, 205);
 }
 
 .buttons {
