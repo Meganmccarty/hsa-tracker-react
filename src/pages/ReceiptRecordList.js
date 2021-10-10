@@ -210,7 +210,7 @@ function ReceiptRecordList() {
                     </div>
 
                     <div className={styles.buttons}>
-                        <button className={styles.blue} onClick={(e) => handleYear(e, "All")}>All</button>
+                        <button className={cx(styles.blue, styles.blueActive)} onClick={(e) => handleYear(e, "All")}>All</button>
                         {getYearButtons()}
                     </div>
 
