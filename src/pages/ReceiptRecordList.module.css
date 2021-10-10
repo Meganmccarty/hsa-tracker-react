@@ -62,7 +62,7 @@
     margin: 5px;
 }
 
-.blue:hover {
+.blue:hover, .blueActive {
     background-color: rgb(30, 104, 156);
 }
 

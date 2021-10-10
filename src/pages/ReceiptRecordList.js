@@ -98,13 +98,15 @@ function ReceiptRecordList() {
         if (receipts) {
             const years = Array.from(new Set(receipts.map(receipt => receipt.trans_date.slice(0, 4))))
             return years.map(year => {
-                return <button key={year} className={styles.blue} onClick={() => handleYear(year)}>{year}</button>
+                return <button key={year} className={styles.blue} onClick={(e) => handleYear(e, year)}>{year}</button>
             })
         }
     }
 
-    function handleYear(year) {
-        setYear(year)
+    function handleYear(e, year) {
+        document.querySelectorAll("button").forEach(button => button.classList.remove(styles.blueActive));
+        e.target.classList.add(styles.blueActive);
+        setYear(year);
     }
 
     function sumTotals(array) {
@@ -208,7 +210,7 @@ function ReceiptRecordList() {
                     </div>
 
                     <div className={styles.buttons}>
-                        <button className={styles.blue} onClick={() => handleYear("All")}>All</button>
+                        <button className={styles.blue} onClick={(e) => handleYear(e, "All")}>All</button>
                         {getYearButtons()}
                     </div>
 
