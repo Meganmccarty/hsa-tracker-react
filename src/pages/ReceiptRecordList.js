@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
 import { userActions } from '../store/userSlice';
+import cx from 'classnames';
 
 import Loading from '../components/Loading';
 
-import './ReceiptRecordList.css';
+import styles from './ReceiptRecordList.module.css';
 
 function ReceiptRecordList() {
     const dispatch = useDispatch();
@@ -97,7 +98,7 @@ function ReceiptRecordList() {
         if (receipts) {
             const years = Array.from(new Set(receipts.map(receipt => receipt.trans_date.slice(0, 4))))
             return years.map(year => {
-                return <button key={year} className="blue" onClick={() => handleYear(year)}>{year}</button>
+                return <button key={year} className={styles.blue} onClick={() => handleYear(year)}>{year}</button>
             })
         }
     }
@@ -151,8 +152,8 @@ function ReceiptRecordList() {
     }
 
     function handleSort(e) {
-        document.querySelectorAll("th").forEach(header => header.classList.remove("active", "false", "true"));
-        e.target.classList.add("active", !sort.orderAsc)
+        document.querySelectorAll("th").forEach(header => header.classList.remove(styles.active, styles.false, styles.true));
+        e.target.classList.add(styles.active, styles[!sort.orderAsc]);
         const headerName = e.target.innerText.toLowerCase().split(" ").join("_");
         let name;
         switch (headerName) {
@@ -177,61 +178,59 @@ function ReceiptRecordList() {
     }, [dispatch])
 
     return (
-        <main id="receipt-list">
-            <section>
-                <h1>Receipt Records List</h1>
-                {receiptMessage ? <><div className="message">{receiptMessage}</div><br /></> : null}
-                {userMessage ? <><div className="message">{userMessage}</div><br /></> : null}
-                {loading ?
-                    <Loading />
-                    :
-                    <>
-                        <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." />
-                        <h3>Total Expenses ({year})</h3>
-                        <div className="expenses">
-                            <div className="expense-category">
-                                <h4>Qualified Expenses</h4>
-                                <h4>${parseFloat(qualifiedExpenses).toFixed(2)}</h4>
-                            </div>
-                            <div className="expense-category">
-                                <h4>Reimbursed Expenses</h4>
-                                <h4>${parseFloat(reimbursedExpenses).toFixed(2)}</h4>
-                            </div>
-                            <div className="expense-category">
-                                <h4>Paid with HSA Card</h4>
-                                <h4>${parseFloat(HSAExpenses).toFixed(2)}</h4>
-                            </div>
-                            <div className="expense-category">
-                                <h4>Can Withdraw from HSA</h4>
-                                <h4>${parseFloat(qualifiedExpenses - reimbursedExpenses - HSAExpenses).toFixed(2)}</h4>
-                            </div>
+        <section className={styles.receiptList}>
+            <h1>Receipt Records List</h1>
+            {receiptMessage ? <><div className={styles.message}>{receiptMessage}</div><br /></> : null}
+            {userMessage ? <><div className={styles.message}>{userMessage}</div><br /></> : null}
+            {loading ?
+                <Loading />
+                :
+                <>
+                    <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." />
+                    <h3>Total Expenses ({year})</h3>
+                    <div className={styles.expenses}>
+                        <div className={styles.expenseCategory}>
+                            <h4>Qualified Expenses</h4>
+                            <h4>${parseFloat(qualifiedExpenses).toFixed(2)}</h4>
                         </div>
-
-                        <div className="buttons">
-                            <button className="blue" onClick={() => handleYear("All")}>All</button>
-                            {getYearButtons()}
+                        <div className={styles.expenseCategory}>
+                            <h4>Reimbursed Expenses</h4>
+                            <h4>${parseFloat(reimbursedExpenses).toFixed(2)}</h4>
                         </div>
+                        <div className={styles.expenseCategory}>
+                            <h4>Paid with HSA Card</h4>
+                            <h4>${parseFloat(HSAExpenses).toFixed(2)}</h4>
+                        </div>
+                        <div className={styles.expenseCategory}>
+                            <h4>Can Withdraw from HSA</h4>
+                            <h4>${parseFloat(qualifiedExpenses - reimbursedExpenses - HSAExpenses).toFixed(2)}</h4>
+                        </div>
+                    </div>
 
-                        <table id="receipt-list-table">
-                            <thead>
-                                <tr>
-                                    <th className="active false" onClick={handleSort}>Transaction Date</th>
-                                    <th onClick={handleSort}>Provider</th>
-                                    <th onClick={handleSort}>Description</th>
-                                    <th onClick={handleSort}>Qualified Expense</th>
-                                    <th onClick={handleSort}>Amount</th>
-                                    <th onClick={handleSort}>Payment Method</th>
-                                    <th onClick={handleSort}>Reimbursed</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {displayReceipts()}
-                            </tbody>
-                        </table>
-                    </>
-                }
-            </section>
-        </main>
+                    <div className={styles.buttons}>
+                        <button className={styles.blue} onClick={() => handleYear("All")}>All</button>
+                        {getYearButtons()}
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th className={cx(styles.active, styles.false)} onClick={handleSort}>Transaction Date</th>
+                                <th onClick={handleSort}>Provider</th>
+                                <th onClick={handleSort}>Description</th>
+                                <th onClick={handleSort}>Qualified Expense</th>
+                                <th onClick={handleSort}>Amount</th>
+                                <th onClick={handleSort}>Payment Method</th>
+                                <th onClick={handleSort}>Reimbursed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {displayReceipts()}
+                        </tbody>
+                    </table>
+                </>
+            }
+        </section>
     );
 };
 
