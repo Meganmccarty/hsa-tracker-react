@@ -189,7 +189,7 @@ function ReceiptRecordEdit() {
                                 name="amount"
                                 id="amount"
                                 onChange={handleFormChange}
-                                value={parseFloat(formData.amount).toFixed(2)}
+                                value={formData.amount}
                                 required={true}
                             />
                         </div>
