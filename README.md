@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# HSA Tracker - React Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the React frontend for the HSA Tracker app. This app enables record-keeping of Health Savings Account (HSA) expenses by creating records for receipts and attaching receipt images. HSA Tracker can not only be used for those who use HSAs in the traditional sense but also for those who plan to use them as alternative retirement accounts. The backend is built with Ruby on Rails. For the backend, see the repo https://github.com/Meganmccarty/hsa-tracker-rails
 
-## Available Scripts
+## Get your own copy
+To create your own copy of this project:
+1. Fork this repo
+2. Click the green 'Code' button at the top right and copy the link
+3. In your terminal, navigate to the directory in which to clone the repo
+4. Type `git clone <copied-link>` and hit enter
+5. Type `cd hsa-tracker-react` and hit enter
+6. Run `npm install`
+7. Run `npm start`
 
-In the project directory, you can run:
+The website should open up in a new browser tab at `http://localhost:3001`
 
-### `npm start`
+### Configure the backend (optional)
+If you want to use a blank, local database, please see the README for the backend repo: https://github.com/Meganmccarty/hsa-tracker-rails
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
+* Create a free account
+* Ability to update your profile information and password
+* Can receive a password reset email in the event you forgot your password
+* Add a receipt record (with validations)
+* Attach one (or many) images for each receipt added
+* View all your receipts in a sortable, searchable table
+* Filter your receipts by year
+* View a breakdown of your expenses (qualified, reimbursed, etc.) for tax purposes (also filtered by year)
+* See a detailed view of each receipt with all attached images
+* Ability to edit and delete receipt records
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Resources Used
+* Built with React JS
+* [React Router DOM](https://reactrouter.com/web/guides/quick-start) for managing navigation
+* [Redux Toolkit](https://redux-toolkit.js.org/) for state management
+* [CSS modules](https://github.com/css-modules/css-modules) for style management
