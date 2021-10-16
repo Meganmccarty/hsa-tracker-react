@@ -126,13 +126,13 @@
         padding-right: 10px;
     }
 
-    td:nth-of-type(1):before { content: "Transaction Date:"; }
-	td:nth-of-type(2):before { content: "Provider:"; }
-	td:nth-of-type(3):before { content: "Description:"; }
-	td:nth-of-type(4):before { content: "Qualified Expense:"; }
-	td:nth-of-type(5):before { content: "Amount:"; }
-	td:nth-of-type(6):before { content: "Payment Method:"; }
-	td:nth-of-type(7):before { content: "Reimbursed:"; }
+    .receiptList td:nth-of-type(1):before { content: "Transaction Date:"; }
+	.receiptList td:nth-of-type(2):before { content: "Provider:"; }
+	.receiptList td:nth-of-type(3):before { content: "Description:"; }
+	.receiptList td:nth-of-type(4):before { content: "Qualified Expense:"; }
+	.receiptList td:nth-of-type(5):before { content: "Amount:"; }
+	.receiptList td:nth-of-type(6):before { content: "Payment Method:"; }
+	.receiptList td:nth-of-type(7):before { content: "Reimbursed:"; }
 }
 
 @media all and (max-width: 600px) {
