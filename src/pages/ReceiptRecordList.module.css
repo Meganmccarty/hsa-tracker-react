@@ -140,3 +140,9 @@
         flex-direction: column;
     }
 }
+
+@media all and (max-width: 300px) {
+    .receiptList td {
+        display: block;
+    }
+}
