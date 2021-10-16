@@ -109,6 +109,9 @@
     }
 
     .receiptList td {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
         border: none;
         border-bottom: 1px solid #ccc;
         position: relative;
@@ -121,7 +124,6 @@
         left: 6px;
         width: 45%;
         padding-right: 10px;
-        white-space: nowrap;
     }
 
     td:nth-of-type(1):before { content: "Transaction Date:"; }
