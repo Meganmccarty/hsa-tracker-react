@@ -97,9 +97,52 @@
     background-color: rgb(235, 235 ,235);
 }
 
+@media all and (max-width: 790px) {
+    .receiptList table, .receiptList thead, 
+    .receiptList tbody, .receiptList th, 
+    .receiptList td, .receiptList tr {
+        display: block;
+    }
+
+    .receiptList table {
+        width: 100%;
+    }
+
+    .receiptList td {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .receiptList td:before {
+        position: relative;
+        top: 0px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+    }
+
+    td:nth-of-type(1):before { content: "Transaction Date:"; }
+	td:nth-of-type(2):before { content: "Provider:"; }
+	td:nth-of-type(3):before { content: "Description:"; }
+	td:nth-of-type(4):before { content: "Qualified Expense:"; }
+	td:nth-of-type(5):before { content: "Amount:"; }
+	td:nth-of-type(6):before { content: "Payment Method:"; }
+	td:nth-of-type(7):before { content: "Reimbursed:"; }
+}
 
 @media all and (max-width: 600px) {
     .expenses {
         flex-direction: column;
+    }
+}
+
+@media all and (max-width: 300px) {
+    .receiptList td {
+        display: block;
     }
 }
