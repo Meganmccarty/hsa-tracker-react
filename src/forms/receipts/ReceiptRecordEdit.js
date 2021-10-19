@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { receiptActions } from '../../store/receiptSlice';
+import getAPIurl from '../../functions/url';
 
 import styles from './receipt-forms.module.css';
 
@@ -13,7 +14,7 @@ function ReceiptRecordEdit() {
     const [formData, setFormData] = useState(null);
 
     useEffect(() => {
-        fetch(`/receipt-records/${id}`, {
+        fetch(`${getAPIurl()}/receipt-records/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": 'application/json',
@@ -104,7 +105,7 @@ function ReceiptRecordEdit() {
             body: finalForm
         };
 
-        fetch(`/receipt-records/${id}`, configObj)
+        fetch(`${getAPIurl()}/receipt-records/${id}`, configObj)
             .then(response => {
                 if (response.ok) {
                     response.json().then(receipt => {

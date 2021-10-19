@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
 import { userActions } from '../store/userSlice';
+import getAPIurl from '../functions/url';
 import cx from 'classnames';
 
 import Loading from '../components/Loading';
@@ -29,7 +30,7 @@ function ReceiptRecordList() {
     const HSAExpenses = totalHSAExpenses();
 
     useEffect(() => {
-        fetch("/receipt-records", {
+        fetch(`${getAPIurl()}/receipt-records`, {
             method: "GET",
             headers: {
                 "Content-Type": 'application/json',

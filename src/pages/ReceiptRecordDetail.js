@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
+import getAPIurl from '../functions/url';
 
 import Loading from '../components/Loading';
 
@@ -24,7 +25,7 @@ function ReceiptRecordDetail() {
     });
 
     useEffect(() => {
-        fetch(`/receipt-records/${id}`, {
+        fetch(`${getAPIurl()}/receipt-records/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": 'application/json',
@@ -53,7 +54,7 @@ function ReceiptRecordDetail() {
                 "Content-Type": "application/json"
             }
         }
-        fetch(`/receipt-records/${id}`, configObj)
+        fetch(`${getAPIurl()}/receipt-records/${id}`, configObj)
             .then(response => {
                 if (response.ok) {
                     response.json().then((data) => {
@@ -113,7 +114,7 @@ function ReceiptRecordDetail() {
                 <section className={styles.modal}>
                     <img src={showLightbox.image} alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`} />
                     <div className={styles.buttons}>
-                        <a className={styles.blue} href={`http://localhost:3000/receipt-records/${id}/image-files/${showLightbox["id"]}`}>Download File</a>
+                        <a className={styles.blue} href={`${getAPIurl()}/receipt-records/${id}/image-files/${showLightbox["id"]}`}>Download File</a>
                         <button className={styles.white} onClick={() => setShowLightbox({ show: false, image: "" })}>Close</button>
                     </div>
                 </section>

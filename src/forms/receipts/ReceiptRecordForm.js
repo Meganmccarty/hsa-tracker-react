@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { receiptActions } from '../../store/receiptSlice';
+import getAPIurl from '../../functions/url';
 
 import styles from './receipt-forms.module.css';
 
@@ -61,7 +62,7 @@ function ReceiptRecordForm() {
             body: finalForm
         };
 
-        fetch("/receipt-records", configObj)
+        fetch(`${getAPIurl()}/receipt-records`, configObj)
             .then(response => {
                 if (response.ok) {
                     response.json().then(receipt => {

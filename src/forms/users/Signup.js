@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
+import getAPIurl from '../../functions/url';
 
 import styles from '../auth-forms.module.css';
 
@@ -33,7 +34,7 @@ function Signup() {
             },
             body: JSON.stringify(user)
         };
-        fetch("/signup", configObj)
+        fetch(`${getAPIurl()}/signup`, configObj)
             .then(response => {
                 if (response.ok) {
                     localStorage.setItem("token", response.headers.get("Authorization"));

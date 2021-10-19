@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../store/userSlice';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import getAPIurl from '../functions/url';
 
 import Header from './Header';
 import Home from '../pages/Home';
@@ -28,7 +29,7 @@ function App() {
     const loading = useSelector(state => state.user.loading);
 
     useEffect(() => {
-        fetch("/profile", {
+        fetch(`${getAPIurl()}/profile`, {
             method: "GET",
             headers: {
                 "Content-Type": 'application/json',

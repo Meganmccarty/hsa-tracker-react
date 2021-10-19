@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
+import getAPIurl from '../../functions/url';
 
 import styles from '../auth-forms.module.css';
 
@@ -23,7 +24,7 @@ function ForgotPassword() {
             },
             body: JSON.stringify(email)
         };
-        fetch("/forgot-password", configObj)
+        fetch(`${getAPIurl()}/forgot-password`, configObj)
             .then(response => {
                 if (response.ok) {
                     localStorage.setItem("token", response.headers.get("Authorization"));

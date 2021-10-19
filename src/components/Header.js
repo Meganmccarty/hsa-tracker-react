@@ -2,6 +2,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../store/userSlice';
 import { receiptActions } from '../store/receiptSlice';
+import getAPIurl from '../functions/url';
 
 import styles from './Header.module.css';
 
@@ -11,7 +12,7 @@ function Header() {
     const user = useSelector(state => state.user.user);
 
     function handleLogout() {
-        fetch("/logout", {
+        fetch(`${getAPIurl()}/logout`, {
             method: "DELETE",
         })
             .then(response => response.json())

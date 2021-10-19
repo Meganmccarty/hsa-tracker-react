@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../../store/userSlice';
+import getAPIurl from '../../functions/url';
 
 import styles from '../auth-forms.module.css';
 
@@ -31,7 +32,7 @@ function EditProfile() {
             },
             body: JSON.stringify(profileForm)
         };
-        fetch("/profile", configObj)
+        fetch(`${getAPIurl()}/profile`, configObj)
             .then(response => {
                 if (response.ok) {
                     response.json().then(user => {

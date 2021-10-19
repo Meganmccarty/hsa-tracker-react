@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../store/userSlice';
+import getAPIurl from '../../functions/url';
 
 import styles from '../auth-forms.module.css';
 
@@ -31,7 +32,7 @@ function ChangePassword() {
             },
             body: JSON.stringify(passwordForm)
         };
-        fetch("/change-password", configObj)
+        fetch(`${getAPIurl()}/change-password`, configObj)
             .then(response => {
                 if (response.ok) {
                     response.json().then(user => {
