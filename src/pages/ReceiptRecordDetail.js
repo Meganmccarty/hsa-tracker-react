@@ -19,7 +19,8 @@ function ReceiptRecordDetail() {
     const [showModal, setShowModal] = useState(false);
     const [showLightbox, setShowLightbox] = useState({
         show: false,
-        image: ""
+        image: "",
+        id: null
     });
 
     useEffect(() => {
@@ -78,7 +79,7 @@ function ReceiptRecordDetail() {
                             key={image.url}
                             src={image.url}
                             alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`}
-                            onClick={() => setShowLightbox({ show: true, image: image.url })}
+                            onClick={() => setShowLightbox({ show: true, image: image.url, id: image.id })}
                         />
                     </div>
                 )
@@ -111,7 +112,10 @@ function ReceiptRecordDetail() {
             {showLightbox.show ?
                 <section className={styles.modal}>
                     <img src={showLightbox.image} alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`} />
-                    <button className={styles.white} onClick={() => setShowLightbox({ show: false, image: "" })}>Close</button>
+                    <div className={styles.buttons}>
+                        <a className={styles.blue} href={`http://localhost:3000/receipt-records/${id}/image-files/${showLightbox["id"]}`}>Download File</a>
+                        <button className={styles.white} onClick={() => setShowLightbox({ show: false, image: "" })}>Close</button>
+                    </div>
                 </section>
                 : null
             }
