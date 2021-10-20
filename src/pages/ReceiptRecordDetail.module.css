@@ -137,9 +137,9 @@
 }
 
 .modal > img {
-    max-width: 90%;
-    max-height: 90%;
-    box-shadow: 5px 5px 20px 2px rgb(107, 107, 107);
+    max-width: 85%;
+    max-height: 85%;
+    box-shadow: 5px 5px 20px 2px rgb(73, 73, 73);
     margin-bottom: 15px;
 }
 
