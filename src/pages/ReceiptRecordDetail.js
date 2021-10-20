@@ -128,53 +128,55 @@ function ReceiptRecordDetail() {
                     <section className={styles.receiptDetail}>
                         <h1>Receipt for {receipt.provider} on {receipt.trans_date}</h1>
                         {message ? <><div className={styles.message}>{message}</div><br /></> : null}
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>Transaction Date</td>
-                                    <td>{receipt.trans_date}</td>
-                                </tr>
-                                <tr>
-                                    <td>Category</td>
-                                    <td>{receipt.category}</td>
-                                </tr>
-                                <tr>
-                                    <td>Provider</td>
-                                    <td>{receipt.provider}</td>
-                                </tr>
-                                <tr>
-                                    <td>Description</td>
-                                    <td>{receipt.description}</td>
-                                </tr>
-                                <tr>
-                                    <td>Qualified Expense?</td>
-                                    <td>{receipt.qualified_exp}</td>
-                                </tr>
-                                <tr>
-                                    <td>Amount</td>
-                                    <td>${parseFloat(receipt.amount).toFixed(2)}</td>
-                                </tr>
-                                <tr>
-                                    <td>Payment Method</td>
-                                    <td>{receipt.payment_method}</td>
-                                </tr>
-                                <tr>
-                                    <td>Reimbursed?</td>
-                                    <td>{receipt.reimbursed}</td>
-                                </tr>
+                        <div className={styles.table}>
+                            <div className={styles.tableRow}>
+                                <div className={styles.tableCell}>Transaction Date</div>
+                                <div className={styles.tableCell}>{receipt.trans_date}</div>
+                            </div>
+                            <div className={styles.tableRow}>
+                                <div className={styles.tableCell}>Category</div>
+                                <div className={styles.tableCell}>{receipt.category}</div>
+                            </div>
+                            <div className={styles.tableRow}>
+                                <div className={styles.tableCell}>Provider</div>
+                                <div className={styles.tableCell}>{receipt.provider}</div>
+                            </div>
+                            <div className={styles.tableRow}>
+                                <div className={styles.tableCell}>Description</div>
+                                <div className={styles.tableCell}>{receipt.description}</div>
+                            </div>
+                            <div className={styles.tableRow}>
+                                <div className={styles.tableCell}>Qualified Expense</div>
+                                <div className={styles.tableCell}>{receipt.qualified_exp}</div>
+                            </div>
+                            <div className={styles.tableRow}>
+                                <div className={styles.tableCell}>Amount</div>
+                                <div className={styles.tableCell}>
+                                    ${parseFloat(receipt.amount).toFixed(2)}
+                                </div>
+                            </div>
+                            <div className={styles.tableRow}>
+                                <div className={styles.tableCell}>Payment Method</div>
+                                <div className={styles.tableCell}>{receipt.payment_method}</div>
+                            </div>
+                            <div className={styles.tableRow}>
+                                <div className={styles.tableCell}>Reimbursed</div>
+                                <div className={styles.tableCell}>{receipt.reimbursed}</div>
+                            </div>
+                            <div className={styles.tableRow}>
                                 {receipt.qualified_exp === "Yes" && receipt.reimbursed === "Yes" ?
-                                    <tr>
-                                        <td>Reimbursed Date</td>
-                                        <td>{receipt.reimbursed_date}</td>
-                                    </tr>
+                                    <>
+                                        <div className={styles.tableCell}>Reimbursed Date</div>
+                                        <div className={styles.tableCell}>{receipt.reimbursed_date}</div>
+                                    </>
                                     : null
                                 }
-                                <tr>
-                                    <td>Notes</td>
-                                    <td>{receipt.notes}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                            </div>
+                            <div className={styles.tableRow}>
+                                <div className={styles.tableCell}>Notes</div>
+                                <div className={styles.tableCell}>{receipt.notes}</div>
+                            </div>
+                        </div>
                         <div className={styles.buttons}>
                             <Link className={styles.blue} to={`/receipt-records/${id}/edit`}>Edit</Link>
                             <button className={styles.red} onClick={() => setShowModal(true)}>Delete</button>
