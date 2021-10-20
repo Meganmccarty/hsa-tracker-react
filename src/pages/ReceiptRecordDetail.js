@@ -129,7 +129,7 @@ function ReceiptRecordDetail() {
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>Date</td>
+                                    <td>Transaction Date</td>
                                     <td>{receipt.trans_date}</td>
                                 </tr>
                                 <tr>
