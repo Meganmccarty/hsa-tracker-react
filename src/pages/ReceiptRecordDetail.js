@@ -82,7 +82,7 @@ function ReceiptRecordDetail() {
                         <img
                             key={image.url}
                             src={url ? `${url}/${image.url}` : image.url}
-                            alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`}
+                            alt={`${image.filename}: receipt for record ${receipt.provider} on ${receipt.trans_date}`}
                             onClick={() => setShowLightbox({ show: true, image: (url ? `${url}/${image.url}` : image.url), id: image.id })}
                         />
                     </div>

@@ -57,7 +57,7 @@ function ReceiptRecordEdit() {
             return receipt.receipt_images.map(image => {
                 return (
                     <div className={styles.imageCard} key={image.url}>
-                        <img src={url ? `${url}/${image.url}`: image.url} alt="receipt" />
+                        <img src={url ? `${url}/${image.url}`: image.url} alt={`${image.filename}: receipt for record ${receipt.provider} on ${receipt.trans_date}`} />
                         <button className={styles.red} onClick={(e) => handleDelete(e, image.id)}>Delete</button>
                     </div>
                 )
