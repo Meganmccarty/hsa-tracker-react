@@ -72,7 +72,6 @@ function ReceiptRecordEdit() {
 
     function handleDelete(e, image) {
         e.target.parentElement.innerHTML = "";
-        console.log(image)
         setFormData({ ...formData, receipt_images_to_delete: [...formData.receipt_images_to_delete, image] })
     }
 

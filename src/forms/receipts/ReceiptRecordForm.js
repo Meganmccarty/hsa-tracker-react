@@ -72,7 +72,6 @@ function ReceiptRecordForm() {
             .then(response => {
                 if (response.ok) {
                     response.json().then(receipt => {
-                        console.log(receipt)
                         dispatch(receiptActions.createReceipt(receipt.receipt_record));
                         dispatch(receiptActions.setMessage(receipt.status.message))
                         dispatch(receiptActions.toggleLoading(false));

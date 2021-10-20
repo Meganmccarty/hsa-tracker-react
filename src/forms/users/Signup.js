@@ -39,7 +39,6 @@ function Signup() {
                 if (response.ok) {
                     localStorage.setItem("token", response.headers.get("Authorization"));
                     response.json().then(user => {
-                        console.log(user)
                         dispatch(userActions.userLogin(user.user));
                         dispatch(userActions.setMessage(user.status.message));
                         dispatch(userActions.toggleLoading(false));
@@ -47,7 +46,6 @@ function Signup() {
                     })
                 } else {
                     response.json().then(errors => {
-                        console.log(errors);
                         dispatch(userActions.setErrors(errors.status.errors));
                         dispatch(userActions.toggleLoading(false));
                     })

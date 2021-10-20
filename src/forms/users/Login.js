@@ -37,15 +37,12 @@ function Login() {
                 if (response.ok) {
                     localStorage.setItem("token", response.headers.get("Authorization"));
                     response.json().then(user => {
-                        console.log(user.user)
-                        console.log(user.status.message)
                         dispatch(userActions.userLogin(user.user));
                         dispatch(userActions.setMessage(user.status.message))
                         dispatch(userActions.toggleLoading(false));
                     });
                 } else {
                     response.json().then(errors => {
-                        console.log(errors.error)
                         dispatch(userActions.setErrors(errors.error));
                         dispatch(userActions.toggleLoading(false));
                     });

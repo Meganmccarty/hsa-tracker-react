@@ -42,7 +42,6 @@ function ChangePassword() {
                     });
                 } else {
                     response.json().then(errors => {
-                        console.log(errors)
                         dispatch(userActions.setErrors(errors.status.errors));
                     });
                 };

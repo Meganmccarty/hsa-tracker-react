@@ -61,7 +61,6 @@ function ReceiptRecordDetail() {
             .then(response => {
                 if (response.ok) {
                     response.json().then((data) => {
-                        console.log(data);
                         dispatch(receiptActions.deleteReceipt(id));
                         dispatch(receiptActions.setMessage(data.status.message))
                         history.push("/receipt-records");

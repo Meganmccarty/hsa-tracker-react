@@ -43,7 +43,6 @@ function EditProfile() {
                     });
                 } else {
                     response.json().then(errors => {
-                        console.log(errors.status.errors)
                         dispatch(userActions.setErrors(errors.status.errors));
                     });
                 };
