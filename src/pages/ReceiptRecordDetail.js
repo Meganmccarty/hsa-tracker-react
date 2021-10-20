@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
+import fileDownload from 'js-file-download';
 import getAPIurl from '../functions/url';
 
 import Loading from '../components/Loading';
@@ -21,6 +22,7 @@ function ReceiptRecordDetail() {
     const [showLightbox, setShowLightbox] = useState({
         show: false,
         image: "",
+        filename: "",
         id: null
     });
 
@@ -73,6 +75,21 @@ function ReceiptRecordDetail() {
             });
     }
 
+    function handleDownload(url) {
+        const configObj = {
+            method: "GET",
+            headers: {
+                responseType: "blob",
+                Authorization: localStorage.getItem("token")
+            }
+        };
+
+        fetch(url, configObj)
+            .then(response => {
+                fileDownload(response.data, showLightbox.filename)
+            })
+    }
+
     function displayReceiptImages() {
         if (receipt && receipt.receipt_images) {
             return receipt.receipt_images.map(image => {
@@ -80,9 +97,14 @@ function ReceiptRecordDetail() {
                     <div className={styles.imageCard}>
                         <img
                             key={image.url}
-                            src={url ? `${url}/${image.url}` : image.url}
+                            src={url ? `${url}${image.url}` : image.url}
                             alt={`${image.filename}: receipt for record ${receipt.provider} on ${receipt.trans_date}`}
-                            onClick={() => setShowLightbox({ show: true, image: (url ? `${url}/${image.url}` : image.url), id: image.id })}
+                            onClick={() => setShowLightbox({
+                                show: true,
+                                image: (url ? `${url}${image.url}` : image.url),
+                                filename: image.filename,
+                                id: image.id
+                            })}
                         />
                     </div>
                 )
@@ -116,7 +138,7 @@ function ReceiptRecordDetail() {
                 <section className={styles.modal}>
                     <img src={showLightbox.image} alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`} />
                     <div className={styles.buttons}>
-                        <a className={styles.blue} href={`${getAPIurl()}/receipt-records/${id}/image-files/${showLightbox["id"]}`}>Download File</a>
+                        <button className={styles.blue} onClick={() => handleDownload(`${getAPIurl()}/receipt-records/${id}/image-files/${showLightbox["id"]}`)}>Download File</button>
                         <button className={styles.white} onClick={() => setShowLightbox({ show: false, image: "" })}>Close</button>
                     </div>
                 </section>
