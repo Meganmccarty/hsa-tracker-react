@@ -12,6 +12,7 @@ function Header() {
     const user = useSelector(state => state.user.user);
 
     function handleLogout() {
+        toggleNavBar();
         fetch(`${getAPIurl()}/logout`, {
             method: "DELETE",
         })
@@ -36,20 +37,20 @@ function Header() {
 
     return (
         <nav className={styles.navbar}>
-            <Link className={styles.home} to="/">HSA Tracker</Link>
+            <Link className={styles.home} onClick={toggleNavBar} to="/">HSA Tracker</Link>
             <div className={styles.mainLinks}>
-                <Link to="/about-hsas">About HSAs</Link>
+                <Link onClick={toggleNavBar} to="/about-hsas">About HSAs</Link>
                 {user ?
                     <>
-                        <Link to="/receipt-records">My Receipts</Link>
-                        <Link to="/receipt-records/new">Add Receipt</Link>
-                        <Link to="/profile">Profile</Link>
+                        <Link onClick={toggleNavBar} to="/receipt-records">My Receipts</Link>
+                        <Link onClick={toggleNavBar} to="/receipt-records/new">Add Receipt</Link>
+                        <Link onClick={toggleNavBar} to="/profile">Profile</Link>
                         <button onClick={handleLogout}>Log Out</button>
                     </>
                     :
                     <>
-                        <Link to="/login">Login</Link>
-                        <Link to="/signup">Sign Up</Link>
+                        <Link onClick={toggleNavBar} to="/login">Login</Link>
+                        <Link onClick={toggleNavBar} to="/signup">Sign Up</Link>
                     </>
                 }
             </div>
