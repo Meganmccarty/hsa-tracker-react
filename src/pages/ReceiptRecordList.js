@@ -56,8 +56,8 @@ function ReceiptRecordList() {
         if (receipts) {
             return receipts
                 .filter(receipt => {
-                    return receipt.provider.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        receipt.description.toLowerCase().includes(searchTerm.toLowerCase())
+                    return receipt.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        receipt.provider.toLowerCase().includes(searchTerm.toLowerCase())
                 })
                 .filter(receipt => {
                     return year === "All" ? receipt : receipt.trans_date.startsWith(year)
@@ -79,8 +79,8 @@ function ReceiptRecordList() {
                     return (
                         <tr key={receipt.id}>
                             <td><Link to={`/receipt-records/${receipt.id}`}>{receipt.trans_date}</Link></td>
+                            <td>{receipt.category}</td>
                             <td>{receipt.provider}</td>
-                            <td>{receipt.description}</td>
                             <td>{receipt.qualified_exp}</td>
                             <td>${parseFloat(receipt.amount).toFixed(2)}</td>
                             <td>{receipt.payment_method}</td>
@@ -220,8 +220,8 @@ function ReceiptRecordList() {
                         <thead>
                             <tr>
                                 <th className={cx(styles.active, styles.false)} onClick={handleSort}>Transaction Date</th>
+                                <th onClick={handleSort}>Category</th>
                                 <th onClick={handleSort}>Provider</th>
-                                <th onClick={handleSort}>Description</th>
                                 <th onClick={handleSort}>Qualified Expense</th>
                                 <th onClick={handleSort}>Amount</th>
                                 <th onClick={handleSort}>Payment Method</th>
