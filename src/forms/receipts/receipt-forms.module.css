@@ -40,6 +40,21 @@
     flex-direction: row;
     align-items: center;
     flex-basis: 33%;
+    position: relative;
+}
+
+.popup {
+    background-color: rgba(0, 0, 0, .80);
+    padding: 5px;
+    color: white;
+    position: absolute;
+    z-index: 999;
+    font-size: 14px;
+    bottom: 60%;
+}
+
+.popup a {
+    color: white;
 }
 
 .receiptForm form input {
@@ -168,6 +183,11 @@
     .labelAndInput {
         flex-direction: column;
         flex-basis: 75%;
+    }
+
+    .popup {
+        left: 0;
+        bottom: 100%;
     }
     
     .images {
