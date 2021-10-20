@@ -21,50 +21,57 @@
     text-align: center;
 }
 
-.receiptDetail table {
+.table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 500px;
-    border-spacing: 0;
-    margin-bottom: 10px;
+    border-radius: 5px;
 }
 
-.receiptDetail table tr td:nth-child(odd) {
+.table .tableRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.table .tableRow .tableCell {
+    width: 50%;
+    padding: 5px;
+}
+
+.table .tableRow .tableCell:nth-child(odd) {
+    text-align: right;
     background-color: rgb(99, 10, 112);
     color: white;
 }
 
-.receiptDetail table tr:first-child td:first-child {
-    border-top-left-radius: 10px;
-}
-
-.receiptDetail table tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
-}
-
-.receiptDetail table tr:nth-child(odd) td:nth-child(even) {
+.table .tableRow:nth-child(odd) .tableCell:nth-child(even) {
     background-color: rgb(235, 235 ,235);
 }
 
-.receiptDetail table td:nth-child(1) {
-    text-align: right;
+.table .tableRow:first-child .tableCell:first-child {
+    border-top-left-radius: 10px;
 }
 
-.receiptDetail table tr:first-child td:last-child {
+.table .tableRow:first-child .tableCell:last-child {
     border-top-right-radius: 10px;
     border-top: 1px solid rgb(190, 190, 190);
 }
 
-.receiptDetail table tr:last-child td:last-child {
+.table .tableRow:last-child .tableCell:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.table .tableRow:last-child .tableCell:last-child {
     border-bottom-right-radius: 10px;
     border-bottom: 1px solid rgb(190, 190, 190);
 }
 
-.receiptDetail table tr td:last-child {
+.table .tableRow .tableCell:nth-child(even) {
     border-right: 1px solid rgb(190, 190, 190);
-}
-
-.receiptDetail table td {
-    padding: 5px;
-    width: 50%;
 }
 
 .buttons {
@@ -171,7 +178,7 @@
 }
 
 @media all and (max-width: 650px) {
-    .receiptDetail table {
+    .table {
         width: 90%;
     }
 
@@ -183,5 +190,56 @@
 
     .images img {
         margin: 15px 0 15px 0;
+    }
+}
+
+@media all and (max-width: 410px) {
+    .table {
+        width: 90%;
+    }
+    
+    .table .tableRow {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .table .tableRow .tableCell {
+        width: 100%;
+        text-align: center;
+    }
+
+    .table .tableRow .tableCell:nth-child(odd) {
+        text-align: center;
+        background-color: rgb(99, 10, 112);
+        color: white;
+    }
+    
+    .table .tableRow:nth-child(even) .tableCell:nth-child(even) {
+        background-color: rgb(235, 235 ,235);
+    }
+    
+    .table .tableRow:first-child .tableCell:first-child {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    
+    .table .tableRow:first-child .tableCell:last-child {
+        border-top-right-radius: 0;
+        border-top: none;
+    }
+    
+    .table .tableRow:last-child .tableCell:first-child {
+        border-bottom-left-radius: 0;
+    }
+    
+    .table .tableRow:last-child .tableCell:last-child {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom: none;
+    }
+    
+    .table .tableRow .tableCell:nth-child(even) {
+        border-right: none;
     }
 }
