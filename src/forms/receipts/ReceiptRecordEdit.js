@@ -102,6 +102,9 @@ function ReceiptRecordEdit() {
 
         const configObj = {
             method: "PATCH",
+            headers: {
+                Authorization: localStorage.getItem("token")
+            },
             body: finalForm
         };
 

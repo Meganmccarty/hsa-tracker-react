@@ -30,7 +30,8 @@ function PasswordReset() {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                Authorization: localStorage.getItem("token")
             },
             body: JSON.stringify(passwordForm)
         };

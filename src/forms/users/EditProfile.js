@@ -28,7 +28,8 @@ function EditProfile() {
         const configObj = {
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: localStorage.getItem("token")
             },
             body: JSON.stringify(profileForm)
         };

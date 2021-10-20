@@ -20,7 +20,8 @@ function ForgotPassword() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                Authorization: localStorage.getItem("token")
             },
             body: JSON.stringify(email)
         };
