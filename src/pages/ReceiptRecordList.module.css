@@ -67,20 +67,25 @@
 }
 
 .receiptList table {
-    border: 2px solid black;
-    border-radius: 10px;
+    border-spacing: 0;
 }
 
 .receiptList table td {
     padding: 5px;
 }
 
-.receiptList table thead {
-    background-color: rgb(196, 196, 196);
+.receiptList table th {
+    background-color: rgb(99, 10, 112);
+    color: white;
+    padding: 10px;
 }
 
-.receiptList table th {
-    padding: 2px;
+.receiptList table th:first-child {
+    border-top-left-radius: 5px;
+}
+
+.receiptList table th:last-child {
+    border-top-right-radius: 5px;
 }
 
 .receiptList table th.active.false::after {
@@ -94,7 +99,27 @@
 }
 
 .receiptList table tbody tr:nth-child(odd) {
-    background-color: rgb(235, 235 ,235);
+    background-color: rgb(240, 240, 240);
+}
+
+.receiptList table tbody tr:last-child td {
+    border-bottom: 1px solid rgb(190, 190, 190);
+}
+
+.receiptList table tbody tr td:first-child {
+    border-left: 1px solid rgb(190, 190, 190);
+}
+
+.receiptList table tbody tr td:last-child {
+    border-right: 1px solid rgb(190, 190, 190);
+}
+
+.receiptList table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 5px;
+}
+
+.receiptList table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 5px;
 }
 
 @media all and (max-width: 790px) {
@@ -113,7 +138,7 @@
         flex-direction: row;
         justify-content: flex-start;
         border: none;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid rgb(190, 190, 190);
         position: relative;
         padding-left: 50%;
     }
@@ -133,6 +158,21 @@
 	.receiptList td:nth-of-type(5):before { content: "Amount:"; }
 	.receiptList td:nth-of-type(6):before { content: "Payment Method:"; }
 	.receiptList td:nth-of-type(7):before { content: "Reimbursed:"; }
+
+    .receiptList table th:first-child,
+    .receiptList table th:last-child,
+    .receiptList table tbody tr:last-child td:first-child, 
+    .receiptList table tbody tr:last-child td:last-child {
+        border-radius: 0;
+    }
+    
+    .receiptList table tbody tr td:first-child {
+        border-left: none;
+    }
+    
+    .receiptList table tbody tr td:last-child {
+        border-right: none;
+    }
 }
 
 @media all and (max-width: 600px) {
