@@ -163,19 +163,20 @@ function ReceiptRecordDetail() {
                                 <div className={styles.tableCell}>Reimbursed</div>
                                 <div className={styles.tableCell}>{receipt.reimbursed}</div>
                             </div>
-                            <div className={styles.tableRow}>
-                                {receipt.qualified_exp === "Yes" && receipt.reimbursed === "Yes" ?
-                                    <>
-                                        <div className={styles.tableCell}>Reimbursed Date</div>
-                                        <div className={styles.tableCell}>{receipt.reimbursed_date}</div>
-                                    </>
-                                    : null
-                                }
-                            </div>
-                            <div className={styles.tableRow}>
-                                <div className={styles.tableCell}>Notes</div>
-                                <div className={styles.tableCell}>{receipt.notes}</div>
-                            </div>
+                            {receipt.qualified_exp === "Yes" && receipt.reimbursed === "Yes" ?
+                                <div className={styles.tableRow}>
+                                    <div className={styles.tableCell}>Reimbursed Date</div>
+                                    <div className={styles.tableCell}>{receipt.reimbursed_date}</div>
+                                </div>
+                                : null
+                            }
+                            {receipt.notes ?
+                                <div className={styles.tableRow}>
+                                    <div className={styles.tableCell}>Notes</div>
+                                    <div className={styles.tableCell}>{receipt.notes}</div>
+                                </div>
+                                : null
+                            }
                         </div>
                         <div className={styles.buttons}>
                             <Link className={styles.blue} to={`/receipt-records/${id}/edit`}>Edit</Link>
