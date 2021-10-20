@@ -23,10 +23,16 @@ function ReceiptRecordForm() {
         hsa_trans_id: "",
         receipt_images: []
     });
+    const [showPopUp, setShowPopUp] = useState(false);
+
+    function handlePopUp() {
+        setShowPopUp(!showPopUp);
+    }
 
     function handleFormChange(e) {
         const name = e.target.name;
         const value = e.target.value;
+        setShowPopUp(false);
         if ((name === "qualified_exp" && value === "No") || (name === "payment_method" && value === "HSA Debit Card")) {
             setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed: "N/A", reimbursed_date: null })
         } else if ((name === "reimbursed" && value === "No") || value === "N/A") {
@@ -125,8 +131,16 @@ function ReceiptRecordForm() {
                         />
                     </div>
                     <div className={styles.labelAndInput}>
-                        <label htmlFor="qualified_exp">Qualified Expense?</label>
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        <label htmlFor="qualified_exp">
+                            Qualified Expense? <i className="fa fa-info-circle" onClick={handlePopUp}></i>
+                        </label>
+                        { showPopUp ? 
+                            <div className={styles.popup}>
+                                For more information on what constitutes a qualified expense, please visit 
+                                the <a href="https://www.irs.gov/forms-pubs/about-publication-502">IRS's website</a>
+                            </div> 
+                            : null
+                        }
                         <select name="qualified_exp" id="qualified_exp" onChange={handleFormChange} required={true}>
                             <option></option>
                             <option>Yes</option>
