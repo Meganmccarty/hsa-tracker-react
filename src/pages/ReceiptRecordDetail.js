@@ -79,9 +79,9 @@ function ReceiptRecordDetail() {
                     <div className={styles.imageCard}>
                         <img
                             key={image.url}
-                            src={`${getAPIurl()}/image.url`}
+                            src={`${getAPIurl()}/${image.url}`}
                             alt={`receipt for record ${receipt.provider} on ${receipt.trans_date}`}
-                            onClick={() => setShowLightbox({ show: true, image: `${getAPIurl()}/image.url`, id: image.id })}
+                            onClick={() => setShowLightbox({ show: true, image: `${getAPIurl()}/${image.url}`, id: image.id })}
                         />
                     </div>
                 )
