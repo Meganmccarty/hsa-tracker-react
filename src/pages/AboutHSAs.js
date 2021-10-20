@@ -1,6 +1,8 @@
+import styles from './AboutHSAs.module.css';
+
 function AboutHSAs() {
     return (
-        <article>
+        <article className={styles.about}>
             <section>
                 <h1>About HSAs</h1>
                 <p>
@@ -40,11 +42,10 @@ function AboutHSAs() {
                     </ul>
                 </p>
                 <p>
-                    There is one other benefit that is especially helpful for those pursuing 
-                        <a href="https://www.investopedia.com/terms/f/financial-independence-retire-early-fire.asp">
-                            FIRE
-                        </a>
-                    (Financial Independence, Retire Early). If you have an expensive medical bill and 
+                    There is one other benefit that is especially helpful for those 
+                    pursuing <a href="https://www.investopedia.com/terms/f/financial-independence-retire-early-fire.asp">
+                        FIRE
+                    </a> (Financial Independence, Retire Early). If you have an expensive medical bill and 
                     choose to pay out-of-pocket, you don't have to reimburse yourself from your HSA 
                     account right away; in fact, you can wait as long as you like! So long as you keep 
                     your medical receipts, you can choose to reimburse yourself many years later for 
@@ -73,8 +74,8 @@ function AboutHSAs() {
                 <h1>Qualified Expenses</h1>
                 <p>
                     The IRS has an extensive list of what expenses qualify for reimbursement from an HSA. 
-                    For more information, please visit the 
-                    <a href="https://www.irs.gov/forms-pubs/about-publication-502">
+                    For more information, please visit 
+                    the <a href="https://www.irs.gov/forms-pubs/about-publication-502">
                         IRS's current revision
                     </a> for medical and dental expenses.
                 </p>
