@@ -73,8 +73,8 @@ function ReceiptRecordEdit() {
     function handleFormChange(e) {
         const name = e.target.name;
         const value = e.target.value;
-        if (name === "qualified_exp" && value === "No") {
-            setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed: "", reimbursed_date: null })
+        if ((name === "qualified_exp" && value === "No") || (name === "payment_method" && value === "HSA Debit Card")) {
+            setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed: "N/A", reimbursed_date: null })
         } else if ((name === "reimbursed" && value === "No") || value === "N/A") {
             setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed_date: null })
         } else {
@@ -213,7 +213,9 @@ function ReceiptRecordEdit() {
                                 <option>HSA Debit Card</option>
                             </select>
                         </div>
-                        {formData.qualified_exp === "Yes" ?
+                        {
+                            formData.qualified_exp === "Yes" && 
+                            (formData.payment_method !== "HSA Debit Card" && formData.payment_method !== "")  ?
                             <>
                                 <div className={styles.labelAndInput}>
                                     <label htmlFor="reimbursed">Reimbursed?</label>
@@ -227,7 +229,6 @@ function ReceiptRecordEdit() {
                                         <option></option>
                                         <option>Yes</option>
                                         <option>No</option>
-                                        <option>N/A</option>
                                     </select>
                                 </div>
                                 {formData.reimbursed === "Yes" ?

@@ -27,8 +27,8 @@ function ReceiptRecordForm() {
     function handleFormChange(e) {
         const name = e.target.name;
         const value = e.target.value;
-        if (name === "qualified_exp" && value === "No") {
-            setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed: "", reimbursed_date: null })
+        if ((name === "qualified_exp" && value === "No") || (name === "payment_method" && value === "HSA Debit Card")) {
+            setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed: "N/A", reimbursed_date: null })
         } else if ((name === "reimbursed" && value === "No") || value === "N/A") {
             setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed_date: null })
         } else {
@@ -126,6 +126,7 @@ function ReceiptRecordForm() {
                     </div>
                     <div className={styles.labelAndInput}>
                         <label htmlFor="qualified_exp">Qualified Expense?</label>
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
                         <select name="qualified_exp" id="qualified_exp" onChange={handleFormChange} required={true}>
                             <option></option>
                             <option>Yes</option>
@@ -154,7 +155,9 @@ function ReceiptRecordForm() {
                             <option>HSA Debit Card</option>
                         </select>
                     </div>
-                    {formData.qualified_exp === "Yes" ?
+                    {
+                        formData.qualified_exp === "Yes" && 
+                        (formData.payment_method !== "HSA Debit Card" && formData.payment_method !== "") ?
                         <>
                             <div className={styles.labelAndInput}>
                                 <label htmlFor="reimbursed">Reimbursed?</label>
@@ -162,7 +165,6 @@ function ReceiptRecordForm() {
                                     <option></option>
                                     <option>Yes</option>
                                     <option>No</option>
-                                    <option>N/A</option>
                                 </select>
                             </div>
                             {formData.reimbursed === "Yes" ?
