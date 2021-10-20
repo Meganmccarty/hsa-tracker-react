@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { receiptActions } from '../store/receiptSlice';
-import fileDownload from 'js-file-download';
 import getAPIurl from '../functions/url';
 
 import Loading from '../components/Loading';
@@ -79,15 +78,26 @@ function ReceiptRecordDetail() {
         const configObj = {
             method: "GET",
             headers: {
-                responseType: "blob",
                 Authorization: localStorage.getItem("token")
             }
         };
 
         fetch(url, configObj)
-            .then(response => {
-                fileDownload(response.data, showLightbox.filename)
-            })
+            .then((response) => response.blob())
+            .then((blob) => {
+                const url = window.URL.createObjectURL(
+                    new Blob([blob]),
+                );
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute(
+                    'download',
+                    showLightbox.filename,
+                );
+                document.body.appendChild(link);
+                link.click();
+                link.parentNode.removeChild(link);
+        })
     }
 
     function displayReceiptImages() {
