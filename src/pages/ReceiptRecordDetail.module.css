@@ -23,22 +23,48 @@
 
 .receiptDetail table {
     width: 500px;
-    border: 2px solid black;
-    border-radius: 10px;
+    border-spacing: 0;
     margin-bottom: 10px;
 }
 
-.receiptDetail table tr:nth-child(odd) {
+.receiptDetail table tr td:nth-child(odd) {
+    background-color: rgb(99, 10, 112);
+    color: white;
+}
+
+.receiptDetail table tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+}
+
+.receiptDetail table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.receiptDetail table tr:nth-child(odd) td:nth-child(even) {
     background-color: rgb(235, 235 ,235);
+}
+
+.receiptDetail table td:nth-child(1) {
+    text-align: right;
+}
+
+.receiptDetail table tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+    border-top: 1px solid rgb(190, 190, 190);
+}
+
+.receiptDetail table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+    border-bottom: 1px solid rgb(190, 190, 190);
+}
+
+.receiptDetail table tr td:last-child {
+    border-right: 1px solid rgb(190, 190, 190);
 }
 
 .receiptDetail table td {
     padding: 5px;
     width: 50%;
-}
-
-.receiptDetail table td:nth-child(1) {
-    text-align: right;
 }
 
 .buttons {
