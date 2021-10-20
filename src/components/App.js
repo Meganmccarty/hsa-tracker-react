@@ -6,6 +6,7 @@ import getAPIurl from '../functions/url';
 
 import Header from './Header';
 import Home from '../pages/Home';
+import AboutHSAs from '../pages/AboutHSAs';
 import Login from '../forms/users/Login';
 import ForgotPassword from '../forms/passwords/ForgotPassword';
 import PasswordReset from '../forms/passwords/PasswordReset';
@@ -54,6 +55,7 @@ function App() {
             <main className={styles.mainContainer}>
                 <Switch>
                     <Route exact path="/"><Home /></Route>
+                    <Route exact path="/about-hsas"><AboutHSAs /></Route>
                     <Route exact path="/login">
                         {loading ? <Loading /> : !user ? <Login /> : <Redirect to="/receipt-records" />}
                     </Route>

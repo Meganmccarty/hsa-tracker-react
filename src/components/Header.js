@@ -38,6 +38,7 @@ function Header() {
         <nav className={styles.navbar}>
             <Link className={styles.home} to="/">HSA Tracker</Link>
             <div className={styles.mainLinks}>
+                <Link to="/about-hsas">About HSAs</Link>
                 {user ?
                     <>
                         <Link to="/receipt-records">My Receipts</Link>
