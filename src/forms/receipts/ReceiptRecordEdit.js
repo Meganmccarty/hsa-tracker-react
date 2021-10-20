@@ -12,7 +12,12 @@ function ReceiptRecordEdit() {
     const dispatch = useDispatch();
     const receipt = useSelector(state => state.receipts.receipt);
     const [formData, setFormData] = useState(null);
+    const [showPopUp, setShowPopUp] = useState(false);
     const url = getAPIurl();
+
+    function handlePopUp() {
+        setShowPopUp(!showPopUp);
+    }
 
     useEffect(() => {
         fetch(`${getAPIurl()}/receipt-records/${id}`, {
@@ -57,7 +62,7 @@ function ReceiptRecordEdit() {
             return receipt.receipt_images.map(image => {
                 return (
                     <div className={styles.imageCard} key={image.url}>
-                        <img src={url ? `${url}/${image.url}`: image.url} alt={`${image.filename}: receipt for record ${receipt.provider} on ${receipt.trans_date}`} />
+                        <img src={url ? `${url}/${image.url}` : image.url} alt={`${image.filename}: receipt for record ${receipt.provider} on ${receipt.trans_date}`} />
                         <button className={styles.red} onClick={(e) => handleDelete(e, image.id)}>Delete</button>
                     </div>
                 )
@@ -74,6 +79,7 @@ function ReceiptRecordEdit() {
     function handleFormChange(e) {
         const name = e.target.name;
         const value = e.target.value;
+        setShowPopUp(false);
         if ((name === "qualified_exp" && value === "No") || (name === "payment_method" && value === "HSA Debit Card")) {
             setFormData({ ...formData, [e.target.name]: e.target.value, reimbursed: "N/A", reimbursed_date: null })
         } else if ((name === "reimbursed" && value === "No") || value === "N/A") {
@@ -176,7 +182,16 @@ function ReceiptRecordEdit() {
                             />
                         </div>
                         <div className={styles.labelAndInput}>
-                            <label htmlFor="qualified_exp">Qualified Expense?</label>
+                            <label htmlFor="qualified_exp">
+                                Qualified Expense? <i className="fa fa-info-circle" onClick={handlePopUp}></i>
+                            </label>
+                            {showPopUp ?
+                                <div className={styles.popup}>
+                                    For more information on what constitutes a qualified expense, please visit
+                                    the <a href="https://www.irs.gov/forms-pubs/about-publication-502">IRS's website</a>
+                                </div>
+                                : null
+                            }
                             <select
                                 name="qualified_exp"
                                 id="qualified_exp"
@@ -215,39 +230,39 @@ function ReceiptRecordEdit() {
                             </select>
                         </div>
                         {
-                            formData.qualified_exp === "Yes" && 
-                            (formData.payment_method !== "HSA Debit Card" && formData.payment_method !== "")  ?
-                            <>
-                                <div className={styles.labelAndInput}>
-                                    <label htmlFor="reimbursed">Reimbursed?</label>
-                                    <select
-                                        name="reimbursed"
-                                        id="reimbursed"
-                                        onChange={handleFormChange}
-                                        value={formData.reimbursed}
-                                        required={true}
-                                    >
-                                        <option></option>
-                                        <option>Yes</option>
-                                        <option>No</option>
-                                    </select>
-                                </div>
-                                {formData.reimbursed === "Yes" ?
+                            formData.qualified_exp === "Yes" &&
+                                (formData.payment_method !== "HSA Debit Card" && formData.payment_method !== "") ?
+                                <>
                                     <div className={styles.labelAndInput}>
-                                        <label htmlFor="reimbursed_date">Reimbursed date</label>
-                                        <input
-                                            type="date"
-                                            name="reimbursed_date"
-                                            id="reimbursed_date"
+                                        <label htmlFor="reimbursed">Reimbursed?</label>
+                                        <select
+                                            name="reimbursed"
+                                            id="reimbursed"
                                             onChange={handleFormChange}
-                                            value={formData.reimbursed_date}
+                                            value={formData.reimbursed}
                                             required={true}
-                                        />
+                                        >
+                                            <option></option>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
                                     </div>
-                                    : null
-                                }
-                            </>
-                            : null
+                                    {formData.reimbursed === "Yes" ?
+                                        <div className={styles.labelAndInput}>
+                                            <label htmlFor="reimbursed_date">Reimbursed date</label>
+                                            <input
+                                                type="date"
+                                                name="reimbursed_date"
+                                                id="reimbursed_date"
+                                                onChange={handleFormChange}
+                                                value={formData.reimbursed_date}
+                                                required={true}
+                                            />
+                                        </div>
+                                        : null
+                                    }
+                                </>
+                                : null
                         }
                         <div className={styles.labelAndInput}>
                             <label htmlFor="notes">Notes</label>
