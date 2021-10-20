@@ -104,9 +104,8 @@ function ReceiptRecordDetail() {
         if (receipt && receipt.receipt_images) {
             return receipt.receipt_images.map(image => {
                 return (
-                    <div className={styles.imageCard}>
+                    <div className={styles.imageCard} key={image.url}>
                         <img
-                            key={image.url}
                             src={url ? `${url}${image.url}` : image.url}
                             alt={`${image.filename}: receipt for record ${receipt.provider} on ${receipt.trans_date}`}
                             onClick={() => setShowLightbox({
