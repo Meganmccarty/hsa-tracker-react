@@ -12,6 +12,7 @@ function ReceiptRecordEdit() {
     const dispatch = useDispatch();
     const receipt = useSelector(state => state.receipts.receipt);
     const [formData, setFormData] = useState(null);
+    const url = getAPIurl();
 
     useEffect(() => {
         fetch(`${getAPIurl()}/receipt-records/${id}`, {
@@ -56,7 +57,7 @@ function ReceiptRecordEdit() {
             return receipt.receipt_images.map(image => {
                 return (
                     <div className={styles.imageCard} key={image.url}>
-                        <img src={`${getAPIurl()}/${image.url}`} alt="receipt" />
+                        <img src={url ? `${url}/${image.url}`: image.url} alt="receipt" />
                         <button className={styles.red} onClick={(e) => handleDelete(e, image.id)}>Delete</button>
                     </div>
                 )
