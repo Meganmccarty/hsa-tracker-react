@@ -156,20 +156,15 @@ function ReceiptRecordDetail() {
                                     <td>Payment Method</td>
                                     <td>{receipt.payment_method}</td>
                                 </tr>
-                                {receipt.qualified_exp === "Yes" ?
-                                    <>
-                                        <tr>
-                                            <td>Reimbursed?</td>
-                                            <td>{receipt.reimbursed}</td>
-                                        </tr>
-                                        {receipt.reimbursed === "Yes" ?
-                                            <tr>
-                                                <td>Reimbursed Date</td>
-                                                <td>{receipt.reimbursed_date}</td>
-                                            </tr>
-                                            : null
-                                        }
-                                    </>
+                                <tr>
+                                    <td>Reimbursed?</td>
+                                    <td>{receipt.reimbursed}</td>
+                                </tr>
+                                {receipt.qualified_exp === "Yes" && receipt.reimbursed === "Yes" ?
+                                    <tr>
+                                        <td>Reimbursed Date</td>
+                                        <td>{receipt.reimbursed_date}</td>
+                                    </tr>
                                     : null
                                 }
                                 <tr>
