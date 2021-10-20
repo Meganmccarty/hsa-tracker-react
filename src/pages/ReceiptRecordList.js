@@ -182,14 +182,14 @@ function ReceiptRecordList() {
 
     return (
         <section className={styles.receiptList}>
-            <h1>My Receipts</h1>
+            <h2>My Receipts</h2>
             {receiptMessage ? <><div className={styles.message}>{receiptMessage}</div><br /></> : null}
             {userMessage ? <><div className={styles.message}>{userMessage}</div><br /></> : null}
             {loading ?
                 <Loading />
                 :
                 <>
-                    <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." />
+                    <input aria-label="Search" type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." />
                     <h3>Total Expenses ({year})</h3>
                     <div className={styles.expenses}>
                         <div className={styles.expenseCategory}>
